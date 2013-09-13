@@ -15,5 +15,8 @@ db/.*\.sqlite3-journal
 log/.*\.log
 tmp
 
+# Ignore lock files
+.*\.lock
+
 # Ignore RubyMine
 \.idea/workspace.xml
