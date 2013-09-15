@@ -4,7 +4,7 @@ class CreateValues < ActiveRecord::Migration
       t.string :name
       t.string :old_price
       t.string :new_price
-      t.float :discount
+      t.string :discount
       t.datetime :end_date
       t.string :url
 
