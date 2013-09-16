@@ -3,6 +3,12 @@
 <table>
   <thead>
     <tr>
+      <th>Name</th>
+      <th>Old Price</th>
+      <th>Discount</th>
+      <th>New Price</th>
+      <th>End Date</th>
+      <th>URL</th>
       <th></th>
       <th></th>
       <th></th>
@@ -12,6 +18,12 @@
   <tbody>
     <% @values.each do |value| %>
       <tr>
+        <td><%= link_to value.name, value %></td>
+        <td><%= value.old_price %></td>
+        <td><%= value.discount %></td>
+        <td><%= value.new_price %></td>
+        <td><%= value.end_date %></td>
+        <td><%= value.url %></td>
         <td><%= link_to 'Show', value %></td>
         <td><%= link_to 'Edit', edit_value_path(value) %></td>
         <td><%= link_to 'Destroy', value, method: :delete, data: { confirm: 'Are you sure?' } %></td>

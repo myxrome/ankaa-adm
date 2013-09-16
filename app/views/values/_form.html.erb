@@ -12,6 +12,18 @@
   <% end %>
 
   <div class="actions">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :old_price %>
+    <%= f.text_field :old_price %>
+    <%= f.label :discount %>
+    <%= f.text_field :discount %>
+    <%= f.label :new_price %>
+    <%= f.text_field :new_price %>
+    <%= f.label :end_date %>
+    <%= f.date_select :end_date %>
+    <%= f.label :url %>
+    <%= f.text_field :url %>
     <%= f.submit %>
   </div>
 <% end %>
