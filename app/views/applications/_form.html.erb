@@ -1,0 +1,12 @@
+<%= simple_form_for(@application) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+  </div>
+
+  <div class="actions">
+    <%= f.input :name %>
+    Key: <%= @application.key %><br>
+    <%= f.button :submit %>
+  </div>
+<% end %>

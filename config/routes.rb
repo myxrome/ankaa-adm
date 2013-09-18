@@ -56,4 +56,5 @@ Ankaa::Application.routes.draw do
 
   resources :values
   resources :categories
+  resources :applications
 end
