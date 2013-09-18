@@ -15,6 +15,7 @@ class ApplicationsController < ApplicationController
   # GET /applications/new
   def new
     @application = Application.new
+    session[:key] = @application.key
   end
 
   # GET /applications/1/edit
@@ -24,7 +25,8 @@ class ApplicationsController < ApplicationController
   # POST /applications
   # POST /applications.json
   def create
-    @application = Application.new(application_params)
+    @application = Application.new(application_create_params)
+    session[:key] = nil
 
     respond_to do |format|
       if @application.save
@@ -41,7 +43,7 @@ class ApplicationsController < ApplicationController
   # PATCH/PUT /applications/1.json
   def update
     respond_to do |format|
-      if @application.update(application_params)
+      if @application.update(application_update_params)
         format.html { redirect_to @application, notice: 'Application was successfully updated.' }
         format.json { head :no_content }
       else
@@ -68,7 +70,12 @@ class ApplicationsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def application_params
+    def application_update_params
       params[:application].permit(:name, :category_ids => [])
     end
+
+    def application_create_params
+      params[:application].merge(key: session[:key]).permit(:name, :key, :category_ids => [])
+    end
+
 end
