@@ -24,7 +24,7 @@
     <%= f.date_select :end_date %>
     <%= f.label :url %>
     <%= f.text_field :url %>
-    <%= f.association :categories, as: :check_boxes %>
+    <%= f.collection_select :category_id, Category.all, :id, :name %>
     <%= f.submit %>
   </div>
 <% end %>
