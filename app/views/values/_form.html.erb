@@ -24,6 +24,9 @@
     <%= f.date_select :end_date %>
     <%= f.label :url %>
     <%= f.text_field :url %>
+
+    <%= f.select :category_ids, Category.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
+
     <%= f.submit %>
   </div>
 <% end %>
