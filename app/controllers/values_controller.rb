@@ -69,6 +69,8 @@ class ValuesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def value_params
-      params[:value].permit(:name, :old_price, :new_price, :discount, :end_date, :url, :category_id)
+      params[:value].permit(:name, :old_price, :new_price, :discount, :end_date, :url, :category_id,
+                            descriptions_attributes: [:id, :description_template_id, :order, :text, :red, :bold,
+                                                      :_destroy])
     end
 end

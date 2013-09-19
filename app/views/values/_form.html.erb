@@ -25,6 +25,16 @@
     <%= f.label :url %>
     <%= f.text_field :url %>
     <%= f.collection_select :category_id, Category.all, :id, :name %>
+
+    Descriptions:<br>
+    <div id="descriptions">
+        <%= f.simple_fields_for :descriptions do |description| %>
+            <%= render 'description_fields', :f => description %>
+        <% end %>
+
+        <%= link_to_add_association 'add description', f, :descriptions %>
+    </div>
+
     <%= f.submit %>
   </div>
 <% end %>
