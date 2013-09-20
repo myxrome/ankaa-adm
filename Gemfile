@@ -20,6 +20,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # Use Foundation for html layout
 gem 'compass-rails', "~> 2.0.alpha.0" # you need this or you get an err
