@@ -1,6 +1,14 @@
 class ValuesController < ApplicationController
   before_action :set_value, only: [:show, :edit, :update, :destroy]
 
+  def autocomplete_description_caption
+    templates = DescriptionTemplate.select([:caption]).where("lower(caption) LIKE lower(?)", "%#{params[:name]}%")
+    result = templates.collect do |t|
+      { value: t.caption}
+    end
+    render json: result
+  end
+
   # GET /values
   # GET /values.json
   def index

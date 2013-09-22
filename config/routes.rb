@@ -54,7 +54,9 @@ Ankaa::Application.routes.draw do
   #     resources :products
   #   end
 
-  resources :values
+  resources :values do
+    get :autocomplete_description_caption, :on => :collection
+  end
   resources :categories
   resources :applications
 end
