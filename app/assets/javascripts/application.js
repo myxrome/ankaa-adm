@@ -11,11 +11,12 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.ui.all
+//= require jquery.ui.autocomplete
+//= require jquery.ui.datepicker
 //= require jquery_ujs
-//= require cocoon
 //= require foundation
 //= require turbolinks
+//= require cocoon
 //= require_tree .
 
 $(document).foundation();

@@ -1,7 +1,7 @@
 <%= simple_form_for(@value) do |f| %>
   <% if @value.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@value.errors.count, "error") %> prohibited this value from being saved:</h2>
+      <h2><%= pluralize(@value.errors.count, 'error') %> prohibited this value from being saved:</h2>
 
       <ul>
       <% @value.errors.full_messages.each do |msg| %>
@@ -27,11 +27,13 @@
 
     Descriptions:<br>
     <div id="descriptions">
-        <%= f.simple_fields_for :descriptions do |description| %>
-            <%= render 'description_fields', :f => description %>
-        <% end %>
-
-        <%= link_to_add_association 'add description', f, :descriptions %>
+        <div id="items">
+            <%= f.simple_fields_for :descriptions do |description| %>
+                <%= render 'description_fields', :f => description %>
+            <% end %>
+        </div>
+        <%= link_to_add_association 'add description', f, :descriptions, :data => {
+                'association-insertion-method' => 'after', 'association-insertion-node' => '#items'} %>
     </div>
 
     <%= f.submit %>
