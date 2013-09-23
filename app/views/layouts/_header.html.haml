@@ -1,0 +1,14 @@
+%nav.top-bar
+  %ul.title-area
+    %li.name ankaa
+  %section.top-bar-section
+    %ul.right
+      %li.divider
+      %li{class: ('active' if current_page? categories_path)}
+        = link_to 'Categories', categories_path
+      %li.divider
+      %li{class: ('active' if current_page? applications_path)}
+        = link_to 'Applications', applications_path
+      %li.divider
+      %li{class: ('active' if current_page? values_path)}
+        = link_to 'Values', values_path
