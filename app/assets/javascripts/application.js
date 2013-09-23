@@ -14,7 +14,9 @@
 //= require jquery.ui.autocomplete
 //= require jquery.ui.datepicker
 //= require jquery_ujs
-//= require foundation
+//= require foundation/foundation
+//= require foundation/foundation.topbar
+//= require foundation/foundation.forms
 //= require turbolinks
 //= require cocoon
 //= require_tree .
