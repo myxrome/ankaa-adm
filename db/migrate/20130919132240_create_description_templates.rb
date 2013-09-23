@@ -5,5 +5,7 @@ class CreateDescriptionTemplates < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :description_templates, :caption
   end
 end

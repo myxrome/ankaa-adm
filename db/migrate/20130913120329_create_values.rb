@@ -6,10 +6,13 @@ class CreateValues < ActiveRecord::Migration
       t.string :old_price
       t.string :new_price
       t.string :discount
-      t.datetime :end_date
       t.string :url
+      t.boolean :active
+      t.datetime :end_date
 
       t.timestamps
     end
+
+    add_index :values, [:category_id, :active, :end_date], :order => {end_date: :asc}
   end
 end

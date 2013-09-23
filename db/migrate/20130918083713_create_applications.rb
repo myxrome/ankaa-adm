@@ -6,5 +6,7 @@ class CreateApplications < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :applications, :key, :unique => true
   end
 end
