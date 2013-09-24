@@ -1,0 +1,11 @@
+= simple_form_for(@application) do |f|
+  = f.error_notification
+  .inputs
+    .row
+      .small-5.large-5.columns
+        = f.input :name
+        %p Key: #{@application.key}
+      .small-7.large-7.columns
+        = f.association :categories, as: :check_boxes, wrapper_html: { class: 'checkbox_container' }
+  .actions
+    = f.button :submit, class: 'button radius'

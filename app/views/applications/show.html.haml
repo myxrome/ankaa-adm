@@ -1,0 +1,7 @@
+%p#notice= notice
+%h1
+  = @application.name
+%p
+  Key: #{@application.key}
+= link_to '<', applications_path, class: 'button radius'
+= link_to 'Edit', edit_application_path(@application), class: 'button radius'
