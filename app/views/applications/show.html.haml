@@ -1,12 +1,8 @@
 %p#notice= notice
-%h1
-  = @application.name
+%h1= @application.name
 .row
   .small-12.large-12.columns
-    %p
-      Categories:
-      = @application.categories.map { |c| c.name }.join(', ')
-    %p
-      Key: #{@application.key}
+    %p Categories: #{@application.categories.map { |c| c.name }.join(', ')}
+    %p Key: #{@application.key}
 = link_to '<', applications_path, class: 'main-button'
 = link_to 'Edit', edit_application_path(@application), class: 'main-button'
