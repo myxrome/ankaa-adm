@@ -10,14 +10,13 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery.min
+//= require jquery_ujs
 //= require jquery.ui.autocomplete
 //= require jquery.ui.datepicker
-//= require jquery_ujs
 //= require foundation/foundation
 //= require foundation/foundation.topbar
 //= require foundation/foundation.forms
-//= require turbolinks
 //= require cocoon
 //= require_tree .
 
