@@ -1347,3 +1347,15 @@ $default-float: left;
 p {
   font-size: 0.875em;
 }
+
+.main-button {
+  @extend .small;
+  @extend .button;
+  @extend .radius;
+}
+
+.secondary-button {
+  @extend .tiny;
+  @extend .secondary;
+  @extend .radius;
+}
