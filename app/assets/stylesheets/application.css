@@ -10,6 +10,7 @@
  *
  *= require jquery.ui.datepicker
  *= require jquery.ui.autocomplete
- *= require_self
+ *= require general_foundicons
  *= require_tree .
+ *= require_self
 */
