@@ -3,7 +3,7 @@
     %li.name
       %h1
         %a{href:'#'}
-          ankaa
+          <i class="foundicon-idea"></i>ankaa
     %li.toggle-topbar.menu-icon
       %a{href: '#'}
         %span Menu
@@ -11,11 +11,11 @@
     %ul.left
       %li.divider
       %li{class: ('active' if current_page? categories_path)}
-        = link_to 'Categories', categories_path
+        = link_to '<i class="foundicon-folder"></i> Categories'.html_safe, categories_path
       %li.divider
       %li{class: ('active' if current_page? applications_path)}
-        = link_to 'Applications', applications_path
+        = link_to '<i class="foundicon-website"></i> Applications'.html_safe, applications_path
       %li.divider
       %li{class: ('active' if current_page? values_path)}
-        = link_to 'Values', values_path
+        = link_to '<i class="foundicon-cart"></i> Values'.html_safe, values_path
       %li.divider

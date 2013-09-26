@@ -4,5 +4,4 @@
   .small-12.large-12.columns
     %p Categories: #{@application.categories.map { |c| c.name }.join(', ')}
     %p Key: #{@application.key}
-= link_to '<', applications_path, class: 'main-button'
-= link_to 'Edit', edit_application_path(@application), class: 'main-button'
+= link_to '<i class="foundicon-edit"></i> Edit'.html_safe, edit_application_path(@application), class: 'main-button'

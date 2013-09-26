@@ -5,4 +5,6 @@
       .small-5.large-5.columns
         = f.input :name
   .actions
-    = f.button :submit, class: 'main-button'
+    = button_tag(type: 'submit', class: 'main-button') do
+      <i class="foundicon-checkmark"></i> Save
+    = link_to '<i class="foundicon-error"></i> Cancel'.html_safe, :back, class: 'main-button'
