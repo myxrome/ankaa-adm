@@ -1,0 +1,35 @@
+= simple_form_for(@value) do |f|
+  = f.error_notification
+  .inputs
+    .row
+      .small-4.large-4.columns
+        = f.input :name
+      .small-4.large-4.columns
+        = f.label :category_id
+        = f.collection_select :category_id, Category.all, :id, :name
+      .small-2.large-2.columns
+        = f.input :end_date, :as => :datepicker
+      .small-2.large-2.columns
+        = f.input :active
+    .row
+      .small-12.large-12.columns
+        = f.input :url
+    .row
+      .small-4.large-4.columns
+        = f.input :old_price
+      .small-4.large-4.columns
+        = f.input :discount
+      .small-4.large-4.columns
+        = f.input :new_price
+    .row
+      .small-5.large-5.columns
+      .small-7.large-7.columns
+        %p Descriptions:
+        #descriptions
+          #items
+            = f.simple_fields_for :descriptions do |description|
+              = render 'description_form', :f => description
+          = link_to_add_association '<i class="foundicon-add-doc"></i> New Description'.html_safe, f, :descriptions, :partial => 'description_form', :data => { 'association-insertion-method' => 'after', 'association-insertion-node' => '#items'}, class: 'main-button'
+
+  .actions
+    = render 'form_buttons'

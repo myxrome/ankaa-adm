@@ -15,7 +15,7 @@
   -# Set the viewport width to device width for mobile
   %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1.0' }
 
-  %title= content_for?(:title) ? yield(:title) : 'Untitled'
+  %title= "ankaa#{content_for?(:title) ? ' - ' + yield(:title) : ''}".html_safe
 
   = stylesheet_link_tag 'application'
   = javascript_include_tag 'vendor/custom.modernizr'
@@ -26,6 +26,7 @@
   = render 'layouts/header'
   .row
     .small-12.large-12.columns
+      %h1= content_for?(:title) ? yield(:title) : ''
       = yield
 
   = javascript_include_tag 'application'

@@ -1,7 +1,7 @@
 %p#notice= notice
-%h1= @application.name
+- content_for :title, "Application - #{@application.name}"
 .row
   .small-12.large-12.columns
-    %p Categories: #{@application.categories.map { |c| c.name }.join(', ')}
+    %p Categories: #{@application.categories.map { |c| link_to c.name, c }.join(', ').html_safe}
     %p Key: #{@application.key}
 = link_to '<i class="foundicon-edit"></i> Edit'.html_safe, edit_application_path(@application), class: 'main-button'

@@ -1,0 +1,28 @@
+-content_for :title, 'Values'
+%table
+  %thead
+    %tr
+      %th Name
+      %th Category
+      %th Old Price
+      %th Discount
+      %th New Price
+      %th End Date
+      %th Active
+      %th URL
+      %th
+      %th
+  %tbody
+    - @values.each do |value|
+      %tr
+        %td= link_to value.name, value
+        %td= link_to value.category.name, value.category
+        %td= value.old_price
+        %td= value.discount
+        %td= value.new_price
+        %td= value.end_date
+        %td= value.active
+        %td= value.url
+        %td= link_to '<i class="foundicon-edit"></i>'.html_safe, edit_value_path(value), class: 'secondary-button'
+        %td= link_to '<i class="foundicon-remove"></i>'.html_safe, value, method: :delete, data: { confirm: 'Are you sure?' }, class: 'secondary-button'
+= link_to '<i class="foundicon-add-doc"></i> New Value'.html_safe, new_value_path, class: 'main-button'

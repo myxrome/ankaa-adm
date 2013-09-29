@@ -8,7 +8,7 @@ class CreateValues < ActiveRecord::Migration
       t.string :discount
       t.string :url
       t.boolean :active
-      t.datetime :end_date
+      t.date :end_date
 
       t.timestamps
     end

@@ -8,6 +8,4 @@
       .small-7.large-7.columns
         = f.association :categories, as: :check_boxes, wrapper_html: { class: 'checkbox_container' }
   .actions
-    = button_tag(type: 'submit', class: 'main-button') do
-      <i class="foundicon-checkmark"></i> Save
-    = link_to '<i class="foundicon-error"></i> Cancel'.html_safe, :back, class: 'main-button'
+    = render 'form_buttons'
