@@ -1,4 +1,4 @@
-bind = (scope) ->
+_autocomplete = (scope) ->
   $(scope).find('.autocomplete').autocomplete
     minLength: 2
     source: (request, response) ->
@@ -12,5 +12,5 @@ bind = (scope) ->
 
 $ ->
   $('#descriptions').on 'cocoon:after-insert', (e, insertedItem) ->
-      bind(insertedItem)
-  bind(document)
+    _autocomplete(insertedItem)
+  _autocomplete(document)

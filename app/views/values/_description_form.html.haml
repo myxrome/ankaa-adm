@@ -1,4 +1,5 @@
 .nested-fields.row
+  = f.input :order, as: :hidden
   .small-6.large-6.columns
     = f.input :caption, input_html: {class: 'autocomplete', 'data-url' => autocomplete_description_caption_values_path}
   .small-3.large-3.columns
@@ -7,7 +8,8 @@
     = f.input :red
   .small-12.large-12.columns
     = f.input :text
-  -#= f.input :order
   .small-12.large-12.columns
+    = link_to '<i class="foundicon-up-arrow"></i>'.html_safe, '', class: 'secondary-button up'
+    = link_to '<i class="foundicon-down-arrow"></i>'.html_safe, '', class: 'secondary-button down'
     = link_to_remove_association '<i class="foundicon-remove"></i>'.html_safe, f, class: 'secondary-button'
 %br
