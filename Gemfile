@@ -39,6 +39,7 @@ gem 'simple_form'
 
 gem 'cocoon'
 
+gem 'fog'
 gem 'paperclip'
 
 group :doc do
