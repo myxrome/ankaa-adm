@@ -21,3 +21,6 @@ tmp
 
 # Ignore RubyMine
 \.idea/workspace.xml
+
+# Ignore public uploaded images
+public/p/.*
