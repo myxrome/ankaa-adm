@@ -34,28 +34,20 @@ class ValuesController < ApplicationController
   def create
     @value = Value.new(value_params)
 
-    respond_to do |format|
-      if @value.save
-        format.html { redirect_to @value, notice: 'Value was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @value }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @value.errors, status: :unprocessable_entity }
-      end
+    if @value.save
+      redirect_to @value, notice: 'Value was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
   # PATCH/PUT /values/1
   # PATCH/PUT /values/1.json
   def update
-    respond_to do |format|
-      if @value.update(value_params)
-        format.html { redirect_to @value, notice: 'Value was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @value.errors, status: :unprocessable_entity }
-      end
+    if @value.update(value_params)
+      redirect_to @value, notice: 'Value was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
@@ -63,10 +55,7 @@ class ValuesController < ApplicationController
   # DELETE /values/1.json
   def destroy
     @value.destroy
-    respond_to do |format|
-      format.html { redirect_to values_url }
-      format.json { head :no_content }
-    end
+    redirect_to values_url
   end
 
   private

@@ -28,28 +28,20 @@ class ApplicationsController < ApplicationController
     @application = Application.new(application_create_params)
     session[:key] = nil
 
-    respond_to do |format|
-      if @application.save
-        format.html { redirect_to @application, notice: 'Application was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @application }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @application.errors, status: :unprocessable_entity }
-      end
+    if @application.save
+      redirect_to @application, notice: 'Application was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
   # PATCH/PUT /applications/1
   # PATCH/PUT /applications/1.json
   def update
-    respond_to do |format|
-      if @application.update(application_update_params)
-        format.html { redirect_to @application, notice: 'Application was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @application.errors, status: :unprocessable_entity }
-      end
+    if @application.update(application_update_params)
+      redirect_to @application, notice: 'Application was successfully updated.'
+    else
+      render action: 'edit'
     end
   end
 
@@ -57,25 +49,22 @@ class ApplicationsController < ApplicationController
   # DELETE /applications/1.json
   def destroy
     @application.destroy
-    respond_to do |format|
-      format.html { redirect_to applications_url }
-      format.json { head :no_content }
-    end
+    redirect_to applications_url
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_application
-      @application = Application.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_application
+    @application = Application.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def application_update_params
-      params[:application].permit(:name, :category_ids => [])
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def application_update_params
+    params[:application].permit(:name, :category_ids => [])
+  end
 
-    def application_create_params
-      params[:application].merge(key: session[:key]).permit(:name, :key, :category_ids => [])
-    end
+  def application_create_params
+    params[:application].merge(key: session[:key]).permit(:name, :key, :category_ids => [])
+  end
 
 end
