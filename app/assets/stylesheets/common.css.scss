@@ -1376,6 +1376,8 @@ p {
   @extend .tiny;
   @extend .secondary;
   @extend .radius;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .red {
@@ -1384,4 +1386,9 @@ p {
 
 .bold {
   font-weight: bold;
+}
+
+.nested-fields {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }

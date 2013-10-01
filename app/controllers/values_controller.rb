@@ -70,15 +70,16 @@ class ValuesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_value
-      @value = Value.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_value
+    @value = Value.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def value_params
-      params[:value].permit(:name, :old_price, :new_price, :discount, :end_date, :url, :category_id,
-                            descriptions_attributes: [:id, :caption, :order, :text, :red, :bold,
-                                                      :_destroy])
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def value_params
+    params[:value].permit(:name, :old_price, :new_price, :discount, :end_date, :url, :category_id,
+                          descriptions_attributes: [:id, :caption, :order, :text, :red, :bold,
+                                                    :_destroy],
+                          promos_attributes: [:id, :image, :order, :_destroy])
+  end
 end

@@ -41,5 +41,11 @@ $ ->
     _autoordering.down(insertedItem)
   $('#descriptions').on 'cocoon:before-remove', (e, insertedItem) ->
     _autoordering.remove(insertedItem)
+  $('#promos').on 'cocoon:after-insert', (e, insertedItem) ->
+    _autoordering.add(insertedItem)
+    _autoordering.up(insertedItem)
+    _autoordering.down(insertedItem)
+  $('#promos').on 'cocoon:before-remove', (e, insertedItem) ->
+    _autoordering.remove(insertedItem)
   _autoordering.up(document)
   _autoordering.down(document)

@@ -17,7 +17,10 @@
 //= require foundation/foundation
 //= require foundation/foundation.topbar
 //= require foundation/foundation.forms
+//= require foundation/foundation.orbit
 //= require cocoon
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(function () {
+    $(document).foundation();
+});
