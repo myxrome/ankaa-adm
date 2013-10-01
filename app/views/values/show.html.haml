@@ -20,7 +20,7 @@
 .row
   .small-5.large-5.columns
     %p Promo:
-    %ul{data: {orbit: ''}}
+    %ul{data: ({orbit: ''} unless @value.promos.empty?)}
       - @value.promos.each do |promo|
         = render 'promo', promo: promo
   .small-7.large-7.columns
