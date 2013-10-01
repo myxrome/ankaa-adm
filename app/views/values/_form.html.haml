@@ -23,13 +23,18 @@
         = f.input :new_price
     .row
       .small-5.large-5.columns
+        %p Promos:
+        #promos
+          #p-items
+            = f.simple_fields_for :promos, :html => { :multipart => true }  do |promo|
+              = render 'promo_form', :f => promo
+          = link_to_add_association '<i class="foundicon-add-doc"></i> New Promo'.html_safe, f, :promos, :partial => 'promo_form', :data => { 'association-insertion-method' => 'append', 'association-insertion-node' => '#p-items'}, class: 'main-button'
       .small-7.large-7.columns
         %p Descriptions:
         #descriptions
-          #items
+          #d-items
             = f.simple_fields_for :descriptions do |description|
               = render 'description_form', :f => description
-          = link_to_add_association '<i class="foundicon-add-doc"></i> New Description'.html_safe, f, :descriptions, :partial => 'description_form', :data => { 'association-insertion-method' => 'append', 'association-insertion-node' => '#items'}, class: 'main-button'
-
+          = link_to_add_association '<i class="foundicon-add-doc"></i> New Description'.html_safe, f, :descriptions, :partial => 'description_form', :data => { 'association-insertion-method' => 'append', 'association-insertion-node' => '#d-items'}, class: 'main-button'
   .actions
     = render 'form_buttons'

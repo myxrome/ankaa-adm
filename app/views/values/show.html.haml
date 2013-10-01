@@ -19,6 +19,10 @@
     %p New price: #{@value.new_price}
 .row
   .small-5.large-5.columns
+    %p Promo:
+    %ul{data: {orbit: ''}}
+      - @value.promos.each do |promo|
+        = render 'promo', promo: promo
   .small-7.large-7.columns
     %p Descriptions:
     - @value.descriptions.each do |description|
