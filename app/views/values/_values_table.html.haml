@@ -1,0 +1,18 @@
+%table
+  %thead
+    %tr
+      %th Name
+      %th Old Price
+      %th Discount
+      %th New Price
+      %th End Date
+      %th URL
+  %tbody
+    - values.each do |value|
+      %tr
+        %td= link_to value.name, value
+        %td= value.old_price
+        %td= value.discount
+        %td= value.new_price
+        %td= value.end_date
+        %td= value.url

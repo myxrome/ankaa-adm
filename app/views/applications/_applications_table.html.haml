@@ -1,0 +1,10 @@
+%table
+  %thead
+    %tr
+      %th Name
+      %th Key
+  %tbody
+    - applications.each do |application|
+      %tr
+        %td= link_to application.name, application
+        %td= application.key
