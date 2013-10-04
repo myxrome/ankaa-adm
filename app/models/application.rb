@@ -1,5 +1,5 @@
 class Application < ActiveRecord::Base
-  has_many :application_categories, inverse_of: :application
+  has_many :application_categories, inverse_of: :application, dependent: :destroy
   has_many :categories, through: :application_categories
   has_many :values, -> { where('values.active = true and values.end_date > ?', DateTime.now.to_date) },
            through: :categories
