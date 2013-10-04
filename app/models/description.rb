@@ -3,10 +3,7 @@ class Description < ActiveRecord::Base
   belongs_to :value, touch: true, inverse_of: :descriptions
 
   def caption
-    if self.description_template
-      template = DescriptionTemplate.find(self.description_template)
-      template.caption
-    end
+    self.description_template.caption if self.description_template
   end
 
   def caption=(value)
