@@ -60,11 +60,11 @@ class ApplicationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def application_update_params
-    params[:application].permit(:name, :category_ids => [])
+    params[:application].permit(:name, category_ids: [])
   end
 
   def application_create_params
-    params[:application].merge(key: session[:key]).permit(:name, :key, :category_ids => [])
+    params[:application].merge(key: session[:key]).permit(:name, :key, category_ids: [])
   end
 
 end
