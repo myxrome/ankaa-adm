@@ -8,5 +8,6 @@ class CreateApplicationCategories < ActiveRecord::Migration
     end
 
     add_index :application_categories, :application_id
+    add_index :application_categories, :category_id
   end
 end

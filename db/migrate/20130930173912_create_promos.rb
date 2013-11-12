@@ -7,5 +7,6 @@ class CreatePromos < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :promos, [:value_id, :order]
   end
 end

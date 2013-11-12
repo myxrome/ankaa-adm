@@ -11,6 +11,6 @@ class CreateDescriptions < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :descriptions, :value_id
+    add_index :descriptions, [:value_id, :order]
   end
 end
