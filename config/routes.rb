@@ -39,7 +39,7 @@ Ankaa::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
@@ -53,6 +53,8 @@ Ankaa::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  root to: 'categories#index'
 
   resources :values do
     get :autocomplete_description_caption, :on => :collection
