@@ -23,4 +23,5 @@ tmp
 \.idea/workspace.xml
 
 # Ignore public uploaded images
+public/assets/.*
 public/p/.*

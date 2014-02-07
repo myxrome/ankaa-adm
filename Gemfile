@@ -26,7 +26,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 # Use Foundation for html layout
-gem 'compass-rails', "~> 2.0.alpha.0" # you need this or you get an err
+gem 'compass-rails', '~> 1.1.2' # you need this or you get an err
 gem 'zurb-foundation', '~> 4.3.0'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
