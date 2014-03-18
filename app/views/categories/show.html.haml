@@ -2,9 +2,9 @@
 - content_for :title, "Category - #{@category.name}"
 .row
   .small-5.large-5.columns
-    %p Applications:
-    = render 'applications/applications_table', applications: @category.applications unless @category.applications.empty?
+    %p Topics:
+    = render 'topics/table', topics: @category.topics unless @category.topics.empty?
   .small-7.large-7.columns
     %p Values:
-    = render 'values/values_table', values: @category.values unless @category.values.empty?
+    = render 'values/table', values: @category.values unless @category.values.empty?
 = link_to '<i class="foundicon-edit"></i> Edit'.html_safe, edit_category_path(@category), class: 'main-button'

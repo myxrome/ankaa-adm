@@ -1,11 +1,11 @@
-= simple_form_for(@application) do |f|
+= simple_form_for(@topic) do |f|
   = f.error_notification
   .inputs
     .row
       .small-5.large-5.columns
         = f.input :name
-        %p Key: #{@application.key}
+        %p Key: #{@topic.key}
       .small-7.large-7.columns
         = f.association :categories, as: :check_boxes, wrapper_html: { class: 'checkbox_container' }
   .actions
-    = render 'form_buttons'
+    = render 'layouts/form_buttons'

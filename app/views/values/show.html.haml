@@ -22,9 +22,9 @@
     %p Promo:
     %ul{data: ({orbit: ''} unless @value.promos.empty?)}
       - @value.promos.each do |promo|
-        = render 'promo', promo: promo
+        = render 'promos/table_item', promo: promo
   .small-7.large-7.columns
     %p Descriptions:
     - @value.descriptions.each do |description|
-      = render 'description', description: description
+      = render 'descriptions/table_item', description: description
 = link_to '<i class="foundicon-edit"></i> Edit'.html_safe, edit_value_path(@value), class: 'main-button'

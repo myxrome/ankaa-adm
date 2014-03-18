@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" hash="3676733486">
-    <data-source source="LOCAL" name="Rails ankaa: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="76d6b93c-a9f7-457f-95b0-9d5e7558067c">
+    <data-source source="LOCAL" name="Rails ankaa: development" uuid="76d6b93c-a9f7-457f-95b0-9d5e7558067c">
+      <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1:5432/ankaadb</jdbc-url>
       <user-name>ankaa</user-name>
@@ -15,7 +16,8 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Rails ankaa: production" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="086a260b-803f-4853-afb2-bde665ecca35">
+    <data-source source="LOCAL" name="Rails ankaa: production" uuid="086a260b-803f-4853-afb2-bde665ecca35">
+      <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://192.168.1.150:5432/ankaadb</jdbc-url>
       <user-name>ankaa</user-name>

@@ -1,0 +1,10 @@
+%table
+  %thead
+    %tr
+      %th Name
+      %th Key
+  %tbody
+    - topics.each do |topic|
+      %tr
+        %td= link_to topic.name, topic
+        %td= topic.key
