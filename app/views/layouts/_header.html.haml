@@ -19,3 +19,6 @@
       %li{class: ('active' if current_page? values_path)}
         = link_to '<i class="foundicon-cart"></i> Values'.html_safe, values_path
       %li.divider
+      %li{class: ('active' if current_page? partners_path)}
+        = link_to '<i class="foundicon-smiley"></i> Partners'.html_safe, partners_path
+      %li.divider

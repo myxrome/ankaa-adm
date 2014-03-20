@@ -61,4 +61,5 @@ Ankaa::Application.routes.draw do
   end
   resources :categories
   resources :topics
+  resources :partners
 end

@@ -1,0 +1,8 @@
+%p#notice= notice
+- content_for :title, "Partner - #{@partner.name}"
+.row
+  .small-7.large-7.columns
+    %p URL: #{@partner.url}
+  .small-5.large-5.columns
+    %img{src: "#{@partner.logo.url}"}
+= link_to '<i class="foundicon-edit"></i> Edit'.html_safe, edit_partner_path(@partner), class: 'main-button'
