@@ -1,6 +1,10 @@
 %p#notice= notice
 - content_for :title, "Value - #{@value.name}"
 .row
+  .small-12.large-12.columns
+    %a.th{href: '#'}
+      %img{src: "#{@value.thumb}"}
+.row
   .small-6.large-6.columns
     %p Category: #{link_to @value.category.name, @value.category}
   .small-3.large-3.columns

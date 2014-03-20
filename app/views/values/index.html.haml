@@ -3,6 +3,7 @@
   %thead
     %tr
       %th Name
+      %th Thumb
       %th Category
       %th Old Price
       %th Discount
@@ -16,6 +17,9 @@
     - @values.each do |value|
       %tr
         %td= link_to value.name, value
+        %td
+          %a.th{href: '#'}
+            %img{src:"#{value.thumb}"}
         %td= link_to value.category.name, value.category
         %td= value.old_price
         %td= value.discount

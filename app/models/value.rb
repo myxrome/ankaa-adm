@@ -5,4 +5,8 @@ class Value < ActiveRecord::Base
   has_many :promos, -> { order 'promos.order' }, inverse_of: :value, dependent: :destroy
   accepts_nested_attributes_for :promos, reject_if: :all_blank, allow_destroy: true
 
+  def thumb
+    promos.first.image.url(:thumb)
+  end
+
 end
