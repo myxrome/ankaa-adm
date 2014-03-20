@@ -25,3 +25,4 @@ tmp
 # Ignore public uploaded images
 public/assets/.*
 public/p/.*
+public/l/.*
