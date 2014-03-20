@@ -1,6 +1,9 @@
 %p#notice= notice
 - content_for :title, "Category - #{@category.name}"
 .row
+  .small-12.large-12.columns
+    %p Displayed Name: #{@category.displayed_name}
+.row
   .small-5.large-5.columns
     %p Topics:
     = render 'topics/table', topics: @category.topics unless @category.topics.empty?
