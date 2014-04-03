@@ -93,10 +93,10 @@
     <orderEntry type="library" scope="PROVIDED" name="rake (v10.2.2, ruby-2.1.1-p76) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v4.1.1, ruby-2.1.1-p76) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass (v3.2.18, ruby-2.1.1-p76) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sass-rails (v4.0.1, ruby-2.1.1-p76) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sass-rails (v4.0.2, ruby-2.1.1-p76) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sdoc (v0.4.0, ruby-2.1.1-p76) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="simple_form (v3.0.1, ruby-2.1.1-p76) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sprockets (v2.12.0, ruby-2.1.1-p76) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sprockets (v2.11.0, ruby-2.1.1-p76) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets-rails (v2.0.1, ruby-2.1.1-p76) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v0.19.1, ruby-2.1.1-p76) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thread_safe (v0.3.1, ruby-2.1.1-p76) [gem]" level="application" />
