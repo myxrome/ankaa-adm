@@ -11,6 +11,6 @@
       %tr
         %td= link_to topic.name, topic
         %td= topic.key
-        %td= link_to '<i class="foundicon-edit"></i>'.html_safe, edit_topic_path(topic), class: 'secondary-button'
-        %td= link_to '<i class="foundicon-remove"></i>'.html_safe, topic, method: :delete, data: { confirm: 'Are you sure?' }, class: 'secondary-button'
-= link_to '<i class="foundicon-add-doc"></i> New Topic'.html_safe, new_topic_path, class: 'main-button'
+        %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_topic_path(topic), class: 'secondary-button'
+        %td= link_to '<i class="fi-x"></i>'.html_safe, topic, method: :delete, data: { confirm: 'Are you sure?' }, class: 'secondary-button'
+= link_to '<i class="fi-page-add"></i> New Topic'.html_safe, new_topic_path, class: 'main-button'

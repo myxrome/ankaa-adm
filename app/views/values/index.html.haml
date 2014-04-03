@@ -27,6 +27,6 @@
         %td= value.end_date
         %td= value.active
         %td= value.url
-        %td= link_to '<i class="foundicon-edit"></i>'.html_safe, edit_value_path(value), class: 'secondary-button'
-        %td= link_to '<i class="foundicon-remove"></i>'.html_safe, value, method: :delete, data: { confirm: 'Are you sure?' }, class: 'secondary-button'
-= link_to '<i class="foundicon-add-doc"></i> New Value'.html_safe, new_value_path, class: 'main-button'
+        %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_value_path(value), class: 'secondary-button'
+        %td= link_to '<i class="fi-x"></i>'.html_safe, value, method: :delete, data: { confirm: 'Are you sure?' }, class: 'secondary-button'
+= link_to '<i class="fi-page-add"></i> New Value'.html_safe, new_value_path, class: 'main-button'

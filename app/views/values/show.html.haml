@@ -31,4 +31,4 @@
     %p Descriptions:
     - @value.descriptions.each do |description|
       = render 'descriptions/table_item', description: description
-= link_to '<i class="foundicon-edit"></i> Edit'.html_safe, edit_value_path(@value), class: 'main-button'
+= link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_value_path(@value), class: 'main-button'

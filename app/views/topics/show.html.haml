@@ -7,4 +7,4 @@
   .small-8.large-8.columns
     %p Values:
     = render 'values/table', values: @topic.values unless @topic.values.empty?
-= link_to '<i class="foundicon-edit"></i> Edit'.html_safe, edit_topic_path(@topic), class: 'main-button'
+= link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_topic_path(@topic), class: 'main-button'

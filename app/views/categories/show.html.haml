@@ -10,4 +10,4 @@
   .small-7.large-7.columns
     %p Values:
     = render 'values/table', values: @category.values unless @category.values.empty?
-= link_to '<i class="foundicon-edit"></i> Edit'.html_safe, edit_category_path(@category), class: 'main-button'
+= link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_category_path(@category), class: 'main-button'
