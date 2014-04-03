@@ -26,3 +26,7 @@ tmp
 public/assets/.*
 public/p/.*
 public/l/.*
+
+# Ignore Models files
+app/models/.*\.rb
+test/models/.*\.rb
