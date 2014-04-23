@@ -29,7 +29,7 @@ class TopicsController < ApplicationController
     session[:key] = nil
 
     if @topic.save
-      redirect_to @topic, notice: 'Topic was successfully created.'
+      redirect_to topics_url, notice: 'Topic was successfully created.'
     else
       render action: 'new'
     end
@@ -39,7 +39,7 @@ class TopicsController < ApplicationController
   # PATCH/PUT /topics/1.json
   def update
     if @topic.update(topic_update_params)
-      redirect_to @topic, notice: 'Topic was successfully updated.'
+      redirect_to topics_url, notice: 'Topic was successfully updated.'
     else
       render action: 'edit'
     end
@@ -60,11 +60,11 @@ class TopicsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def topic_update_params
-    params[:topic].permit(:name, category_ids: [])
+    params[:topic].permit(:name)
   end
 
   def topic_create_params
-    params[:topic].merge(key: session[:key]).permit(:name, :key, category_ids: [])
+    params[:topic].merge(key: session[:key]).permit(:name, :key)
   end
 
 end

@@ -14,7 +14,11 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   def new
-    @category = Category.new
+    if params[:topic_id]
+      @category = Topic.find(params[:topic_id]).categories.build
+    else
+      @category = Category.new
+    end
   end
 
   # GET /categories/1/edit
@@ -27,7 +31,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to @category, notice: 'Category was successfully created.'
+      redirect_to @category.topic, notice: 'Category was successfully created.'
     else
       render action: 'new'
     end
@@ -37,7 +41,7 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1.json
   def update
     if @category.update(category_params)
-      redirect_to @category, notice: 'Category was successfully updated.'
+      redirect_to @category.topic, notice: 'Category was successfully updated.'
     else
       render action: 'edit'
     end
@@ -46,8 +50,9 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
+    topic = @category.topic
     @category.destroy
-    redirect_to categories_url
+    redirect_to topic
   end
 
   private
@@ -58,6 +63,6 @@ class CategoriesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def category_params
-    params[:category].permit(:name, :displayed_name)
+    params[:category].permit(:topic_id, :name, :displayed_name)
   end
 end
