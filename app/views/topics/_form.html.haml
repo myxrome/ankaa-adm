@@ -2,10 +2,12 @@
   = f.error_notification
   .inputs
     .row
-      .small-5.large-5.columns
-        = f.input :name
-        %p Key: #{@topic.key}
-      .small-7.large-7.columns
-        = f.association :categories, as: :check_boxes, wrapper_html: { class: 'checkbox_container' }
+      .small-12.large-12.columns
+        %fieldset
+          %legend Read Only Parameters
+          Key: #{@topic.key}
+        %fieldset
+          %legend Parameters
+          = f.input :name
   .actions
     = render 'layouts/form_buttons'

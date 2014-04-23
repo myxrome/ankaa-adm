@@ -1,16 +1,21 @@
 - content_for :title, 'Topics'
-%table
+%table{width: '100%'}
   %thead
     %tr
       %th Name
       %th Key
-      %th
-      %th
+      %th Categories
+      %th{width: '10px'}
+      %th{width: '10px'}
   %tbody
     - @topics.each do |topic|
       %tr
         %td= link_to topic.name, topic
         %td= topic.key
-        %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_topic_path(topic), class: 'secondary-button'
-        %td= link_to '<i class="fi-x"></i>'.html_safe, topic, method: :delete, data: { confirm: 'Are you sure?' }, class: 'secondary-button'
-= link_to '<i class="fi-page-add"></i> New Topic'.html_safe, new_topic_path, class: 'main-button'
+        %td
+          -topic.categories.each do |category|
+            = link_to category.name, category
+            %br
+        %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_topic_path(topic), class: 'tiny secondary'
+        %td= link_to '<i class="fi-x"></i>'.html_safe, topic, method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary'
+= link_to '<i class="fi-page-add"></i> New Topic'.html_safe, new_topic_path, class: 'tiny button'
