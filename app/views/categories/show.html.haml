@@ -1,13 +1,25 @@
 %p#notice= notice
 - content_for :title, "Category - #{@category.name}"
 .row
-  .small-12.large-12.columns
-    %p Displayed Name: #{@category.displayed_name}
+  %fieldset
+    %legend Parameters
+    .small-6.large-6.columns
+      %p
+        Topic:
+        = link_to @category.topic.name, @category.topic
+    .small-6.large-6.columns
+      %p Displayed Name: #{@category.displayed_name}
 .row
-  .small-5.large-5.columns
-    %p Topics:
-    = render 'topics/table', topics: @category.topics unless @category.topics.empty?
-  .small-7.large-7.columns
-    %p Values:
-    = render 'values/table', values: @category.values unless @category.values.empty?
-= link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_category_path(@category), class: 'main-button'
+  %fieldset
+    %legend Values
+    .small-12.large-12.columns
+      = render 'values/table', values: @category.values
+      = simple_form_for :values, url: '/values/create_from_url' do |f|
+        .row.collapse
+          .small-2.large-2.columns
+            = button_tag(type: 'submit', class: 'tiny button prefix') do
+              <i class="fi-page-add"></i> New Value From Url
+          .small-10.large-10.columns
+            = f.text_field :url
+      = link_to '<i class="fi-page-add"></i> New Value'.html_safe, new_category_value_path(@category), class: 'tiny button'
+= link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_category_path(@category), class: 'tiny button'

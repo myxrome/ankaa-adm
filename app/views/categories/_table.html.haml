@@ -1,0 +1,14 @@
+%table{width: '100%'}
+  %thead
+    %tr
+      %th Name
+      %th Displayed Name
+      %th{width: '10px'}
+      %th{width: '10px'}
+  %tbody
+    - categories.each do |category|
+      %tr
+        %td= link_to category.name, category
+        %td= category.displayed_name
+        %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_category_path(category), class: 'tiny secondary'
+        %td= link_to '<i class="fi-x"></i>'.html_safe, category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary'
