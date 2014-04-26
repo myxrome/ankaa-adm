@@ -1,12 +1,12 @@
 - content_for :title, 'Partners'
-%table
+%table{width: '100%'}
   %thead
     %tr
       %th Name
       %th URL
       %th Logo
-      %th
-      %th
+      %th{width: '10px'}
+      %th{width: '10px'}
   %tbody
     - @partners.each do |partner|
       %tr
@@ -15,6 +15,6 @@
         %td
           %a.th{href: '#'}
             %img{src: "#{partner.logo.url}"}
-        %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_partner_path(partner), class: 'secondary-button'
-        %td= link_to '<i class="fi-x"></i>'.html_safe, partner, method: :delete, data: { confirm: 'Are you sure?' }, class: 'secondary-button'
-= link_to '<i class="fi-page-add"></i> New Partner'.html_safe, new_partner_path, class: 'main-button'
+        %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_partner_path(partner), class: 'tiny secondary'
+        %td= link_to '<i class="fi-x"></i>'.html_safe, partner, method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary'
+= link_to '<i class="fi-page-add"></i> New Partner'.html_safe, new_partner_path, class: 'tiny button'

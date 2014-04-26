@@ -1,12 +1,19 @@
 = simple_form_for(@partner) do |f|
   = f.error_notification
+  .actions
+    = render 'layouts/form_buttons'
   .inputs
-    .row
-      .small-5.large-5.columns
-        = f.input :name
-      .small-7.large-7.columns
-        = f.input :url
-      .small-12.large-12.columns
-        = f.input :logo, as: :image_preview
+    %fieldset
+      %legend Parameters
+      .row
+        .small-5.large-5.columns
+          = f.input :name
+        .small-7.large-7.columns
+          = f.input :url
+    %fieldset
+      %legend Logo
+      .row
+        .small-12.large-12.columns
+          = f.input :logo, as: :image_preview
   .actions
     = render 'layouts/form_buttons'
