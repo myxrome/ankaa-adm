@@ -1,32 +1,10 @@
 -content_for :title, 'Values'
-%table
-  %thead
-    %tr
-      %th Name
-      %th Thumb
-      %th Category
-      %th Old Price
-      %th Discount
-      %th New Price
-      %th End Date
-      %th Active
-      %th URL
-      %th
-      %th
-  %tbody
-    - @values.each do |value|
-      %tr
-        %td= link_to value.name, value
-        %td
-          %a.th{href: '#'}
-            %img{src:"#{value.thumb}"}
-        %td= link_to value.category.name, value.category
-        %td= value.old_price
-        %td= value.discount
-        %td= value.new_price
-        %td= value.end_date
-        %td= value.active
-        %td= value.url
-        %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_value_path(value), class: 'secondary-button'
-        %td= link_to '<i class="fi-x"></i>'.html_safe, value, method: :delete, data: { confirm: 'Are you sure?' }, class: 'secondary-button'
-= link_to '<i class="fi-page-add"></i> New Value'.html_safe, new_value_path, class: 'main-button'
+= render 'values/table', values: @values
+= simple_form_for '', url: create_from_url_values_url do |f|
+  .row.collapse
+    .small-2.large-2.columns
+      = button_tag(type: 'submit', class: 'tiny button prefix') do
+        <i class="fi-page-add"></i> New Value From Url
+    .small-10.large-10.columns
+      = f.text_field :url
+= link_to '<i class="fi-page-add"></i> New Value'.html_safe, new_value_path, class: 'tiny button'

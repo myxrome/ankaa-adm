@@ -1,5 +1,7 @@
 = simple_form_for(@topic) do |f|
   = f.error_notification
+  .actions
+    = render 'layouts/form_buttons'
   .inputs
     .row
       .small-12.large-12.columns

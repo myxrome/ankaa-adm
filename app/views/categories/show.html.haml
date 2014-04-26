@@ -14,7 +14,7 @@
     %legend Values
     .small-12.large-12.columns
       = render 'values/table', values: @category.values
-      = simple_form_for :values, url: '/values/create_from_url' do |f|
+      = simple_form_for '', url: create_from_url_category_values_url(@category) do |f|
         .row.collapse
           .small-2.large-2.columns
             = button_tag(type: 'submit', class: 'tiny button prefix') do

@@ -3,6 +3,12 @@
   <component name="CompassSettings">
     <option name="compassExecutableFilePath" value="/usr/local/lib/ruby/gems/2.1.0/gems/compass-0.12.4/bin/compass" />
     <option name="compassSupportEnabled" value="true" />
+    <option name="importPaths">
+      <list>
+        <option value="/usr/local/lib/ruby/gems/2.1.0/gems/compass-0.12.4/frameworks/blueprint/stylesheets" />
+        <option value="/usr/local/lib/ruby/gems/2.1.0/gems/compass-0.12.4/frameworks/compass/stylesheets" />
+      </list>
+    </option>
   </component>
   <component name="FacetManager">
     <facet type="RailsFacetType" name="Ruby on Rails">
@@ -83,7 +89,9 @@
     <orderEntry type="library" scope="PROVIDED" name="jquery-ui-rails (v4.2.0, ruby-2.1.1-p76) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.5.4, ruby-2.1.1-p76) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mime-types (v1.25.1, ruby-2.1.1-p76) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mini_portile (v0.5.3, ruby-2.1.1-p76) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.9.2, ruby-2.1.1-p76) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.6.1, ruby-2.1.1-p76) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="paperclip (v4.1.1, ruby-2.1.1-p76) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pg (v0.17.1, ruby-2.1.1-p76) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="polyglot (v0.3.4, ruby-2.1.1-p76) [gem]" level="application" />

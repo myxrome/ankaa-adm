@@ -1,5 +1,7 @@
 = simple_form_for(@category) do |f|
   = f.error_notification
+  .actions
+    = render 'layouts/form_buttons'
   .inputs
     .row
       %fieldset

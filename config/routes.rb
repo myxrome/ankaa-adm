@@ -54,12 +54,20 @@ Ankaa::Application.routes.draw do
   #     resources :products
   #   end
 
-  root to: 'categories#index'
+  root to: 'topics#index'
 
+  resources :topics do
+    resources :categories
+  end
+  resources :categories do
+    resources :values do
+      post :create_from_url, :on => :collection
+      get :autocomplete_description_caption, :on => :collection
+    end
+  end
   resources :values do
+    post :create_from_url, :on => :collection
     get :autocomplete_description_caption, :on => :collection
   end
-  resources :categories
-  resources :topics
   resources :partners
 end

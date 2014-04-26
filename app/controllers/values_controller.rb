@@ -20,9 +20,31 @@ class ValuesController < ApplicationController
   def show
   end
 
+  def create_from_url
+    if params[:category_id]
+      @value = Category.find(params[:category_id]).values.create ValuesHelper::params_from_url params[:url]
+    else
+      @value = Value.create ValuesHelper::params_from_url params[:url]
+    end
+    if @value
+      redirect_to edit_value_path @value
+    else
+      if params[:category_id]
+        redirect_to category_path params[:category_id]
+      else
+        redirect_to values_path
+      end
+    end
+#http://www.lamoda.ru/p/vi809awbjv94/shoes-vivianroyal-sandalii/
+  end
+
   # GET /values/new
   def new
-    @value = Value.new
+    if params[:category_id]
+      @value = Category.find(params[:categoty_id]).values.build
+    else
+      @value = Value.new
+    end
   end
 
   # GET /values/1/edit
@@ -35,7 +57,7 @@ class ValuesController < ApplicationController
     @value = Value.new(value_params)
 
     if @value.save
-      redirect_to @value, notice: 'Value was successfully created.'
+      redirect_to @value.category, notice: 'Value was successfully created.'
     else
       render action: 'new'
     end
@@ -45,7 +67,7 @@ class ValuesController < ApplicationController
   # PATCH/PUT /values/1.json
   def update
     if @value.update(value_params)
-      redirect_to @value, notice: 'Value was successfully updated.'
+      redirect_to @value.category, notice: 'Value was successfully updated.'
     else
       render action: 'edit'
     end
@@ -54,8 +76,9 @@ class ValuesController < ApplicationController
   # DELETE /values/1
   # DELETE /values/1.json
   def destroy
+    category = @value.category
     @value.destroy
-    redirect_to values_url
+    redirect_to category
   end
 
   private
