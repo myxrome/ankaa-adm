@@ -1241,54 +1241,6 @@
 
 @import 'foundation';
 
-.checkbox_container {
-  display: inline-block;
-  vertical-align: -1px;
-  margin: 5px;
-  input {
-    display: inline;
-  }
-  label {
-    display: inline;
-    vertical-align: 3px;
-    margin-right: 10px;
-  }
-  label.check_boxes {
-    display: block;
-    margin-bottom: 7px;
-  }
-}
-
-div.input.boolean {
-  margin-top: 25px;
-  label.boolean {
-    display: inline;
-    vertical-align: 3px;
-  }
-}
-
-select {
-  vertical-align: -7px;
-}
-
-p {
-  font-size: 0.875em;
-}
-
-.main-button {
-  @extend .small;
-  @extend .button;
-  @extend .radius;
-}
-
-.secondary-button {
-  @extend .tiny;
-  @extend .secondary;
-  @extend .radius;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
 .red {
   color: #f00;
 }
@@ -1297,7 +1249,16 @@ p {
   font-weight: bold;
 }
 
+div.input.boolean {
+  margin-top: 25px;
+}
+
 .nested-fields {
   margin-top: 10px !important;
   margin-bottom: 10px !important;
+}
+
+.secondary {
+  margin-left: 5px;
+  margin-right: 5px;
 }

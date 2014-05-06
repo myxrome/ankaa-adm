@@ -1,13 +1,13 @@
 %p#notice= notice
-- content_for :title, "Partner - #{@partner.name}"
 .row
-  %fieldset
-    %legend Parameters
-    .small-12.large-12.columns
-      %p URL: #{@partner.url}
-.row
-  %fieldset
-    %legend Logo
-    .small-12.large-12.columns
+  .small-3.large-3.columns
+    %a.th{href: partner_path(@partner)}
       %img{src: "#{@partner.logo.url}"}
-= link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_partner_path(@partner), class: 'tiny button'
+  .small-9.large-9.columns
+    %h1= "Partner - #{@partner.name}"
+.row
+  .small-12.large-12.columns
+    %fieldset
+      %legend Parameters
+      %p URL: #{@partner.url}
+= link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_partner_path(@partner), class: 'right tiny button'

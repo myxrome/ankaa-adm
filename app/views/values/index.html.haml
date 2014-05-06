@@ -2,9 +2,9 @@
 = render 'values/table', values: @values
 = simple_form_for '', url: create_from_url_values_url do |f|
   .row.collapse
-    .small-2.large-2.columns
-      = button_tag(type: 'submit', class: 'tiny button prefix') do
-        <i class="fi-page-add"></i> New Value From Url
     .small-10.large-10.columns
       = f.text_field :url
-= link_to '<i class="fi-page-add"></i> New Value'.html_safe, new_value_path, class: 'tiny button'
+    .small-2.large-2.columns
+      = button_tag(type: 'submit', class: 'tiny button postfix') do
+        <i class="fi-page-add"></i> New Value From Url
+= link_to '<i class="fi-page-add"></i> New Value'.html_safe, new_value_path, class: 'right tiny button'

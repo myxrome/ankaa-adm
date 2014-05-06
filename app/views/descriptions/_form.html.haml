@@ -1,14 +1,21 @@
-.nested-fields.row
+.nested-fields
   = f.input :order, as: :hidden
-  .small-6.large-6.columns
-    = f.input :caption, input_html: {class: 'autocomplete', 'data-url' => autocomplete_description_caption_values_path}
-  .small-3.large-3.columns
-    = f.input :bold
-  .small-3.large-3.columns
-    = f.input :red
-  .small-12.large-12.columns
-    = f.input :text
-  .small-12.large-12.columns
-    = link_to '<i class="fi-arrow-up"></i>'.html_safe, '', class: 'tiny secondary up'
-    = link_to '<i class="fi-arrow-down"></i>'.html_safe, '', class: 'tiny secondary down'
-    = link_to_remove_association '<i class="fi-x"></i>'.html_safe, f, class: 'tiny secondary'
+  .row
+    .small-6.large-6.columns
+      = f.input :caption, input_html: {class: 'autocomplete', 'data-url' => autocomplete_description_caption_values_path}
+    .small-3.large-3.columns
+      = f.input :bold
+    .small-3.large-3.columns
+      = f.input :red
+  .row
+    .small-12.large-12.columns
+      = f.input :text
+  .row
+    .small-12.large-12.columns
+      %ul.button-group.right
+        %li
+          = link_to '<i class="fi-arrow-up"></i>'.html_safe, '', class: 'tiny secondary up'
+        %li
+          = link_to '<i class="fi-arrow-down"></i>'.html_safe, '', class: 'tiny secondary down'
+        %li
+          = link_to_remove_association '<i class="fi-x"></i>'.html_safe, f, class: 'tiny secondary'

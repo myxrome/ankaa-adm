@@ -1,8 +1,8 @@
 %table{width: '100%'}
   %thead
     %tr
-      %th Name
       %th Thumb
+      %th Name
       %th Category
       %th Old Price
       %th Discount
@@ -15,10 +15,10 @@
   %tbody
     - values.each do |value|
       %tr
-        %td= link_to value.name, value
         %td
-          %a.th{href: '#'}
+          %a.th{href: value_path(value)}
             %img{src:"#{value.thumb if value.thumb}"}
+        %td= link_to value.name, value
         %td= link_to value.category.name, value.category if value.category
         %td= value.old_price
         %td= value.discount

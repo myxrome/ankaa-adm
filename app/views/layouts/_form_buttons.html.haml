@@ -1,3 +1,7 @@
-= button_tag(type: 'submit', class: 'tiny button') do
-  <i class="fi-check"></i> Save
-= link_to '<i class="fi-minus-circle"></i> Cancel'.html_safe, :back, class: 'tiny button'
+.row
+  .small-12.large-12.columns
+    %ul.button-group.right
+      %li
+        = link_to '<i class="fi-check"></i> Save'.html_safe, '#', {onclick: "$(this).parents('form').submit()", class: 'tiny button'}
+      %li
+        = link_to '<i class="fi-minus-circle"></i> Cancel'.html_safe, :back, class: 'tiny button'
