@@ -3,95 +3,97 @@ module ValuesHelper
 
   @@current_order = 0
 
-  Map = {
-      scope: 'body',
-      data: [
+  Map = [
       {
-          key: :name,
-          type: :text,
-          selector: 'a.product-card__header-link'
-      },
-      {
-          key: :new_price,
-          type: :text,
-          selector: 'span.price_product'
+          url: 'http://www.lamoda.ru',
+          mapping: {
+              scope: 'body',
+              data: [
+                  {
+                      key: :name,
+                      type: :text,
+                      selector: 'a.product-card__header-link'
+                  },
+                  {
+                      key: :new_price,
+                      type: :text,
+                      selector: 'span.price_product'
 
-      },
-      {
-          key: :descriptions_attributes,
-          type: :has_many,
-          selector: [
-              {
-                  scope: 'div.product-content__sheet',
-                  data: [
-                      {
-                          key: :text,
-                          type: :text,
-                          selector: 'p.product-content__p'
-                      },
-                      {
-                          key: :order,
-                          type: :order
-                      }
-                  ]
-              },
-              {
-                  scope: 'table.product-content__table tr',
-                  data: [
-                      {
-                          key: :caption,
-                          type: :text,
-                          selector: 'th'
-                      },
-                      {
-                          key: :text,
-                          type: :text,
-                          selector: 'td'
-                      },
-                      {
-                          key: :order,
-                          type: :order
-                      }
-                  ]
-              }
-          ]
-      },
-      {
-          key: :promos_attributes,
-          type: :has_many,
-          selector: [
-              {
-                  scope: 'li.photos-list__item',
-                  data: [
-                      {
-                          key: :image,
-                          type: :attachment,
-                          selector: '',
-                          attribure: 'data-orig',
-                          prefix: 'http:'
-                      },
-                      {
-                          key: :order,
-                          type: :order
-                      }
-                  ]
-              }
-          ]
-      }
-  ]
-  }
-
-
+                  },
+                  {
+                      key: :descriptions_attributes,
+                      type: :has_many,
+                      selector: [
+                          {
+                              scope: 'div.product-content__sheet',
+                              data: [
+                                  {
+                                      key: :text,
+                                      type: :text,
+                                      selector: 'p.product-content__p'
+                                  },
+                                  {
+                                      key: :order,
+                                      type: :order
+                                  }
+                              ]
+                          },
+                          {
+                              scope: 'table.product-content__table tr',
+                              data: [
+                                  {
+                                      key: :caption,
+                                      type: :text,
+                                      selector: 'th'
+                                  },
+                                  {
+                                      key: :text,
+                                      type: :text,
+                                      selector: 'td'
+                                  },
+                                  {
+                                      key: :order,
+                                      type: :order
+                                  }
+                              ]
+                          }
+                      ]
+                  },
+                  {
+                      key: :promos_attributes,
+                      type: :has_many,
+                      selector: [
+                          {
+                              scope: 'li.photos-list__item',
+                              data: [
+                                  {
+                                      key: :image,
+                                      type: :attachment,
+                                      selector: '',
+                                      attribure: 'data-orig',
+                                      prefix: 'http:'
+                                  },
+                                  {
+                                      key: :order,
+                                      type: :order
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              ]
+          }}]
 
   def self.params_from_url(url)
+    mapping = Map.select { |item| url.downcase.start_with? item[:url] }.first[:mapping]
     doc = Nokogiri::HTML(open(url))
 
-    ValuesHelper.params_from_scope(doc.css(Map[:scope]), Map[:data]).merge({url: url})
+    ValuesHelper.params_from_scope(doc.css(mapping[:scope]), mapping[:data]).merge({url: url})
   end
 
   def self.params_from_scope(scope, data)
     result = Hash.new
-    data.each { |item| result.merge! ({ item[:key] => ValuesHelper.send(item[:type], item, scope) }) }
+    data.each { |item| result.merge! ({item[:key] => ValuesHelper.send(item[:type], item, scope)}) }
     result
   end
 
