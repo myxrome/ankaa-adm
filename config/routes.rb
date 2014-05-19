@@ -54,6 +54,13 @@ Ankaa::Application.routes.draw do
   #     resources :products
   #   end
 
+  devise_for :users, skip: [:sessions]
+  devise_scope :user do
+    get '/hi', to: 'devise/sessions#new', as: :new_user_session
+    post '/hi', to: 'devise/sessions#create', as: :user_session
+    delete '/bb', to: 'devise/sessions#destroy', as: :destroy_user_session
+  end
+
   root to: 'topics#index'
 
   resources :topics do

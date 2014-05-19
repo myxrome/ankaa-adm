@@ -34,11 +34,9 @@ gem 'foundation-rails'
 # gem 'turbolinks'
 
 gem 'simple_form'
-
 gem 'cocoon'
-
 gem 'paperclip'
-
+gem 'devise'
 gem 'nokogiri'
 
 group :doc do

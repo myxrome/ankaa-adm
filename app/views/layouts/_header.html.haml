@@ -22,3 +22,7 @@
       %li{class: ('active' if params[:controller] == 'partners')}
         = link_to '<i class="fi-dollar"></i> Partners'.html_safe, partners_path
       %li.divider
+  %section.top-bar-section
+    %ul.right
+      %li
+        = link_to '<i class="fi-power"></i> Log Out'.html_safe, destroy_user_session_path, method: :delete

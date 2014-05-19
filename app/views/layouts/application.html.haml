@@ -23,9 +23,19 @@
 
 %body
 
-  = render 'layouts/header'
+  = render 'layouts/header' if user_signed_in?
   .row
-    .small-12.large-12.columns
+    .small-12.large-centred.columns
+      - if notice
+        %p
+        %p{data: {alert: ''}, class: 'alert-box info'}
+          = notice
+          %a{href: '#', class: 'close'}='&times;'.html_safe
+      - if alert
+        %p
+        %p{data: {alert: ''}, class: 'alert-box alert'}
+          = alert
+          %a{href: '#', class: 'close'}='&times;'.html_safe
       %h1= content_for?(:title) ? yield(:title) : ''
       = yield
 
