@@ -28,8 +28,11 @@ Ankaa::Application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
-  config.assets.paths << Rails.root.join('vendor')
   config.assets.precompile += %w( vendor/modernizr.js )
+  config.assets.precompile += %w( foundation-icons.eot )
+  config.assets.precompile += %w( foundation-icons.svg )
+  config.assets.precompile += %w( foundation-icons.ttf )
+  config.assets.precompile += %w( foundation-icons.woff )
 
   # Generate digests for assets URLs.
   config.assets.digest = true
