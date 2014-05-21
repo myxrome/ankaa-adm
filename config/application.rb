@@ -25,5 +25,6 @@ module Ankaa
     #                                               local_root: "#{Rails.root}/public"},
     #                             fog_directory: '',
     #                             fog_host: 'http://localhost:3000'}
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
   end
 end
