@@ -1,7 +1,7 @@
 %table{width: '100%'}
   %thead
     %tr
-      %th Thumb
+      %th{width: '100px'} Thumb
       %th Name
       %th Category
       %th Old Price
@@ -9,7 +9,6 @@
       %th New Price
       %th End Date
       %th Active
-      %th URL
       %th{width: '10px'}
       %th{width: '10px'}
   %tbody
@@ -25,6 +24,5 @@
         %td= value.new_price
         %td= value.end_date
         %td= value.active
-        %td= value.url
         %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_value_path(value), class: 'tiny secondary'
         %td= link_to '<i class="fi-x"></i>'.html_safe, value, method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary'
