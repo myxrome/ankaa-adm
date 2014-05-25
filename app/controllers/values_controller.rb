@@ -1,5 +1,6 @@
 class ValuesController < ApplicationController
-  before_action :set_value, only: [:show, :edit, :update, :destroy]
+  before_action :set_value, only: [:destroy]
+  before_action :set_value_with_related_models, only: [:show, :edit, :update]
 
   def autocomplete_description_caption
     templates = DescriptionTemplate.select_captions_like params[:name]
@@ -12,7 +13,9 @@ class ValuesController < ApplicationController
   # GET /values
   # GET /values.json
   def index
-    @values = Value.all
+    @values = Value.includes(:promos, category: :topic).
+        order('topics.name', 'categories.order', :end_date).
+        all
   end
 
   # GET /values/1
@@ -85,6 +88,10 @@ class ValuesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_value
     @value = Value.find(params[:id])
+  end
+
+  def set_value_with_related_models
+    @value = Value.includes(:category, :promos, descriptions: :description_template).find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

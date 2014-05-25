@@ -1,10 +1,11 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:edit, :update, :destroy]
+  before_action :set_category_with_related_models, only: [:show, :edit, :update, :destroy]
 
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    @categories = Category.includes(:topic).order('topics.name', :order).all
   end
 
   # GET /categories/1
@@ -59,6 +60,10 @@ class CategoriesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_category
     @category = Category.find(params[:id])
+  end
+
+  def set_category_with_related_models
+    @category = Category.includes(:topic, values: :promos).find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

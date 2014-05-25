@@ -3,7 +3,7 @@ class PartnersController < ApplicationController
 
   # GET /partners
   def index
-    @partners = Partner.all
+    @partners = Partner.order(:name).all
   end
 
   # GET /partners/1

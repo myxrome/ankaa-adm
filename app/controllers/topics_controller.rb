@@ -1,10 +1,11 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:show, :edit, :update, :destroy]
+  before_action :set_topic, only: [:edit, :update, :destroy]
+  before_action :set_topic_with_related_models, only: :show
 
   # GET /topics
   # GET /topics.json
   def index
-    @topics = Topic.all
+    @topics = Topic.includes(:categories).order(:name).all
   end
 
   # GET /topics/1
@@ -56,6 +57,10 @@ class TopicsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_topic
     @topic = Topic.find(params[:id])
+  end
+
+  def set_topic_with_related_models
+    @topic = Topic.includes(:categories, values: [:category, :promos]).find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
