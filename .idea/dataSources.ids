@@ -1,31 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source source="LOCAL" name="Rails ankaa: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="76d6b93c-a9f7-457f-95b0-9d5e7558067c">
-    <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-    <jdbc-url>jdbc:postgresql://127.0.0.1:5432/ankaadb</jdbc-url>
-    <user-name>ankaa</user-name>
-    <user-password>dfe1dfc6dfc5dfdadfc3dfc1df9bdf9d</user-password>
-    <libraries>
-      <library>
-        <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-driver-license.txt</url>
-      </library>
-      <library>
-        <url>jar://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-9.2-1002.jdbc3.jar!/</url>
-      </library>
-    </libraries>
+  <data-source source="LOCAL" name="Rails ankaa: development" uuid="76d6b93c-a9f7-457f-95b0-9d5e7558067c">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
-  <data-source source="LOCAL" name="Rails ankaa: production" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="086a260b-803f-4853-afb2-bde665ecca35">
-    <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-    <jdbc-url>jdbc:postgresql://192.168.1.150:5432/ankaadb</jdbc-url>
-    <user-name>ankaa</user-name>
-    <user-password>dfe1dfc6dfc5dfdadfc3dfc1df9bdf9d</user-password>
-    <libraries>
-      <library>
-        <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-driver-license.txt</url>
-      </library>
-      <library>
-        <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-9.2-1002.jdbc3.jar</url>
-      </library>
-    </libraries>
+  <data-source source="LOCAL" name="Rails ankaa: production" uuid="086a260b-803f-4853-afb2-bde665ecca35">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails ankaa: statistic_development" uuid="a6a8411c-53b4-4506-9ed2-f2a7469f38e2">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
 </component>
