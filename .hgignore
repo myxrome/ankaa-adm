@@ -24,8 +24,7 @@ tmp
 
 # Ignore public uploaded images
 public/assets/.*
-public/p/.*
-public/l/.*
+public/content/.*
 
 # Ignore Models files
 app/models/.*\.rb
