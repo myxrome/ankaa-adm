@@ -1,0 +1,16 @@
+= simple_form_for(@event) do |f|
+  = f.error_notification
+  .actions
+    = render 'layouts/form_buttons'
+  .inputs
+    %fieldset
+      %legend Parameters
+      .row
+        .small-4.large-4.columns
+          = f.input :name
+        .small-4.large-4.columns
+          = f.input :tag
+        .small-4.large-4.columns
+          = f.association :event_type
+  .actions
+    = render 'layouts/form_buttons'

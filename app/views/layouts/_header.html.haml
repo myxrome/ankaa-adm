@@ -22,6 +22,9 @@
       %li{class: ('active' if params[:controller] == 'partners')}
         = link_to '<i class="fi-dollar"></i> Partners'.html_safe, partners_path
       %li.divider
+      %li{class: ('active' if params[:controller] == 'events')}
+        = link_to '<i class="fi-calendar"></i> Events'.html_safe, events_path
+      %li.divider
   %section.top-bar-section
     %ul.right
       %li

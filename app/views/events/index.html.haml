@@ -1,0 +1,18 @@
+- content_for :title, 'Events'
+%table{width: '100%'}
+  %thead
+    %tr
+      %th Name
+      %th Tag
+      %th Type
+      %th{width: '10px'}
+      %th{width: '10px'}
+  %tbody
+    - @events.each do |event|
+      %tr
+        %td= link_to event.name, event
+        %td= event.tag
+        %td= event.event_type.name
+        %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_event_path(event), class: 'tiny secondary'
+        %td= link_to '<i class="fi-x"></i>'.html_safe, event, method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary'
+= link_to '<i class="fi-page-add"></i> New Event'.html_safe, new_event_path, class: 'right tiny button'
