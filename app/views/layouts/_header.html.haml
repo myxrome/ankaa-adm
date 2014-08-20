@@ -22,10 +22,20 @@
       %li{class: ('active' if params[:controller] == 'partners')}
         = link_to '<i class="fi-dollar"></i> Partners'.html_safe, partners_path
       %li.divider
+      %li{class: ('active' if params[:controller] == 'virtual_contexts')}
+        = link_to '<i class="fi-marker"></i> Virtual Contexts'.html_safe, virtual_contexts_path
+      %li.divider
       %li{class: ('active' if params[:controller] == 'events')}
-        = link_to '<i class="fi-calendar"></i> Events'.html_safe, events_path
+        = link_to '<i class="fi-flag"></i> Events'.html_safe, events_path
       %li.divider
   %section.top-bar-section
     %ul.right
+      %li.divider
+      %li
+        = link_to "Devices: #{Device.count}", '#'
+      %li.divider
+      %li
+        = link_to "Sessions: #{Session.count}", '#'
+      %li.divider
       %li
         = link_to '<i class="fi-power"></i> Log Out'.html_safe, destroy_user_session_path, method: :delete

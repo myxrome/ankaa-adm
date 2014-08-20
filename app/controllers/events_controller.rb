@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.order(:name).all
+    @events = Event.includes(:event_type).order(:name).all
   end
 
   # GET /events/1
@@ -48,7 +48,7 @@ class EventsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_event
-    @event = Event.find(params[:id])
+    @event = Event.includes(:event_type).find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.

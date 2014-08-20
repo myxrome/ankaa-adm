@@ -1,0 +1,9 @@
+- content_for :title, "Virtual Context - #{@virtual_context.name}"
+.row
+  %fieldset
+    %legend #{@virtual_context.virtual_context_type.name} Parameters
+    .small-12.large-12.columns
+      %p Tag: #{@virtual_context.description}
+.row
+  .small-12.large-12.columns
+    = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_virtual_context_path(@virtual_context), class: 'right tiny button'

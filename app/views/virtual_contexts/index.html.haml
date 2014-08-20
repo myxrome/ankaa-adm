@@ -1,0 +1,25 @@
+- content_for :title, 'Virtual Contexts'
+- VirtualContextType.order(:name).all.each do |virtual_context_type|
+  .row
+    %fieldset
+      %legend #{virtual_context_type.name}
+      .small-12.large-12.columns
+        %table{width: '100%'}
+          %thead
+            %tr
+              %th Name
+              %th Description
+              %th{width: '50px'} context_id
+              %th{width: '50px'} context_type
+              %th{width: '10px'}
+              %th{width: '10px'}
+          %tbody
+            - @virtual_contexts.select {|virtual_context| virtual_context.virtual_context_type == virtual_context_type}.each do |virtual_context|
+              %tr
+                %td= link_to virtual_context.name, virtual_context
+                %td= virtual_context.description
+                %td= virtual_context.id
+                %td virtual_context
+                %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_virtual_context_path(virtual_context), class: 'tiny secondary'
+                %td= link_to '<i class="fi-x"></i>'.html_safe, virtual_context, method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary'
+        = link_to "<i class=\"fi-page-add\"></i> New #{virtual_context_type.name}".html_safe, new_virtual_context_path(virtual_context_type_id: virtual_context_type), class: 'right tiny button'
