@@ -1240,6 +1240,7 @@
 // $range-slider-handle-cursor: pointer;
 
 @import 'foundation';
+@import 'foundation/components/switches';
 
 .red {
   color: #f00;
@@ -1247,10 +1248,6 @@
 
 .bold {
   font-weight: bold;
-}
-
-div.input.boolean {
-  margin-top: 25px;
 }
 
 .nested-fields {

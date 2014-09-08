@@ -3,13 +3,18 @@
   .actions
     = render 'layouts/form_buttons'
   .inputs
-    .row
-      .small-12.large-12.columns
-        %fieldset
-          %legend Read Only Parameters
+    %fieldset
+      %legend Read Only Parameters
+      .row
+        .small-12.large-12.columns
           Key: #{@topic.key}
-        %fieldset
-          %legend Parameters
+    %fieldset
+      %legend Parameters
+      .row
+        .small-1.large-1.columns
+          %label Active
+          = f.input :active, wrapper_html: { class: 'switch' }
+        .small-11.large-11.columns
           = f.input :name
   .actions
     = render 'layouts/form_buttons'

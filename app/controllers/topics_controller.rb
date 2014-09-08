@@ -5,7 +5,7 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    @topics = Topic.includes(:categories).order(:name).all
+    @topics = Topic.includes(:categories).order(:order).all
   end
 
   # GET /topics/1
@@ -65,7 +65,7 @@ class TopicsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def topic_update_params
-    params[:topic].permit(:name)
+    params[:topic].permit(:name, :active)
   end
 
   def topic_create_params

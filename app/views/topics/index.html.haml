@@ -2,14 +2,16 @@
 %table{width: '100%'}
   %thead
     %tr
+      %th{width: '80'} Active
       %th Name
       %th Categories
       %th Key
-      %th{width: '10px'}
-      %th{width: '10px'}
+      %th{width: '40'}
+      %th{width: '40'}
   %tbody
     - @topics.each do |topic|
       %tr
+        %td= topic.active
         %td= link_to topic.name, topic
         %td
           -topic.categories.each do |category|
