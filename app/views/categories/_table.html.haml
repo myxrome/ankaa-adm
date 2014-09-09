@@ -2,8 +2,8 @@
   %thead
     %tr
       %th{width: '65px'} Active
+      %th{width: '200px'} Name
       %th{width: '150px'} Topic
-      %th Name
       %th Displayed Name
       -if orderable
         %th{width: '35px'}
@@ -16,8 +16,8 @@
           .switch.tiny
             %input{type: 'checkbox', id: category.id, class: 'active-toggle', data: {url: toggle_active_category_path(category)}, checked: (:checked if category.active)}
             %label{for: category.id}
-        %td= link_to category.topic.name, category.topic
         %td= link_to category.name, category
+        %td= link_to category.topic.name, category.topic
         %td= category.displayed_name
         -if orderable
           %td= link_to '<i class="fi-arrow-up"></i>'.html_safe, '', class: 'tiny secondary table-up', data: {url: move_up_category_path(category)}
