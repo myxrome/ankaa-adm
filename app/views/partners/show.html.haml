@@ -8,7 +8,11 @@
   .small-12.large-12.columns
     %fieldset
       %legend Parameters
-      %p URL: #{@partner.url}
+      %table
+        %tbody
+          %tr
+            %td{width: '150px'} URL:
+            %td= @partner.url
 .row
   .small-12.large-12.columns
     = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_partner_path(@partner), class: 'right tiny button'

@@ -88,9 +88,10 @@ Ankaa::Application.routes.draw do
     get :autocomplete_description_caption, :on => :collection
   end
 
-  resources :partners
+  resources :partners, concerns: :toggleable
 
   resources :events
+
   resources :virtual_contexts
 
 end

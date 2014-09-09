@@ -1,5 +1,10 @@
 class PartnersController < ApplicationController
-  before_action :set_partner, only: [:show, :edit, :update, :destroy]
+  before_action :set_partner, only: [:toggle_active, :show, :edit, :update, :destroy]
+
+  def toggle_active
+    @partner.update_attribute :active, !@partner.active
+    render nothing: true
+  end
 
   # GET /partners
   def index
@@ -53,6 +58,6 @@ class PartnersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def partner_params
-    params[:partner].permit(:name, :url, :logo)
+    params[:partner].permit(:name, :url, :logo, :active)
   end
 end
