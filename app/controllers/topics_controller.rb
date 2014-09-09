@@ -1,6 +1,21 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:edit, :update, :destroy]
+  before_action :set_topic, only: [:toggle_active, :move_up, :move_down, :edit, :update, :destroy]
   before_action :set_topic_with_related_models, only: :show
+
+  def toggle_active
+    @topic.update_attribute :active, !@topic.active
+    render nothing: true
+  end
+
+  def move_up
+    @topic.move_up
+    render nothing: true
+  end
+
+  def move_down
+    @topic.move_down
+    render nothing: true
+  end
 
   # GET /topics
   # GET /topics.json
@@ -69,7 +84,7 @@ class TopicsController < ApplicationController
   end
 
   def topic_create_params
-    params[:topic].merge(key: session[:key]).permit(:name, :key)
+    params[:topic].merge(key: session[:key]).permit(:name, :key, :active)
   end
 
 end

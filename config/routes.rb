@@ -63,19 +63,31 @@ Ankaa::Application.routes.draw do
 
   root to: 'topics#index'
 
-  resources :topics do
+  concern :toggleable do
+    post 'toggle_active', on: :member
+  end
+
+  concern :orderable do
+    post 'move_up', on: :member
+    post 'move_down', on: :member
+  end
+
+  resources :topics, concerns: [:toggleable, :orderable] do
     resources :categories
   end
+
   resources :categories do
     resources :values do
       post :create_from_url, :on => :collection
       get :autocomplete_description_caption, :on => :collection
     end
   end
+
   resources :values do
     post :create_from_url, :on => :collection
     get :autocomplete_description_caption, :on => :collection
   end
+
   resources :partners
 
   resources :events
