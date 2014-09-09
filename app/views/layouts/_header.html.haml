@@ -1,41 +1,43 @@
-%nav.top-bar
-  %ul.title-area
-    %li.name
-      %h1
-        %a{href:"#{root_path}"}
-          <i class="fi-lightbulb"></i>ankaa
-    %li.toggle-topbar.menu-icon
-      %a{href: '#'}
-        %span Menu
-  %section.top-bar-section
-    %ul.left
-      %li.divider
-      %li{class: ('active' if params[:controller] == 'topics')}
-        = link_to '<i class="fi-list-thumbnails"></i> Topics'.html_safe, topics_path
-      %li.divider
-      %li{class: ('active' if params[:controller] == 'categories')}
-        = link_to '<i class="fi-folder"></i> Categories'.html_safe, categories_path
-      %li.divider
-      %li{class: ('active' if params[:controller] == 'values')}
-        = link_to '<i class="fi-shopping-cart"></i> Values'.html_safe, values_path
-      %li.divider
-      %li{class: ('active' if params[:controller] == 'partners')}
-        = link_to '<i class="fi-dollar"></i> Partners'.html_safe, partners_path
-      %li.divider
-      %li{class: ('active' if params[:controller] == 'virtual_contexts')}
-        = link_to '<i class="fi-marker"></i> Virtual Contexts'.html_safe, virtual_contexts_path
-      %li.divider
-      %li{class: ('active' if params[:controller] == 'events')}
-        = link_to '<i class="fi-flag"></i> Events'.html_safe, events_path
-      %li.divider
-  %section.top-bar-section
-    %ul.right
-      %li.divider
-      %li
-        = link_to "Devices: #{Device.count}", '#'
-      %li.divider
-      %li
-        = link_to "Sessions: #{Session.count}", '#'
-      %li.divider
-      %li
-        = link_to '<i class="fi-power"></i> Log Out'.html_safe, destroy_user_session_path, method: :delete
+.fixed
+  %nav.top-bar{data: {topbar: ''}}
+    %ul.title-area
+      %li.name
+        %h1
+          %a{href:"#{root_path}"}
+            <i class="fi-lightbulb"></i>ankaa
+      %li.toggle-topbar.menu-icon
+        %a{href: '#'}
+          %span Menu
+    %section.top-bar-section
+      %ul.left
+        %li.divider
+        -if params[:controller] =~ /(topics|categories|values|partners)/
+          =render 'layouts/application_menu'
+        -else
+          %li.has-dropdown
+            %a{href: '#'} Application
+            %ul.dropdown
+              =render 'layouts/application_menu'
+
+        %li.divider
+
+        -if params[:controller] =~ /(virtual_contexts|events)/
+          =render 'layouts/statistic_menu'
+        -else
+          %li.has-dropdown
+            %a{href: '#'} Statistic
+            %ul.dropdown
+              =render 'layouts/statistic_menu'
+
+        %li.divider
+    %section.top-bar-section
+      %ul.right
+        %li.divider
+        %li
+          = link_to "Devices: #{Device.count}", '#'
+        %li.divider
+        %li
+          = link_to "Sessions: #{Session.count}", '#'
+        %li.divider
+        %li
+          = link_to '<i class="fi-power"></i> Log Out'.html_safe, destroy_user_session_path, method: :delete

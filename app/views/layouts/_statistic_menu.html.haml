@@ -1,0 +1,5 @@
+%li{class: ('active' if params[:controller] == 'virtual_contexts')}
+  = link_to '<i class="fi-marker"></i> Virtual Contexts'.html_safe, virtual_contexts_path
+%li.divider
+%li{class: ('active' if params[:controller] == 'events')}
+  = link_to '<i class="fi-flag"></i> Events'.html_safe, events_path

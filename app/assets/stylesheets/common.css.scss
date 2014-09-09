@@ -1242,6 +1242,10 @@
 @import 'foundation';
 @import 'foundation/components/switches';
 
+body {
+  margin-top: 50px;
+}
+
 .red {
   color: #f00;
 }
@@ -1256,6 +1260,7 @@
 }
 
 .secondary {
-  margin-left: 5px;
-  margin-right: 5px;
+  //  margin-left: 5px;
+  //  margin-right: 5px;
+  font-size: 21px;
 }

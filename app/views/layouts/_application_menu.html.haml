@@ -1,0 +1,11 @@
+%li{class: ('active' if params[:controller] == 'topics')}
+  = link_to '<i class="fi-list-thumbnails"></i> Topics'.html_safe, topics_path
+%li.divider
+%li{class: ('active' if params[:controller] == 'categories')}
+  = link_to '<i class="fi-folder"></i> Categories'.html_safe, categories_path
+%li.divider
+%li{class: ('active' if params[:controller] == 'values')}
+  = link_to '<i class="fi-shopping-cart"></i> Values'.html_safe, values_path
+%li.divider
+%li{class: ('active' if params[:controller] == 'partners')}
+  = link_to '<i class="fi-dollar"></i> Partners'.html_safe, partners_path
