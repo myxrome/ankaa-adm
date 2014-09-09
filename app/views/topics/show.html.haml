@@ -3,7 +3,11 @@
   .small-12.large-12.columns
     %fieldset
       %legend Parameters
-      Key: #{@topic.key}
+      %table
+        %tbody
+          %tr
+            %td{width: '150px'} Key:
+            %td= @topic.key
 .row
   .small-12.large-12.columns
     = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_topic_path(@topic), class: 'right tiny button'
@@ -11,7 +15,7 @@
   .small-12.large-12.columns
     %fieldset
       %legend Categories
-      = render 'categories/table', categories: @topic.categories
+      = render 'categories/table', categories: @topic.categories, orderable: true
       = link_to '<i class="fi-page-add"></i> New Category'.html_safe, new_topic_category_path(@topic), class: 'right tiny button'
 .row
   .small-12.large-12.columns

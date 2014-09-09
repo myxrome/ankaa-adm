@@ -1,3 +1,3 @@
 - content_for :title, 'Categories'
-= render 'categories/table', categories: @categories
+= render 'categories/table', categories: @categories, orderable: false
 = link_to '<i class="fi-page-add"></i> New Category'.html_safe, new_category_path, class: 'right tiny button'

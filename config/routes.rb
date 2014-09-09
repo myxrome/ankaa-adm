@@ -76,7 +76,7 @@ Ankaa::Application.routes.draw do
     resources :categories
   end
 
-  resources :categories do
+  resources :categories, concerns: [:toggleable, :orderable] do
     resources :values do
       post :create_from_url, :on => :collection
       get :autocomplete_description_caption, :on => :collection

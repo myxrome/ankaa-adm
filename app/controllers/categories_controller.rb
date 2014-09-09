@@ -1,11 +1,26 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:edit, :update, :destroy]
+  before_action :set_category, only: [:toggle_active, :move_up, :move_down, :edit, :update, :destroy]
   before_action :set_category_with_related_models, only: [:show, :edit, :update, :destroy]
+
+  def toggle_active
+    @category.update_attribute :active, !@category.active
+    render nothing: true
+  end
+
+  def move_up
+    @category.move_up
+    render nothing: true
+  end
+
+  def move_down
+    @category.move_down
+    render nothing: true
+  end
 
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.includes(:topic).order('topics.name', :order).all
+    @categories = Category.includes(:topic).order('topics.order', :order).all
   end
 
   # GET /categories/1
@@ -68,6 +83,6 @@ class CategoriesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def category_params
-    params[:category].permit(:topic_id, :name, :displayed_name)
+    params[:category].permit(:topic_id, :name, :displayed_name, :active)
   end
 end

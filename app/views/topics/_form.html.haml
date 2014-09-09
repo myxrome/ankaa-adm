@@ -7,7 +7,11 @@
       %legend Read Only Parameters
       .row
         .small-12.large-12.columns
-          Key: #{@topic.key}
+      %table
+        %tbody
+          %tr
+            %td{width: '150px'} Key:
+            %td= @topic.key
     %fieldset
       %legend Parameters
       .row
