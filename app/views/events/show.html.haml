@@ -1,11 +1,16 @@
 - content_for :title, "Event - #{@event.name}"
 .row
-  %fieldset
-    %legend Parameters
-    .small-6.large-6.columns
-      %p Tag: #{@event.tag}
-    .small-6.large-6.columns
-      %p Type: #{@event.event_type.name}
+  .small-12.large-12.columns
+    %fieldset
+      %legend Parameters
+      %table
+        %tbody
+          %tr
+            %td{width: '150px'} Tag:
+            %td= @event.tag
+          %tr
+            %td{width: '150px'} Type:
+            %td= @event.event_type.name
 .row
   .small-12.large-12.columns
     = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_event_path(@event), class: 'right tiny button'

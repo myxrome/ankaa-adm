@@ -9,10 +9,10 @@
             %tr
               %th Name
               %th Description
-              %th{width: '50px'} context_id
-              %th{width: '50px'} context_type
-              %th{width: '10px'}
-              %th{width: '10px'}
+              %th{width: '50px'} ID
+              %th{width: '150px'} Type
+              %th{width: '35px'}
+              %th{width: '35px'}
           %tbody
             - @virtual_contexts.select {|virtual_context| virtual_context.virtual_context_type == virtual_context_type}.each do |virtual_context|
               %tr
