@@ -4,9 +4,11 @@
     .small-6.large-6.columns
       = f.input :caption, input_html: {class: 'autocomplete', 'data-url' => autocomplete_description_caption_values_path}
     .small-3.large-3.columns
-      = f.input :bold
+      %label Bold
+      = f.input :bold, wrapper_html: { class: 'switch' }
     .small-3.large-3.columns
-      = f.input :red
+      %label Red
+      = f.input :red, wrapper_html: { class: 'switch' }
   .row
     .small-12.large-12.columns
       = f.input :text
@@ -19,3 +21,4 @@
           = link_to '<i class="fi-arrow-down"></i>'.html_safe, '', class: 'tiny secondary down'
         %li
           = link_to_remove_association '<i class="fi-x"></i>'.html_safe, f, class: 'tiny secondary'
+  %hr

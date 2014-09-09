@@ -1,28 +1,23 @@
 %table{width: '100%'}
   %thead
     %tr
+      %th{width: '65px'} Active
       %th{width: '100px'} Thumb
-      %th Name
+      %th{width: '150px'} Name
       %th Category
-      %th Old Price
-      %th Discount
-      %th New Price
-      %th End Date
-      %th Active
-      %th{width: '10px'}
-      %th{width: '10px'}
+      %th{width: '100px'} Discount
+      %th{width: '35px'}
   %tbody
     - values.each do |value|
       %tr
+        %td
+          .switch.tiny
+            %input{type: 'checkbox', id: value.id, class: 'active-toggle', data: {url: toggle_active_value_path(value)}, checked: (:checked if value.active)}
+            %label{for: value.id}
         %td
           %a.th{href: value_path(value)}
             %img{src:"#{value.thumb if value.thumb}"}
         %td= link_to value.name, value
         %td= link_to value.category.name, value.category if value.category
-        %td= value.old_price
         %td= value.discount
-        %td= value.new_price
-        %td= value.end_date
-        %td= value.active
         %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_value_path(value), class: 'tiny secondary'
-        %td= link_to '<i class="fi-x"></i>'.html_safe, value, method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary'

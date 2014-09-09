@@ -83,7 +83,7 @@ Ankaa::Application.routes.draw do
     end
   end
 
-  resources :values do
+  resources :values, concerns: :toggleable do
     post :create_from_url, :on => :collection
     get :autocomplete_description_caption, :on => :collection
   end

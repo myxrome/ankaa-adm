@@ -1,6 +1,6 @@
 _autoordering =
   add: (scope) ->
-    index = $(scope).parent().find('.nested-fields').filter ->
+    index = $(scope).parent(this).find('.nested-fields').filter ->
       $(this).is ':visible'
     .index(scope) + 1
     $(scope).find('.hidden').val index
@@ -8,8 +8,8 @@ _autoordering =
     $(scope).nextAll().filter ->
       $(this).is ':visible'
     .each ->
-        e = $(this).find '.hidden'
-        e.val(e.val() - 1)
+      e = $(this).find '.hidden'
+      e.val(e.val() - 1)
   swap: (l, r) ->
     lval = l.val()
     rval = r.val()

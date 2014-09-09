@@ -12,12 +12,12 @@
       %ul.left
         %li.divider
         -if params[:controller] =~ /(topics|categories|values|partners)/
-          =render 'layouts/application_menu'
+          =render 'layouts/content_menu'
         -else
           %li.has-dropdown
-            %a{href: '#'} Application
+            %a{href: '#'} Content
             %ul.dropdown
-              =render 'layouts/application_menu'
+              =render 'layouts/content_menu'
 
         %li.divider
 

@@ -1,6 +1,11 @@
 class ValuesController < ApplicationController
-  before_action :set_value, only: [:destroy]
+  before_action :set_value, only: [:toggle_active, :destroy]
   before_action :set_value_with_related_models, only: [:show, :edit, :update]
+
+  def toggle_active
+    @value.update_attribute :active, !@value.active
+    render nothing: true
+  end
 
   def autocomplete_description_caption
     templates = DescriptionTemplate.select_captions_like params[:name]
@@ -14,7 +19,7 @@ class ValuesController < ApplicationController
   # GET /values.json
   def index
     @values = Value.includes(:promos, category: :topic).
-        order('topics.name', 'categories.order', :end_date).
+        order('topics.name', 'categories.order', :name).
         all
   end
 
@@ -96,7 +101,7 @@ class ValuesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def value_params
-    params[:value].permit(:name, :old_price, :new_price, :discount, :end_date, :url, :category_id, :active,
+    params[:value].permit(:name, :old_price, :new_price, :discount, :url, :category_id, :active,
                           descriptions_attributes: [:id, :caption, :order, :text, :red, :bold,
                                                     :_destroy],
                           promos_attributes: [:id, :image, :order, :_destroy])
