@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  key: MyString
+  selector: MyString
+  attribute: MyString
+  prefix: MyString
+  postfix: MyString
+
+two:
+  type: 
+  key: MyString
+  selector: MyString
+  attribute: MyString
+  prefix: MyString
+  postfix: MyString

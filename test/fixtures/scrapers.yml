@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  miner_id: 1
+  paginator: MyString
+  selector: MyString
+  condition: MyString
+  prefix: MyString
+  postfix: MyString
+  limit: 1
+
+two:
+  name: MyString
+  miner_id: 1
+  paginator: MyString
+  selector: MyString
+  condition: MyString
+  prefix: MyString
+  postfix: MyString
+  limit: 1
