@@ -4,6 +4,7 @@ class CreateMinerScraperRelations < ActiveRecord::Migration
       t.integer :miner_id
       t.integer :scraper_id
       t.string :url
+      t.integer :limit
 
       t.timestamps
     end
