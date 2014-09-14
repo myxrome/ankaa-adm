@@ -96,6 +96,8 @@ Ankaa::Application.routes.draw do
   resources :miners do
     resources :miner_scrapers, only: [:new, :create, :edit, :update, :destroy]
   end
-  resources :scrapers
+  resources :scrapers do
+    resources :mappings
+  end
 
 end

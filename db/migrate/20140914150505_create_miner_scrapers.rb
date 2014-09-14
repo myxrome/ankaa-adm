@@ -8,5 +8,7 @@ class CreateMinerScrapers < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :miner_scrapers, :miner_id
   end
 end

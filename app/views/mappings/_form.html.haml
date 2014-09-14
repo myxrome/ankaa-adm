@@ -1,0 +1,12 @@
+= simple_form_for [@mapping.source, @mapping] do |f|
+  = f.error_notification
+  .actions
+    = render 'layouts/form_buttons'
+  .inputs
+    %fieldset
+      %legend Parameters
+      .row
+        .small-12.large-12.columns
+          = f.input :scope
+  .actions
+    = render 'layouts/form_buttons'

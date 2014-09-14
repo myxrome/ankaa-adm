@@ -1,0 +1,12 @@
+%table{width: '100%'}
+  %thead
+    %tr
+      %th Scope
+      %th{width: '35px'}
+      %th{width: '35px'}
+  %tbody
+    - mappings.each do |mapping|
+      %tr
+        %td= link_to mapping.scope, [mapping.source, mapping]
+        %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_mapping_path(mapping), class: 'tiny secondary'
+        %td= link_to '<i class="fi-x"></i>'.html_safe, [mapping.source, mapping], method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary'

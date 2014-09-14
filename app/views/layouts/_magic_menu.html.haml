@@ -1,5 +1,5 @@
-%li{class: ('active' if params[:controller] == 'miners')}
+%li{class: ('active' if params[:controller] =~ /(miners|miner_scapers)/)}
   = link_to '<i class="fi-wrench"></i> Miners'.html_safe, miners_path
 %li.divider
-%li{class: ('active' if params[:controller] == 'scrapers')}
+%li{class: ('active' if params[:controller] =~ /(scrapers|mappings)/)}
   = link_to '<i class="fi-key"></i> Scrapers'.html_safe, scrapers_path
