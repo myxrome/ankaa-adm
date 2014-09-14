@@ -93,7 +93,9 @@ Ankaa::Application.routes.draw do
   resources :events
   resources :virtual_contexts
 
-  resources :miners
+  resources :miners do
+    resources :miner_scrapers, only: [:new, :create, :edit, :update, :destroy]
+  end
   resources :scrapers
 
 end

@@ -1,0 +1,16 @@
+= simple_form_for [@miner_scraper.miner, @miner_scraper] do |f|
+  = f.error_notification
+  .actions
+    = render 'layouts/form_buttons'
+  .inputs
+    %fieldset
+      %legend Parameters
+      .row
+        .small-5.large-5.columns
+          = f.association :scraper
+        .small-5.large-5.columns
+          = f.input :url
+        .small-2.large-2.columns
+          = f.input :limit
+  .actions
+    = render 'layouts/form_buttons'

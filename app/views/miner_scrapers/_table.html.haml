@@ -1,0 +1,16 @@
+%table{width: '100%'}
+  %thead
+    %tr
+      %th Scraper
+      %th URL
+      %th{width: '60px'} Limit
+      %th{width: '35px'}
+      %th{width: '35px'}
+  %tbody
+    - miner_scrapers.each do |miner_scraper|
+      %tr
+        %td= link_to miner_scraper.scraper.name, miner_scraper.scraper if miner_scraper.scraper
+        %td= miner_scraper.url
+        %td= miner_scraper.limit
+        %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_miner_miner_scraper_path(miner_scraper.miner, miner_scraper), class: 'tiny secondary'
+        %td= link_to '<i class="fi-x"></i>'.html_safe, [miner_scraper.miner, miner_scraper], method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary'

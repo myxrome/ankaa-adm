@@ -11,3 +11,9 @@
 .row
   .small-12.large-12.columns
     = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_miner_path(@miner), class: 'right tiny button'
+.row
+  .small-12.large-12.columns
+    %fieldset
+      %legend Scrapers
+      = render 'miner_scrapers/table', miner_scrapers: @miner.miner_scrapers
+      = link_to '<i class="fi-page-add"></i> Link Scraper'.html_safe, new_miner_miner_scraper_path(@miner), class: 'right tiny button'
