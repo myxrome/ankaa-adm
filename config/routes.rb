@@ -75,14 +75,12 @@ Ankaa::Application.routes.draw do
   resources :topics, concerns: [:toggleable, :orderable] do
     resources :categories
   end
-
   resources :categories, concerns: [:toggleable, :orderable] do
     resources :values do
       post :create_from_url, :on => :collection
       get :autocomplete_description_caption, :on => :collection
     end
   end
-
   resources :values, concerns: :toggleable do
     post :create_from_url, :on => :collection
     get :autocomplete_description_caption, :on => :collection
@@ -90,13 +88,12 @@ Ankaa::Application.routes.draw do
     get :auto, on: :collection
 
   end
-
   resources :partners, concerns: :toggleable
 
   resources :events
-
   resources :virtual_contexts
 
   resources :miners
+  resources :scrapers
 
 end

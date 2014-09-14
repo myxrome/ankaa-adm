@@ -1,0 +1,25 @@
+- content_for :title, "Scraper - #{@scraper.name}"
+.row
+  .small-12.large-12.columns
+    %fieldset
+      %legend Parameters
+      %table
+        %tbody
+          %tr
+            %td{width: '150px'} Selector:
+            %td= @scraper.selector
+          %tr
+            %td{width: '150px'} Condition:
+            %td= @scraper.condition
+          %tr
+            %td{width: '150px'} Prefix:
+            %td= @scraper.prefix
+          %tr
+            %td{width: '150px'} Postfix:
+            %td= @scraper.postfix
+          %tr
+            %td{width: '150px'} Paginator:
+            %td= @scraper.paginator
+.row
+  .small-12.large-12.columns
+    = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_scraper_path(@scraper), class: 'right tiny button'
