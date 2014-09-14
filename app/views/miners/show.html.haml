@@ -1,0 +1,13 @@
+- content_for :title, "Miner - #{@miner.name}"
+.row
+  .small-12.large-12.columns
+    %fieldset
+      %legend Parameters
+      %table
+        %tbody
+          %tr
+            %td{width: '150px'} Category:
+            %td= link_to @miner.category.name, @miner.category
+.row
+  .small-12.large-12.columns
+    = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_miner_path(@miner), class: 'right tiny button'

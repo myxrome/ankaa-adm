@@ -86,6 +86,9 @@ Ankaa::Application.routes.draw do
   resources :values, concerns: :toggleable do
     post :create_from_url, :on => :collection
     get :autocomplete_description_caption, :on => :collection
+
+    get :auto, on: :collection
+
   end
 
   resources :partners, concerns: :toggleable
@@ -93,5 +96,7 @@ Ankaa::Application.routes.draw do
   resources :events
 
   resources :virtual_contexts
+
+  resources :miners
 
 end

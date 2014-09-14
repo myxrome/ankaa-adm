@@ -24,5 +24,5 @@
         %td= topic.key
         %td= link_to '<i class="fi-arrow-up"></i>'.html_safe, '', class: 'tiny secondary table-up', data: {url: move_up_topic_path(topic)}
         %td= link_to '<i class="fi-arrow-down"></i>'.html_safe, '', class: 'tiny secondary table-down', data: {url: move_down_topic_path(topic)}
-        %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_topic_path(topic), class: 'tiny secondary ajax-down'
+        %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_topic_path(topic), class: 'tiny secondary'
 = link_to '<i class="fi-page-add"></i> New Topic'.html_safe, new_topic_path, class: 'right tiny button'
