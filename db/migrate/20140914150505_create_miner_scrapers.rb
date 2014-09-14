@@ -1,6 +1,6 @@
-class CreateMinerScraperRelations < ActiveRecord::Migration
+class CreateMinerScrapers < ActiveRecord::Migration
   def change
-    create_table :miner_scraper_relations do |t|
+    create_table :miner_scrapers do |t|
       t.integer :miner_id
       t.integer :scraper_id
       t.string :url
