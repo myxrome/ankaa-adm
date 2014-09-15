@@ -1,2 +1,2 @@
-- content_for :title, "Mapping #{@transformer.mapping.scope} - #{@transformer.type} Transformer"
+- content_for :title, "#{@transformer.type.gsub(/[A-Z]/, ' \0')} Transformer - #{@transformer.name}"
 = render "#{@transformer.type.downcase}"

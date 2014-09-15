@@ -10,4 +10,8 @@
             %td= @virtual_context.description
 .row
   .small-12.large-12.columns
-    = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_virtual_context_path(@virtual_context), class: 'right tiny button'
+    %ul.button-group.right
+      %li
+        = link_to '<i class="fi-database"></i> All'.html_safe, virtual_contexts_path, class: 'tiny button'
+      %li
+        = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_virtual_context_path(@virtual_context), class: 'tiny button'

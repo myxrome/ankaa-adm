@@ -1,18 +1,10 @@
 module MappingsHelper
 
-  def mapping_source_name(mapping)
-    source = mapping.source
-    if source.respond_to?(:name)
-      mapping.source_type + ' ' + source.name
+  def mapping_source_path(mapping)
+    if mapping.source_type == 'Scraper'
+      scraper_path(mapping.source)
     else
-      mapping.source_type + ' ' + source.key
-    end
-  end
-
-  def link_to_mapping_source(mapping)
-    source = mapping.source
-    if source.respond_to?(:name)
-      link_to source.name, source
+      transformer_path(mapping.source)
     end
   end
 

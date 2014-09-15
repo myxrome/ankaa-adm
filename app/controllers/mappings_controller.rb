@@ -55,6 +55,6 @@ class MappingsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def mapping_params
-    params[:mapping].permit(:source_id, :source_type, :scope)
+    params[:mapping].permit(:source_id, :source_type, :name, :scope)
   end
 end

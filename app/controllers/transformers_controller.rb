@@ -55,6 +55,6 @@ class TransformersController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def transformer_params
     result = params[:text] || params[:attachment] || params[:order] || params[:has_many]
-    result.permit(:mapping_id, :type, :key, :selector, :prefix, :postfix)
+    result.permit(:mapping_id, :type, :name, :key, :selector, :prefix, :postfix)
   end
 end

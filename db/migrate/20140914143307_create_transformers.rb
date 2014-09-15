@@ -3,6 +3,7 @@ class CreateTransformers < ActiveRecord::Migration
     create_table :transformers do |t|
       t.integer :mapping_id
       t.string :type
+      t.string :name
       t.string :key
       t.string :selector
       t.string :prefix

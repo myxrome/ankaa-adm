@@ -13,7 +13,11 @@
             %td= @category.displayed_name
 .row
   .small-12.large-12.columns
-    = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_category_path(@category), class: 'right tiny button'
+    %ul.button-group.right
+      %li
+        = link_to '<i class="fi-database"></i> All'.html_safe, topic_path(@category.topic), class: 'tiny button'
+      %li
+        = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_category_path(@category), class: 'tiny button'
 .row
   .small-12.large-12.columns
     %fieldset
