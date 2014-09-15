@@ -1,0 +1,21 @@
+.row
+  .small-12.large-12.columns
+    %fieldset
+      %legend Parameters
+      %table
+        %tbody
+          %tr
+            %td{width: '150px'} Key:
+            %td= @transformer.key
+          %tr
+            %td{width: '150px'} Selector:
+            %td= @transformer.selector
+          %tr
+            %td{width: '150px'} Prefix:
+            %td= @transformer.prefix
+          %tr
+            %td{width: '150px'} Postfix:
+            %td= @transformer.postfix
+.row
+  .small-12.large-12.columns
+    = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_transformer_path(@transformer), class: 'right tiny button'

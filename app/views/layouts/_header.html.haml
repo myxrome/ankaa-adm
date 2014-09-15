@@ -31,7 +31,7 @@
 
         %li.divider
 
-        -if params[:controller] =~ /(miners|scrapers|miner_scapers|mappings)/
+        -if params[:controller] =~ /(miners|scrapers|miner_scapers|mappings|transformers)/
           =render 'layouts/magic_menu'
         -else
           %li.has-dropdown

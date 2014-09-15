@@ -99,5 +99,15 @@ Ankaa::Application.routes.draw do
   resources :scrapers do
     resources :mappings
   end
+  resources :mappings do
+    resources :transformers
+    resources :texts, controller: 'transformers', type: 'Text'
+    resources :attachments, controller: 'transformers', type: 'Attachment'
+    resources :orders, controller: 'transformers', type: 'Order'
+    resources :has_manies, controller: 'transformers', type: 'HasMany'
+  end
+  resources :transformers do
+    resources :mappings
+  end
 
 end

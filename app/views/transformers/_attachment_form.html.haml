@@ -1,0 +1,21 @@
+= simple_form_for [@transformer.mapping, @transformer] do |f|
+  = f.error_notification
+  .actions
+    = render 'layouts/form_buttons'
+  .inputs
+    %fieldset
+      %legend Parameters
+      = f.input :mapping_id, as: :hidden
+      = f.input :type, as: :hidden
+      .row
+        .small-6.large-6.columns
+          = f.input :key
+        .small-6.large-6.columns
+          = f.input :selector
+      .row
+        .small-6.large-6.columns
+          = f.input :prefix
+        .small-6.large-6.columns
+          = f.input :postfix
+  .actions
+    = render 'layouts/form_buttons'

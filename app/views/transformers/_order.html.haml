@@ -1,0 +1,12 @@
+.row
+  .small-12.large-12.columns
+    %fieldset
+      %legend Parameters
+      %table
+        %tbody
+          %tr
+            %td{width: '150px'} Key:
+            %td= @transformer.key
+.row
+  .small-12.large-12.columns
+    = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_transformer_path(@transformer), class: 'right tiny button'
