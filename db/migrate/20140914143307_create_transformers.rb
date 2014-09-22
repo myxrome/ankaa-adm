@@ -5,7 +5,8 @@ class CreateTransformers < ActiveRecord::Migration
       t.string :type
       t.string :name
       t.string :key
-      t.string :selector
+      t.string :element
+      t.string :attr
       t.string :prefix
       t.string :postfix
 

@@ -53,6 +53,6 @@ class ScrapersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def scraper_params
-    params[:scraper].permit(:name, :selector, :condition, :prefix, :postfix, :limit, :paginator)
+    params[:scraper].permit(:name, :element, :attr, :condition, :prefix, :postfix, :limit, :paginator)
   end
 end

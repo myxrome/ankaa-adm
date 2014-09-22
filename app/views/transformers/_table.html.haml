@@ -3,7 +3,7 @@
     %tr
       %th Name
       %th Key
-      %th Selector
+      %th Element
       %th{width: '100px'} Type
       %th{width: '35px'}
       %th{width: '35px'}
@@ -12,7 +12,7 @@
       %tr
         %td= link_to transformer.name, [transformer.mapping, transformer]
         %td= transformer.key
-        %td= transformer.selector
+        %td= transformer.element
         %td= transformer.type.gsub(/[A-Z]/, ' \0')
         %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_transformer_path(transformer), class: 'tiny secondary'
         %td= link_to '<i class="fi-x"></i>'.html_safe, [transformer.mapping, transformer], method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary'

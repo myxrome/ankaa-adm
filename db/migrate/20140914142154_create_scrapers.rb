@@ -2,7 +2,8 @@ class CreateScrapers < ActiveRecord::Migration
   def change
     create_table :scrapers do |t|
       t.string :name
-      t.string :selector
+      t.string :element
+      t.string :attr
       t.string :condition
       t.string :prefix
       t.string :postfix
