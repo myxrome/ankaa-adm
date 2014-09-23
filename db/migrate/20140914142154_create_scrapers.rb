@@ -8,6 +8,7 @@ class CreateScrapers < ActiveRecord::Migration
       t.string :prefix
       t.string :postfix
       t.string :paginator
+      t.string :source_key
 
       t.timestamps
     end

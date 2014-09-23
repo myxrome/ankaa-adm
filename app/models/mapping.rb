@@ -1,7 +1,7 @@
 class Mapping < ActiveRecord::Base
   belongs_to :source, polymorphic: true
   has_many :transformers, inverse_of: :mapping, dependent: :destroy
-  delegate :texts, :attachments, :has_manies, to: :transformers
+  delegate :texts, :attribute_values, :attachments, :has_manies, to: :transformers
   after_create :reorder
 
   def reorder
@@ -23,11 +23,13 @@ class Mapping < ActiveRecord::Base
 
   def perform(doc)
     doc.css(self.scope).map { |part|
-      transformers.map { |transformer|
-        transformer.perform part
+      result = transformers.map { |transformer|
+        transformer.perform(part)
       }.reduce(:merge)
+      block_given? ? yield(part, result) : result
     }
   end
+
 
   private
   def switch_order(other)

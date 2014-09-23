@@ -11,7 +11,9 @@ class Scraper < ActiveRecord::Base
       doc = Nokogiri::HTML(open(link))
 
       self.mappings.map { |mapping|
-        mapping.perform doc
+        mapping.perform(doc) { |part, value|
+          self.source_key.empty? ? value : value.merge({self.source_key.to_sym => link})
+        }
       }
     }.flatten #.to_s
   end

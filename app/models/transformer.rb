@@ -3,11 +3,12 @@ class Transformer < ActiveRecord::Base
   has_many :mappings, -> { order(:order) }, as: :source, dependent: :destroy
 
   scope :texts, -> { where(type: :text) }
+  scope :attribute_values, -> { where(type: :attribute_value) }
   scope :attachments, -> { where(type: :attachment) }
   scope :has_manies, -> { where(type: :has_many) }
 
   def self.types
-    [:Text, :Attachment, :HasMany]
+    [:Text, :AttributeValue, :Attachment, :HasMany]
   end
 
   def perform(scope)
@@ -23,7 +24,16 @@ end
 class Text < Transformer
   protected
   def get_value(scope)
-    scope.css(self.element).inner_text.strip
+    node = self.element.empty? ? scope : scope.css(self.element)
+    node.inner_text.strip
+  end
+end
+
+class AttributeValue < Transformer
+  protected
+  def get_value(scope)
+    node = self.element.empty? ? scope : scope.css(self.element)
+    self.prefix + node[self.attr] + self.postfix
   end
 end
 
@@ -41,8 +51,10 @@ class HasMany < Transformer
   def get_value(scope)
     order = 0
     mappings.map { |mapping|
-      mapping.perform(scope).map { |value|
-        value.merge!({self.order_key.to_sym => (order += 1)}) unless self.order_key.empty?
+      mapping.perform(scope) { |part, value|
+        result = self.order_key.empty? ? value : value.merge({self.order_key.to_sym => (order += 1)})
+        self.source_key.empty? ? result : result.merge({self.source_key.to_sym => part.css_path})
+      }.map { |value|
         {rand(10000).to_s.to_sym => value}
       }.reduce(:merge)
     }.reduce(:merge)

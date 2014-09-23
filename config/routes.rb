@@ -102,8 +102,8 @@ Ankaa::Application.routes.draw do
   resources :mappings, concerns: :orderable do
     resources :transformers
     resources :texts, controller: 'transformers', type: 'Text'
+    resources :attribute_values, controller: 'transformers', type: 'AttributeValue'
     resources :attachments, controller: 'transformers', type: 'Attachment'
-    resources :orders, controller: 'transformers', type: 'Order'
     resources :has_manies, controller: 'transformers', type: 'HasMany'
   end
   resources :transformers do
