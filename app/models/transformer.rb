@@ -1,6 +1,6 @@
 class Transformer < ActiveRecord::Base
   belongs_to :mapping, inverse_of: :transformers
-  has_many :mappings, as: :source, dependent: :destroy
+  has_many :mappings, -> { order(:order) }, as: :source, dependent: :destroy
 
   scope :texts, -> { where(type: :text) }
   scope :attachments, -> { where(type: :attachment) }
@@ -51,7 +51,7 @@ class HasMany < Transformer
     context = Hash.new
     mappings.map { |mapping|
       mapping.perform(scope, context).map { |value|
-        {rand(100000000).to_s.to_sym => value}
+        {rand(10000).to_s.to_sym => value}
       }.reduce(:merge)
     }.reduce(:merge)
   end

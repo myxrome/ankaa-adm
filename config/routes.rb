@@ -99,7 +99,7 @@ Ankaa::Application.routes.draw do
   resources :scrapers do
     resources :mappings
   end
-  resources :mappings do
+  resources :mappings, concerns: :orderable do
     resources :transformers
     resources :texts, controller: 'transformers', type: 'Text'
     resources :attachments, controller: 'transformers', type: 'Attachment'

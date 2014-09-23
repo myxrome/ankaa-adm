@@ -5,6 +5,7 @@ class CreateMappings < ActiveRecord::Migration
       t.string :scope
       t.integer :source_id
       t.string :source_type
+      t.integer :order
 
       t.timestamps
     end

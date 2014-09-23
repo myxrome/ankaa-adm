@@ -5,10 +5,14 @@
       %th Scope
       %th{width: '35px'}
       %th{width: '35px'}
+      %th{width: '35px'}
+      %th{width: '35px'}
   %tbody
     - mappings.each do |mapping|
       %tr
         %td= link_to mapping.name, mapping
         %td= mapping.scope
+        %td= link_to '<i class="fi-arrow-up"></i>'.html_safe, '', class: 'tiny secondary table-up', data: {url: move_up_mapping_path(mapping)}
+        %td= link_to '<i class="fi-arrow-down"></i>'.html_safe, '', class: 'tiny secondary table-down', data: {url: move_down_mapping_path(mapping)}
         %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_mapping_path(mapping), class: 'tiny secondary'
         %td= link_to '<i class="fi-x"></i>'.html_safe, mapping, method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary'

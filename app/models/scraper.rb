@@ -2,7 +2,7 @@ class Scraper < ActiveRecord::Base
   require 'open-uri'
 
   has_many :miner_scrapers, inverse_of: :scraper, dependent: :destroy
-  has_many :mappings, as: :source
+  has_many :mappings, -> { order(:order) }, as: :source
 
   def perform(url, limit)
     links = collect_value_links(url, limit)

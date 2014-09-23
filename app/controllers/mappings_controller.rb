@@ -1,6 +1,16 @@
 class MappingsController < ApplicationController
-  before_action :set_mapping, only: [:show, :edit, :update, :destroy]
+  before_action :set_mapping, only: [:move_up, :move_down, :show, :edit, :update, :destroy]
   before_action :set_source, only: [:new]
+
+  def move_up
+    @mapping.move_up
+    render nothing: true
+  end
+
+  def move_down
+    @mapping.move_down
+    render nothing: true
+  end
 
   # GET /mappings/1
   def show
