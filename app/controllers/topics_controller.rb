@@ -75,7 +75,7 @@ class TopicsController < ApplicationController
   end
 
   def set_topic_with_related_models
-    @topic = Topic.includes(:categories, values: [:category, :promos]).find(params[:id])
+    @topic = Topic.includes(:categories).find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

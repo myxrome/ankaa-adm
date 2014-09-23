@@ -9,10 +9,9 @@ class Scraper < ActiveRecord::Base
     puts links.map { |link|
 
       doc = Nokogiri::HTML(open(link))
-      context = Hash.new
 
       self.mappings.map { |mapping|
-        mapping.perform doc, context
+        mapping.perform doc
       }
     }.flatten #.to_s
   end

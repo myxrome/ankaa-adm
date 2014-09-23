@@ -19,7 +19,7 @@ class ValuesController < ApplicationController
   # GET /values.json
   def index
     @values = Value.includes(:promos, category: :topic).
-        order('topics.name', 'categories.order', :name).
+        order('topics.order', 'categories.order', :name).
         all
   end
 

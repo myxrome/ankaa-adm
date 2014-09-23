@@ -10,7 +10,10 @@
       .row
         .small-12.large-12.columns
           = f.input :name
-        .small-12.large-12.columns
+      .row
+        .small-6.large-6.columns
           = f.input :key
+        .small-6.large-6.columns
+          = f.input :order_key, label: 'Order Key'
   .actions
     = render 'layouts/form_buttons'
