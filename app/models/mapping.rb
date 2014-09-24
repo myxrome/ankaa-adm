@@ -27,7 +27,7 @@ class Mapping < ActiveRecord::Base
         transformer.perform(part)
       }.reduce(:merge)
       block_given? ? yield(part, result) : result
-    }
+    }.reduce(:merge)
   end
 
 

@@ -6,16 +6,17 @@ class Scraper < ActiveRecord::Base
 
   def perform(url, limit)
     links = collect_value_links(url, limit)
-    puts links.map { |link|
+    links.map { |link|
 
       doc = Nokogiri::HTML(open(link))
 
       self.mappings.map { |mapping|
-        mapping.perform(doc) { |part, value|
+        result = mapping.perform(doc) { |part, value|
           self.source_key.empty? ? value : value.merge({self.source_key.to_sym => link})
         }
-      }
-    }.flatten #.to_s
+        {result[:source] => result}
+      }.reduce(:merge)
+    }.reduce(:merge)
   end
 
   private

@@ -51,12 +51,11 @@ class HasMany < Transformer
   def get_value(scope)
     order = 0
     mappings.map { |mapping|
-      mapping.perform(scope) { |part, value|
-        result = self.order_key.empty? ? value : value.merge({self.order_key.to_sym => (order += 1)})
-        self.source_key.empty? ? result : result.merge({self.source_key.to_sym => part.css_path})
-      }.map { |value|
-        {rand(10000).to_s.to_sym => value}
-      }.reduce(:merge)
+      result = mapping.perform(scope) { |part, value|
+        value = self.order_key.empty? ? value : value.merge({self.order_key.to_sym => (order += 1)})
+        self.source_key.empty? ? value : value.merge({self.source_key.to_sym => part.css_path})
+      }
+      {result[:source] || rand(10000).to_s => result}
     }.reduce(:merge)
   end
 end
