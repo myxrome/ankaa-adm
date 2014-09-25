@@ -22,6 +22,9 @@
             %td{width: '150px'} New price:
             %td= @value.new_price
           %tr
+            %td{width: '150px'} Source Url:
+            %td= link_to @value.source, @value.source
+          %tr
             %td{width: '150px'} Url:
             %td= @value.url
 .row
@@ -46,6 +49,6 @@
         %tbody
           - @value.descriptions.each do |description|
             %tr
-              -unless description.caption.empty?
+              -if not (description.caption.nil? || description.caption.empty?)
                 %td{class: [('red' if description.red), ('bold' if description.bold)].compact.join(' ')} #{description.caption}
-              %td{class: [('red' if description.red), ('bold' if description.bold)].compact.join(' '), colspan: (2 if description.caption.empty?)} #{description.text}
+              %td{class: [('red' if description.red), ('bold' if description.bold)].compact.join(' '), colspan: (2 if description.caption.nil? || description.caption.empty?)} #{description.text}

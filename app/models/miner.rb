@@ -4,9 +4,10 @@ class Miner < ActiveRecord::Base
   has_many :scrapers, through: :miner_scrapers
 
   def perform
-    self.miner_scrapers.each { |link|
-      link.scraper.perform link.url, link.limit
-    }
+    source = self.miner_scrapers.map { |link|
+      link.scraper.perform(link.url, link.limit)
+    }.reduce(:merge)
+    category.reconcile(source) if source
   end
 
 end
