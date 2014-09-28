@@ -3,11 +3,11 @@ class Miner < ActiveRecord::Base
   has_many :miner_scrapers, inverse_of: :miner, dependent: :destroy
   has_many :scrapers, through: :miner_scrapers
 
-  def perform
+  def perform(result)
     source = self.miner_scrapers.map { |link|
       link.scraper.perform(link.url, link.limit)
     }.reduce(:merge)
-    category.reconcile(source) if source
+    category.reconcile(source, result)
   end
 
 end
