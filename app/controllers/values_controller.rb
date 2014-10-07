@@ -1,5 +1,5 @@
 class ValuesController < ApplicationController
-  before_action :set_value, only: [:toggle_active, :destroy]
+  before_action :set_value, only: [:toggle_active]
   before_action :set_value_with_related_models, only: [:show, :edit, :update]
 
   def toggle_active
@@ -28,47 +28,8 @@ class ValuesController < ApplicationController
   def show
   end
 
-  def create_from_url
-    if params[:category_id]
-      @value = Category.find(params[:category_id]).values.create ValuesHelper::params_from_url params[:url]
-    else
-      @value = Value.create ValuesHelper::params_from_url params[:url]
-    end
-    if @value
-      redirect_to edit_value_path @value
-    else
-      if params[:category_id]
-        redirect_to category_path params[:category_id]
-      else
-        redirect_to values_path
-      end
-    end
-#http://www.lamoda.ru/p/vi809awbjv94/shoes-vivianroyal-sandalii/
-  end
-
-  # GET /values/new
-  def new
-    if params[:category_id]
-      @value = Category.find(params[:categoty_id]).values.build
-    else
-      @value = Value.new
-    end
-  end
-
   # GET /values/1/edit
   def edit
-  end
-
-  # POST /values
-  # POST /values.json
-  def create
-    @value = Value.new(value_params)
-
-    if @value.save
-      redirect_to @value.category, notice: 'Value was successfully created.'
-    else
-      render action: 'new'
-    end
   end
 
   # PATCH/PUT /values/1
@@ -79,14 +40,6 @@ class ValuesController < ApplicationController
     else
       render action: 'edit'
     end
-  end
-
-  # DELETE /values/1
-  # DELETE /values/1.json
-  def destroy
-    category = @value.category
-    @value.destroy
-    redirect_to category
   end
 
   private

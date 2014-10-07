@@ -75,18 +75,9 @@ Ankaa::Application.routes.draw do
   resources :topics, concerns: [:toggleable, :orderable] do
     resources :categories
   end
-  resources :categories, concerns: [:toggleable, :orderable] do
-    resources :values do
-      post :create_from_url, :on => :collection
-      get :autocomplete_description_caption, :on => :collection
-    end
-  end
-  resources :values, concerns: :toggleable do
-    post :create_from_url, :on => :collection
+  resources :categories, concerns: [:toggleable, :orderable]
+  resources :values, concerns: :toggleable, only: [:edit, :update] do
     get :autocomplete_description_caption, :on => :collection
-
-    get :auto, on: :collection
-
   end
   resources :partners, concerns: :toggleable
 
