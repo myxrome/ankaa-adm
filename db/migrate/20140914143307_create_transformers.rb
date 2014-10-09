@@ -5,12 +5,13 @@ class CreateTransformers < ActiveRecord::Migration
       t.string :type
       t.string :name
       t.string :key
-      t.string :order_key
-      t.string :source_key
       t.string :element
       t.string :attr
+      t.string :substring
       t.string :prefix
       t.string :postfix
+      t.boolean :order
+      t.boolean :source
 
       t.timestamps
     end

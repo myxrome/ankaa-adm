@@ -49,6 +49,6 @@ class MinerScrapersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def miner_scraper_params
-    params[:miner_scraper].permit(:scraper_id, :url, :limit)
+    params[:miner_scraper].permit(:scraper_id, :url_prefix, :url_postfix, :limit)
   end
 end

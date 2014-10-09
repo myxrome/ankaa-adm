@@ -2,13 +2,13 @@ class CreateScrapers < ActiveRecord::Migration
   def change
     create_table :scrapers do |t|
       t.string :name
+      t.string :selector
+      t.string :condition
       t.string :element
       t.string :attr
-      t.string :condition
       t.string :prefix
       t.string :postfix
-      t.string :paginator
-      t.string :source_key
+      t.boolean :source
 
       t.timestamps
     end

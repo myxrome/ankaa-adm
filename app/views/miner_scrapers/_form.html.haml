@@ -6,11 +6,16 @@
     %fieldset
       %legend Parameters
       .row
-        .small-5.large-5.columns
+        .small-10.large-10.columns
           = f.association :scraper
-        .small-5.large-5.columns
-          = f.input :url
         .small-2.large-2.columns
           = f.input :limit
+      .row
+        .small-5.large-5.columns
+          = f.input :url_prefix, label: 'URL Prefix'
+        .small-2.large-2.columns
+          %p #
+        .small-5.large-5.columns
+          = f.input :url_postfix, label: 'URL Postfix'
   .actions
     = render 'layouts/form_buttons'

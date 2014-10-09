@@ -1,5 +1,9 @@
 class ScrapersController < ApplicationController
-  before_action :set_scraper, only: [:show, :edit, :update, :destroy]
+  before_action :set_scraper, only: [:test, :show, :edit, :update, :destroy]
+
+  def test
+    render json: @scraper.test(params[:url])
+  end
 
   # GET /scrapers
   def index
@@ -53,6 +57,6 @@ class ScrapersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def scraper_params
-    params[:scraper].permit(:name, :element, :attr, :condition, :prefix, :postfix, :limit, :paginator, :source_key)
+    params[:scraper].permit(:name, :selector, :condition, :element, :attr, :prefix, :postfix, :source)
   end
 end

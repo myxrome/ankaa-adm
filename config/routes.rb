@@ -76,8 +76,8 @@ Ankaa::Application.routes.draw do
     resources :categories
   end
   resources :categories, concerns: [:toggleable, :orderable]
-  resources :values, concerns: :toggleable, only: [:edit, :update] do
-    get :autocomplete_description_caption, :on => :collection
+  resources :values, concerns: :toggleable, only: [:index, :show, :edit, :update] do
+    get :autocomplete_description_caption, on: :collection
   end
   resources :partners, concerns: :toggleable
 
@@ -89,6 +89,7 @@ Ankaa::Application.routes.draw do
   end
   resources :scrapers do
     resources :mappings
+    post :test, on: :member
   end
   resources :mappings, concerns: :orderable do
     resources :transformers
@@ -99,6 +100,7 @@ Ankaa::Application.routes.draw do
   end
   resources :transformers do
     resources :mappings
+    post :test, on: :member
   end
 
 end

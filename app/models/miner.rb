@@ -5,7 +5,7 @@ class Miner < ActiveRecord::Base
 
   def perform(result)
     source = self.miner_scrapers.map { |link|
-      link.scraper.perform(link.url, link.limit)
+      link.scraper.perform(link.url_prefix, link.url_postfix, link.limit)
     }.reduce(:merge)
     category.reconcile(source, result)
   end

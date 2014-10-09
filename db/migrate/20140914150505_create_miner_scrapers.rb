@@ -3,7 +3,8 @@ class CreateMinerScrapers < ActiveRecord::Migration
     create_table :miner_scrapers do |t|
       t.integer :miner_id
       t.integer :scraper_id
-      t.string :url
+      t.string :url_prefix
+      t.string :url_postfix
       t.integer :limit
 
       t.timestamps

@@ -3,7 +3,7 @@ class MinerWorker
   include Sidetiq::Schedulable
 
   sidekiq_options retry: false
-  recurrence { minutely(5) }
+  recurrence { minutely(60) }
 
   def perform
     Sidekiq::Queue.new.clear

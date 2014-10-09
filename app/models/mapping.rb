@@ -11,6 +11,16 @@ class Mapping < ActiveRecord::Base
   has_many :transformers, inverse_of: :mapping, dependent: :destroy
   delegate :texts, :attribute_values, :attachments, :has_manies, to: :transformers
 
+  def test(url)
+    return if !url || url.empty?
+    doc = Nokogiri::HTML(open(url))
+    puts self.scope
+    doc.css(self.scope).map { |part|
+      puts part
+      yield(part)
+    }.first(5)
+  end
+
   def perform(doc)
     doc.css(self.scope).map { |part|
       result = perform_transformers(part)

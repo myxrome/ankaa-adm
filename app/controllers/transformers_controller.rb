@@ -1,6 +1,10 @@
 class TransformersController < ApplicationController
-  before_action :set_transformer, only: [:show, :edit, :update, :destroy]
+  before_action :set_transformer, only: [:test, :show, :edit, :update, :destroy]
   before_action :set_mapping, only: [:new]
+
+  def test
+    render json: @transformer.test(params[:url])
+  end
 
   # GET /transformers/1
   def show
@@ -55,6 +59,7 @@ class TransformersController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def transformer_params
     result = params[:text] || params[:attribute_value] || params[:attachment] || params[:has_many]
-    result.permit(:mapping_id, :type, :name, :key, :order_key, :source_key, :element, :attr, :prefix, :postfix)
+    result.permit(:mapping_id, :type, :name, :key, :element, :attr, :substring, :prefix, :postfix,
+                  :order, :source)
   end
 end

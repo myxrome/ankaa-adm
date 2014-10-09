@@ -2,7 +2,7 @@
   .small-12.large-12.columns
     %fieldset
       %legend Parameters
-      %table
+      %table{width: '100%'}
         %tbody
           %tr
             %td{width: '150px'} Key:
@@ -13,6 +13,9 @@
           %tr
             %td{width: '150px'} Attribute:
             %td= @transformer.attr
+          %tr
+            %td{width: '150px'} Substring:
+            %td= @transformer.substring
           %tr
             %td{width: '150px'} Prefix:
             %td= @transformer.prefix
