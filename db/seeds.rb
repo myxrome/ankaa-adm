@@ -8,7 +8,7 @@
 VirtualContextType.create! [{name: 'Application'}, {name: 'Button'}]
 
 #Lamoda
-Scraper.create! name: 'Lamoda', selector: 'a.products-list-item__link',
+Scraper.create! name: 'Lamoda', scope: '', selector: 'a.products-list-item__link',
                 condition: 'span.product-label:not(.product-label_new)', element: '', attr: 'href',
                 prefix: 'http://www.lamoda.ru', postfix: '', source: true do |scraper|
   Mapping.create! name: 'Lamoda Body', scope: 'body', source: scraper do |lamoda_mapping|
@@ -51,7 +51,7 @@ Scraper.create! name: 'Lamoda', selector: 'a.products-list-item__link',
 end
 
 #Wildberries
-Scraper.create! name: 'Wildberries', selector: 'div.dtList',
+Scraper.create! name: 'Wildberries', scope: '', selector: 'div.dtList',
                 condition: 'span.proc_div', element: 'a.ref_goods_n_p', attr: 'href',
                 prefix: '', postfix: '', source: true do |scraper|
   Mapping.create! name: 'Wildberries Body', scope: 'body', source: scraper do |wb_mapping|
@@ -94,6 +94,44 @@ Scraper.create! name: 'Wildberries', selector: 'div.dtList',
                               element: '', attr: 'href', substring: '', prefix: 'http:', postfix: ''},
                              {mapping: promo_mapping, type: 'AttributeValue', name: 'Promo Source', key: 'source',
                               element: '', attr: 'href', substring: '', prefix: 'http:', postfix: ''}]
+
+      end
+    end
+  end
+end
+
+#Quelle
+Scraper.create! name: 'Quelle', scope: 'ol.productsBox', selector: 'div.productImageBox',
+                condition: 'div.produktBildAuflegerReduziert', element: 'a', attr: 'href',
+                prefix: '', postfix: '', source: true do |scraper|
+  Mapping.create! name: 'Quelle Body', scope: 'body', source: scraper do |wb_mapping|
+    Transformer.create! [{mapping: wb_mapping, type: 'Text', name: 'Value Name', key: 'name',
+                          element: ' 	h1.h2', attr: '',
+                          substring: '', prefix: '', postfix: ''},
+                         {mapping: wb_mapping, type: 'Text', name: 'Value New Price', key: 'new_price',
+                          element: '.default', attr: '', substring: '\d+', prefix: '', postfix: ' руб.'},
+                         {mapping: wb_mapping, type: 'Text', name: 'Value Discount', key: 'discount',
+                          element: '.productPriceSlogan > strong:nth-child(1)', attr: '', substring: '', prefix: '-', postfix: '%'},
+                         {mapping: wb_mapping, type: 'Text', name: 'Value Old Price', key: 'old_price',
+                          element: ' 	#productDetailProductPriceBox > div:nth-child(2)',
+                          attr: '', substring: '\d+', prefix: '', postfix: ' руб.'}]
+
+    Transformer.create! mapping: wb_mapping, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
+                        element: '', attr: '', substring: '', prefix: '', postfix: '', order: true, source: true do |transformer|
+      Mapping.create! name: 'Description Header', scope: '.productLangtextBox', source: transformer do |description_mapping|
+        Transformer.create! mapping: description_mapping, type: 'Text', name: 'Description Text', key: 'text',
+                            element: 'span:nth-child(2) > p:nth-child(1)', attr: '', substring: '', prefix: '', postfix: ''
+
+      end
+    end
+
+    Transformer.create! mapping: wb_mapping, type: 'HasMany', name: 'Value Promos', key: 'promos_attributes',
+                        element: '', attr: '', substring: '', prefix: '', postfix: '', order: true, source: false do |transformer|
+      Mapping.create! name: 'Description Table', scope: '.verticalImageListBox > ul:nth-child(1) > li', source: transformer do |promo_mapping|
+        Transformer.create! [{mapping: promo_mapping, type: 'Attachment', name: 'Promo Image', key: 'image',
+                              element: 'a._copy_layer_contents_to_element', attr: 'href', substring: '', prefix: 'http:', postfix: ''},
+                             {mapping: promo_mapping, type: 'AttributeValue', name: 'Promo Source', key: 'source',
+                              element: 'a._copy_layer_contents_to_element', attr: 'href', substring: '', prefix: 'http:', postfix: ''}]
 
       end
     end

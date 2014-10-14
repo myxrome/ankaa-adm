@@ -36,13 +36,15 @@ class Scraper < ActiveRecord::Base
   end
 
   def extract_links(doc)
-    Set.new doc.css(self.selector).reject { |e|
-      not self.condition.empty? and e.css(self.condition).empty?
-    }.map { |e|
-      target = self.element.empty? ? e : e.css(self.element)
-      target = target.first if target.is_a?(Nokogiri::XML::NodeSet)
-      self.prefix + target[self.attr] + self.postfix
-    }
+    Set.new doc.css(self.scope.empty? ? 'body' : self.scope).map { |scp|
+      scp.css(self.selector).reject { |e|
+        not self.condition.empty? and e.css(self.condition).empty?
+      }.map { |e|
+        target = self.element.empty? ? e : e.css(self.element)
+        target = target.first if target.is_a?(Nokogiri::XML::NodeSet)
+        self.prefix + target[self.attr] + self.postfix
+      }
+    }.flatten
   end
 
   def extract_data(link)
