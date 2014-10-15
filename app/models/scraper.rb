@@ -20,6 +20,8 @@ class Scraper < ActiveRecord::Base
   end
 
   private
+  MAX_PAGER = 20
+
   def collect_links(url_prefix, url_postfix, limit)
     current_page = 0
     links = Set.new
@@ -29,9 +31,9 @@ class Scraper < ActiveRecord::Base
 
       extracted = extract_links(doc)
 
-      break if links > extracted
+      break if !extracted.empty? && links > extracted
       links.merge extracted
-    end while links.size < limit
+    end while links.size < limit && current_page < MAX_PAGER
     links.to_a.take(limit)
   end
 

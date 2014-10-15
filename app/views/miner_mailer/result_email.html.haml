@@ -1,8 +1,6 @@
-- @result.each do |miner, value|
-  %p #{miner.name}:
-  - value.each do |key, values|
-    %p #{key.to_s.capitalize}:
-    - unless values.nil?
-      - values.each do |path, name|
-        %p
-          %a{href: path}=name
+- @result.each do |key, values|
+  %p #{key.to_s.capitalize}:
+  - unless values.nil?
+    - values.each do |path, name|
+      %p
+        %a{href: path}=name

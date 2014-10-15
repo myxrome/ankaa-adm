@@ -6,17 +6,20 @@ class MinerMailer < ActionMailer::Base
   #
   #   en.miner_mailer.result_email.subject
   #
-  def result_email(result)
-    @result = result.map { |miner_id, value|
-      {Miner.find(miner_id) => value.map { |key, values|
-        {key => values.map { |source|
-          v = Value.find_by(source: source)
-          {(root_path + value_path(v)) => v.name}
-        }.reduce(:merge)}
-      }.reduce(:merge)
-      }
+  def result_email(miner, result)
+    @miner = miner
+    @result = result.map { |key, values|
+      {key => values.map { |source|
+        v = Value.find_by(source: source)
+        {(root_path + value_path(v)) => v.name}
+      }.reduce(:merge)}
     }.reduce(:merge)
     mail subject: 'Mining Results', to: 'myxrome@outlook.com'
+  end
+
+  def error_email(miner)
+    @miner = miner
+    mail subject: 'Mining Error', to: 'myxrome@outlook.com'
   end
 
 end
