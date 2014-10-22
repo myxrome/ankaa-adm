@@ -1,28 +1,3 @@
 - content_for :title, 'Topics'
-%table{width: '100%'}
-  %thead
-    %tr
-      %th{width: '65px'} Active
-      %th{width: '150px'} Name
-      %th Categories
-      %th Key
-      %th{width: '35px'}
-      %th{width: '35px'}
-      %th{width: '35px'}
-  %tbody
-    - @topics.each do |topic|
-      %tr
-        %td
-          .switch.tiny
-            %input{type: 'checkbox', id: topic.id, class: 'active-toggle', data: {url: toggle_active_topic_path(topic)}, checked: (:checked if topic.active)}
-            %label{for: topic.id}
-        %td= link_to topic.name, topic
-        %td
-          -topic.categories.each do |category|
-            = link_to category.name, category
-            %br
-        %td= topic.key
-        %td= link_to '<i class="fi-arrow-up"></i>'.html_safe, '', class: 'tiny secondary table-up', data: {url: move_up_topic_path(topic)}
-        %td= link_to '<i class="fi-arrow-down"></i>'.html_safe, '', class: 'tiny secondary table-down', data: {url: move_down_topic_path(topic)}
-        %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_topic_path(topic), class: 'tiny secondary'
+= render 'topics/table', topics: @topics, orderable: false
 = link_to '<i class="fi-page-add"></i> New Topic'.html_safe, new_topic_path, class: 'right tiny button'

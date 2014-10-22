@@ -1,3 +1,6 @@
+%li{class: ('active' if params[:controller] == 'topic_groups')}
+  = link_to '<i class="fi-list"></i> Topic Groups'.html_safe, topic_groups_path
+%li.divider
 %li{class: ('active' if params[:controller] == 'topics')}
   = link_to '<i class="fi-list-thumbnails"></i> Topics'.html_safe, topics_path
 %li.divider

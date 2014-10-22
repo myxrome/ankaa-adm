@@ -6,8 +6,11 @@
       %table{width: '100%'}
         %tbody
           %tr
-            %td{width: '150px'} Key:
-            %td= @topic.key
+            %td{width: '150px'} Topic Group:
+            %td= link_to @topic.topic_group.name, @topic.topic_group
+          %tr
+            %td{width: '150px'} Displayed Name:
+            %td= @topic.displayed_name
 .row
   .small-12.large-12.columns
     %ul.button-group.right

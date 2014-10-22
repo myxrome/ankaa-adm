@@ -72,6 +72,9 @@ Ankaa::Application.routes.draw do
     post 'move_down', on: :member
   end
 
+  resources :topic_groups, concerns: [:toggleable, :orderable] do
+    resources :topics
+  end
   resources :topics, concerns: [:toggleable, :orderable] do
     resources :categories
   end
