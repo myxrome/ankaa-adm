@@ -26,5 +26,6 @@ module Ankaa
     #                             fog_directory: '',
     #                             fog_host: 'http://localhost:3000'}
     config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
+    config.middleware.use Rack::Deflater
   end
 end
