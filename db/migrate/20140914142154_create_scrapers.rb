@@ -7,6 +7,7 @@ class CreateScrapers < ActiveRecord::Migration
       t.string :condition
       t.string :element
       t.string :attr
+      t.string :substring
       t.string :prefix
       t.string :postfix
       t.boolean :source

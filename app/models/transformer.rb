@@ -13,7 +13,7 @@ class Transformer < ActiveRecord::Base
 
   def test(url)
     self.mapping.test(url) { |scope|
-      wrap(get_value(scope).to_s)
+      wrap_test_value(get_value(scope).to_s)
     }
   end
 
@@ -25,25 +25,30 @@ class Transformer < ActiveRecord::Base
   def get_value(scope)
   end
 
-  def wrap(value)
+  def wrap_test_value(value)
     value
   end
 
 end
 
 class Text < Transformer
-  # TODO: replace (scan)
   protected
   def get_value(scope)
-    extract_value(scope)
-  end
-
-  def extract_value(scope)
     node = self.element.empty? ? scope : scope.css(self.element)
     node = node.first if node.is_a?(Nokogiri::XML::NodeSet)
-    pattern = (self.substring.nil? || self.substring.empty?) ? '.*' : self.substring
-    self.prefix + node.inner_text.strip.scan(/#{pattern}/).first + self.postfix
+    if node
+      source = node.inner_text.strip if node.inner_text
+      if source
+        pattern = (self.substring.nil? || self.substring.empty?) ? '.*' : self.substring
+        self.prefix + source.scan(/#{pattern}/).first + self.postfix
+      else
+        raise "Empty inner text for #{self.element}"
+      end
+    else
+      raise "Empty result for #{self.element}"
+    end
   end
+
 end
 
 class AttributeValue < Transformer
@@ -51,8 +56,17 @@ class AttributeValue < Transformer
   def get_value(scope)
     node = self.element.empty? ? scope : scope.css(self.element)
     node = node.first if node.is_a?(Nokogiri::XML::NodeSet)
-    pattern = (self.substring.nil? || self.substring.empty?) ? '.*' : self.substring
-    self.prefix + node[self.attr].scan(/#{pattern}/).first + self.postfix
+    if node
+      source = node[self.attr]
+      if source
+        pattern = (self.substring.nil? || self.substring.empty?) ? '.*' : self.substring
+        self.prefix + source.scan(/#{pattern}/).first + self.postfix
+      else
+        raise "Empty result for attribute #{self.attr} in element #{self.element}"
+      end
+    else
+      raise "Empty result for #{self.element}"
+    end
   end
 end
 
@@ -61,12 +75,21 @@ class Attachment < Transformer
   def get_value(scope)
     node = self.element.empty? ? scope : scope.css(self.element)
     node = node.first if node.is_a?(Nokogiri::XML::NodeSet)
-    pattern = (self.substring.nil? || self.substring.empty?) ? '.*' : self.substring
-    url = self.prefix + node[self.attr].scan(/#{pattern}/).first + self.postfix
-    URI.parse(url)
+    if node
+      source = node[self.attr]
+      if source
+        pattern = (self.substring.nil? || self.substring.empty?) ? '.*' : self.substring
+        url = self.prefix + source.scan(/#{pattern}/).first + self.postfix
+        URI.parse(url)
+      else
+        raise "Empty result for attribute #{self.attr} in element #{self.element}"
+      end
+    else
+      raise "Empty result for #{self.element}"
+    end
   end
 
-  def wrap(value)
+  def wrap_test_value(value)
     "<a target='_blank' href='#{value}'>#{value}</a>"
   end
 end
@@ -77,8 +100,8 @@ class HasMany < Transformer
     order = 0
     mappings.map { |mapping|
       mapping.perform(scope) { |part, value|
-        value = self.order? ? value : value.merge({order: (order += 1)})
-        self.source? ? value : value.merge({source: part.css_path})
+        value = self.order? ? value.merge({order: (order += 1)}) : value
+        self.source? ? value.merge({source: part.css_path}) : value
       }
     }.flatten
   end

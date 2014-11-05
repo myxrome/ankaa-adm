@@ -10,16 +10,16 @@ VirtualContextType.create! [{name: 'Application'}, {name: 'Button'}]
 #Lamoda
 Scraper.create! name: 'Lamoda', scope: '', selector: 'a.products-list-item__link',
                 condition: 'span.product-label:not(.product-label_new)', element: '', attr: 'href',
-                prefix: 'http://www.lamoda.ru', postfix: '', source: true do |scraper|
+                substring: '', prefix: 'http://www.lamoda.ru', postfix: '', source: true do |scraper|
   Mapping.create! name: 'Lamoda Body', scope: 'body', source: scraper do |lamoda_mapping|
     Transformer.create! [{mapping: lamoda_mapping, type: 'Text', name: 'Value Name', key: 'name',
                         element: 'a.product-card__header-link', attr: '', substring: '', prefix: '', postfix: ''},
                         {mapping: lamoda_mapping, type: 'Text', name: 'Value New Price', key: 'new_price',
-                        element: 'span.price__new:nth-child(3)', attr: '', substring: '', prefix: '', postfix: ''},
+                        element: 'span.price__new', attr: '', substring: '', prefix: '', postfix: ''},
                         {mapping: lamoda_mapping, type: 'Text', name: 'Value Discount', key: 'discount',
                         element: 'span.product-label', attr: '', substring: '', prefix: '', postfix: ''},
                         {mapping: lamoda_mapping, type: 'Text', name: 'Value Old Price', key: 'old_price',
-                        element: 'span.price:nth-child(1) > span:nth-child(1)',
+                        element: 'span.price__old',
                         attr: '', substring: '', prefix: '', postfix: ''}]
 
     Transformer.create! mapping: lamoda_mapping, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
@@ -39,7 +39,7 @@ Scraper.create! name: 'Lamoda', scope: '', selector: 'a.products-list-item__link
     end
     Transformer.create! mapping: lamoda_mapping, type: 'HasMany', name: 'Value Promos', key: 'promos_attributes',
                         element: '', attr: '', substring: '', prefix: '', postfix: '', order: true, source: false do |transformer|
-      Mapping.create! name: 'Description Table', scope: 'table.product-content__table tr', source: transformer do |promo_mapping|
+      Mapping.create! name: 'Image Slider', scope: 'ul.photos-list__list li:not([data-type="3d"])', source: transformer do |promo_mapping|
         Transformer.create! [{mapping: promo_mapping, type: 'Attachment', name: 'Promo Image', key: 'image',
                             element: '', attr: 'data-orig', substring: '', prefix: 'http:', postfix: ''},
                             {mapping: promo_mapping, type: 'AttributeValue', name: 'Promo Source', key: 'source',
@@ -53,7 +53,7 @@ end
 #Wildberries
 Scraper.create! name: 'Wildberries', scope: '', selector: 'div.dtList',
                 condition: 'span.proc_div', element: 'a.ref_goods_n_p', attr: 'href',
-                prefix: '', postfix: '', source: true do |scraper|
+                substring: '', prefix: '', postfix: '', source: true do |scraper|
   Mapping.create! name: 'Wildberries Body', scope: 'body', source: scraper do |wb_mapping|
     Transformer.create! [{mapping: wb_mapping, type: 'Text', name: 'Value Name', key: 'name',
                           element: 'div.div:nth-child(1) > div:nth-child(1) > h1:nth-child(1)', attr: '',
@@ -89,7 +89,7 @@ Scraper.create! name: 'Wildberries', scope: '', selector: 'div.dtList',
     end
     Transformer.create! mapping: wb_mapping, type: 'HasMany', name: 'Value Promos', key: 'promos_attributes',
                         element: '', attr: '', substring: '', prefix: '', postfix: '', order: true, source: false do |transformer|
-      Mapping.create! name: 'Description Table', scope: 'ul.carousel a.enabledZoom', source: transformer do |promo_mapping|
+      Mapping.create! name: 'Image Slider', scope: 'ul.carousel a.enabledZoom', source: transformer do |promo_mapping|
         Transformer.create! [{mapping: promo_mapping, type: 'Attachment', name: 'Promo Image', key: 'image',
                               element: '', attr: 'href', substring: '', prefix: 'http:', postfix: ''},
                              {mapping: promo_mapping, type: 'AttributeValue', name: 'Promo Source', key: 'source',
@@ -101,19 +101,19 @@ Scraper.create! name: 'Wildberries', scope: '', selector: 'div.dtList',
 end
 
 #Quelle
-Scraper.create! name: 'Quelle', scope: 'ol.productsBox', selector: 'div.productImageBox',
-                condition: 'div.produktBildAuflegerReduziert', element: 'a', attr: 'href',
-                prefix: '', postfix: '', source: true do |scraper|
+Scraper.create! name: 'Quelle', scope: 'ol.productsBox', selector: 'div.productBox',
+                condition: 'div.productStreichpreis', element: 'div.productQuickLookBox > a', attr: 'href',
+                substring: '[\w:\/\.-]+', prefix: '', postfix: '', source: true do |scraper|
   Mapping.create! name: 'Quelle Body', scope: 'body', source: scraper do |wb_mapping|
     Transformer.create! [{mapping: wb_mapping, type: 'Text', name: 'Value Name', key: 'name',
-                          element: ' 	h1.h2', attr: '',
-                          substring: '', prefix: '', postfix: ''},
+                          element: 'h1.h2', attr: '',
+                          substring: '[^\.]+', prefix: '', postfix: ''},
                          {mapping: wb_mapping, type: 'Text', name: 'Value New Price', key: 'new_price',
-                          element: '.default', attr: '', substring: '\d+', prefix: '', postfix: ' руб.'},
+                          element: '.productPrice', attr: '', substring: '\d+', prefix: '', postfix: ' руб.'},
                          {mapping: wb_mapping, type: 'Text', name: 'Value Discount', key: 'discount',
                           element: '.productPriceSlogan > strong:nth-child(1)', attr: '', substring: '', prefix: '-', postfix: '%'},
                          {mapping: wb_mapping, type: 'Text', name: 'Value Old Price', key: 'old_price',
-                          element: ' 	#productDetailProductPriceBox > div:nth-child(2)',
+                          element: '#productDetailProductPriceBox > div:nth-child(2)',
                           attr: '', substring: '\d+', prefix: '', postfix: ' руб.'}]
 
     Transformer.create! mapping: wb_mapping, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
@@ -127,7 +127,7 @@ Scraper.create! name: 'Quelle', scope: 'ol.productsBox', selector: 'div.productI
 
     Transformer.create! mapping: wb_mapping, type: 'HasMany', name: 'Value Promos', key: 'promos_attributes',
                         element: '', attr: '', substring: '', prefix: '', postfix: '', order: true, source: false do |transformer|
-      Mapping.create! name: 'Description Table', scope: '.verticalImageListBox > ul:nth-child(1) > li', source: transformer do |promo_mapping|
+      Mapping.create! name: 'Image Slider', scope: '.verticalImageListBox > ul:nth-child(1) > li', source: transformer do |promo_mapping|
         Transformer.create! [{mapping: promo_mapping, type: 'Attachment', name: 'Promo Image', key: 'image',
                               element: 'a._copy_layer_contents_to_element', attr: 'href', substring: '', prefix: 'http:', postfix: ''},
                              {mapping: promo_mapping, type: 'AttributeValue', name: 'Promo Source', key: 'source',

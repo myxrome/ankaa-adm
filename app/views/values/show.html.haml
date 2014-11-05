@@ -23,7 +23,7 @@
             %td= @value.new_price
           %tr
             %td{width: '150px'} Source Url:
-            %td= link_to @value.source, @value.source
+            %td= link_to @value.source, @value.source, target: '_blank'
           %tr
             %td{width: '150px'} Url:
             %td= @value.url
@@ -45,7 +45,7 @@
   .small-7.large-7.columns
     %fieldset
       %legend Descriptions
-      %table
+      %table{width: '100%'}
         %tbody
           - @value.descriptions.each do |description|
             %tr

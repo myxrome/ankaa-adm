@@ -14,9 +14,7 @@ class Mapping < ActiveRecord::Base
   def test(url)
     return if !url || url.empty?
     doc = Nokogiri::HTML(open(url))
-    puts self.scope
     doc.css(self.scope).map { |part|
-      puts part
       yield(part)
     }.first(5)
   end
