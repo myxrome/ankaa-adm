@@ -1,0 +1,71 @@
+- content_for :title, "Scraper - #{@scraper.name}"
+.row
+  .small-12.large-12.columns
+    %fieldset
+      %legend Test
+      = simple_form_for '', :html=> { class: 'test-form' }, url: test_scraper_url(@scraper), remote: true do |f|
+        .row
+          .small-12.large-12.columns
+            = f.label :url, 'URL'
+            = f.text_field :url
+        .row
+          .small-12.large-12.columns
+            = button_tag(type: 'submit', class: 'tiny button right') do
+              <i class="fi-magnifying-glass"></i> Test
+#test-modal.reveal-modal{data: {reveal: ''}}
+  .row
+    .small-12.large-12.columns
+      %fieldset
+        %legend Result
+        .test-result
+          %h1.text-center No Result
+  %a.close-reveal-modal
+    &#215;
+
+.row
+  .small-12.large-12.columns
+    %fieldset
+      %legend Parameters
+      %table{width: '100%'}
+        %tbody
+          %tr
+            %td{width: '150px'} Source:
+            %td= @scraper.source
+          %tr
+            %td{width: '150px'} Scope:
+            %td= @scraper.scope
+          %tr
+            %td{width: '150px'} Selector:
+            %td= @scraper.selector
+          %tr
+            %td{width: '150px'} Condition:
+            %td= @scraper.condition
+          %tr
+            %td{width: '150px'} Element:
+            %td= @scraper.element
+          %tr
+            %td{width: '150px'} Attribute:
+            %td= @scraper.attr
+          %tr
+            %td{width: '150px'} Substring:
+            %td= @scraper.substring
+          %tr
+            %td{width: '150px'} Prefix:
+            %td= @scraper.prefix
+          %tr
+            %td{width: '150px'} Postfix:
+            %td= @scraper.postfix
+.row
+  .small-12.large-12.columns
+    %ul.button-group.right
+      %li
+        = link_to '<i class="fi-database"></i> All'.html_safe, scrapers_path, class: 'tiny button'
+      %li
+        = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_scraper_path(@scraper), class: 'tiny button'
+
+.row
+  .small-12.large-12.columns
+    %fieldset
+      %legend Mappings
+      = render 'mappings/table', mappings: @scraper.mappings
+      = link_to '<i class="fi-page-add"></i> New Mapping'.html_safe, new_scraper_mapping_path(@scraper), class: 'right tiny button'

@@ -1,0 +1,23 @@
+- content_for :title, "Miner - #{@miner.name}"
+.row
+  .small-12.large-12.columns
+    %fieldset
+      %legend Parameters
+      %table{width: '100%'}
+        %tbody
+          %tr
+            %td{width: '150px'} Category:
+            %td= link_to @miner.category.name, @miner.category
+.row
+  .small-12.large-12.columns
+    %ul.button-group.right
+      %li
+        = link_to '<i class="fi-database"></i> All'.html_safe, miners_path, class: 'tiny button'
+      %li
+        = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_miner_path(@miner), class: 'tiny button'
+.row
+  .small-12.large-12.columns
+    %fieldset
+      %legend Scrapers
+      = render 'miner_scrapers/table', miner_scrapers: @miner.miner_scrapers
+      = link_to '<i class="fi-page-add"></i> Link Scraper'.html_safe, new_miner_miner_scraper_path(@miner), class: 'right tiny button'

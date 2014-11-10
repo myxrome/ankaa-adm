@@ -3,22 +3,24 @@
   .small-12.large-12.columns
     %fieldset
       %legend Parameters
-      %table
+      %table{width: '100%'}
         %tbody
           %tr
-            %td{width: '150px'} Key:
-            %td= @topic.key
+            %td{width: '150px'} Topic Group:
+            %td= link_to @topic.topic_group.name, @topic.topic_group
+          %tr
+            %td{width: '150px'} Displayed Name:
+            %td= @topic.displayed_name
 .row
   .small-12.large-12.columns
-    = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_topic_path(@topic), class: 'right tiny button'
+    %ul.button-group.right
+      %li
+        = link_to '<i class="fi-database"></i> All'.html_safe, topics_path, class: 'tiny button'
+      %li
+        = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_topic_path(@topic), class: 'tiny button'
 .row
   .small-12.large-12.columns
     %fieldset
       %legend Categories
       = render 'categories/table', categories: @topic.categories, orderable: true
       = link_to '<i class="fi-page-add"></i> New Category'.html_safe, new_topic_category_path(@topic), class: 'right tiny button'
-.row
-  .small-12.large-12.columns
-    %fieldset
-      %legend Values
-      = render 'values/table', values: @topic.values #unless @topic.values.empty?

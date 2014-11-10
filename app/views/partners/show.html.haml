@@ -1,18 +1,21 @@
-.row
-  .small-3.large-3.columns
-    %a.th{href: partner_path(@partner)}
-      %img{src: "#{@partner.logo.url}"}
-  .small-9.large-9.columns
-    %h1= "Partner - #{@partner.name}"
+- content_for :title, "Partner - #{@partner.name}"
 .row
   .small-12.large-12.columns
     %fieldset
       %legend Parameters
-      %table
+      %table{width: '100%'}
         %tbody
+          %tr
+            %td{width: '150px'} Logo:
+            %td
+              %img{src: "#{@partner.logo.url}"}
           %tr
             %td{width: '150px'} URL:
             %td= @partner.url
 .row
   .small-12.large-12.columns
-    = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_partner_path(@partner), class: 'right tiny button'
+    %ul.button-group.right
+      %li
+        = link_to '<i class="fi-database"></i> All'.html_safe, partners_path, class: 'tiny button'
+      %li
+        = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_partner_path(@partner), class: 'tiny button'

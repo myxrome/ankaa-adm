@@ -30,8 +30,11 @@ class TopicsController < ApplicationController
 
   # GET /topics/new
   def new
-    @topic = Topic.new
-    session[:key] = @topic.key
+    if params[:topic_group_id]
+      @topic = TopicGroup.find(params[:topic_group_id]).topics.build
+    else
+      @topic = Topic.new
+    end
   end
 
   # GET /topics/1/edit
@@ -41,11 +44,10 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
-    @topic = Topic.new(topic_create_params)
-    session[:key] = nil
+    @topic = Topic.new(topic_params)
 
     if @topic.save
-      redirect_to topics_url, notice: 'Topic was successfully created.'
+      redirect_to @topic.topic_group, notice: 'Topic was successfully created.'
     else
       render action: 'new'
     end
@@ -55,7 +57,7 @@ class TopicsController < ApplicationController
   # PATCH/PUT /topics/1.json
   def update
     if @topic.update(topic_update_params)
-      redirect_to topics_url, notice: 'Topic was successfully updated.'
+      redirect_to @topic.topic_group, notice: 'Topic was successfully updated.'
     else
       render action: 'edit'
     end
@@ -64,8 +66,9 @@ class TopicsController < ApplicationController
   # DELETE /topics/1
   # DELETE /topics/1.json
   def destroy
+    topic_group = @topic.topic_group
     @topic.destroy
-    redirect_to topics_url
+    redirect_to topic_group, notice: 'Topic was successfully destroyed.'
   end
 
   private
@@ -75,16 +78,12 @@ class TopicsController < ApplicationController
   end
 
   def set_topic_with_related_models
-    @topic = Topic.includes(:categories, values: [:category, :promos]).find(params[:id])
+    @topic = Topic.includes(:categories).find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def topic_update_params
-    params[:topic].permit(:name, :active)
-  end
-
-  def topic_create_params
-    params[:topic].merge(key: session[:key]).permit(:name, :key, :active)
+  def topic_params
+    params[:topic].permit(:topic_group_id, :name, :displayed_name, :active)
   end
 
 end

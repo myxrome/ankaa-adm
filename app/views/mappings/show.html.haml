@@ -1,0 +1,27 @@
+- content_for :title, "Mapping - #{@mapping.name}".html_safe
+.row
+  .small-12.large-12.columns
+    %fieldset
+      %legend Parameters
+      %table{width: '100%'}
+        %tbody
+          %tr
+            %td{width: '150px'} Scope:
+            %td= @mapping.scope
+.row
+  .small-12.large-12.columns
+    %ul.button-group.right
+      %li
+        = link_to '<i class="fi-database"></i> All'.html_safe, mapping_source_path(@mapping), class: 'tiny button'
+      %li
+        = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_mapping_path(@mapping), class: 'tiny button'
+.row
+  .small-12.large-12.columns
+    %fieldset
+      %legend Transformers
+      = render 'transformers/table', transformers: @mapping.transformers
+      %button{data: {dropdown: 'transformer', options: 'align:top'}, class: 'right tiny button'}
+        = '<i class="fi-page-add"></i> New Transformer &raquo;'.html_safe
+      %ul.f-dropdown#transformer{data: {'dropdown-content'.to_sym => ''}}
+        - Transformer.types.each do |type|
+          %li= link_to type.to_s.gsub(/[A-Z]/, ' \0'), new_mapping_transformer_path(type: type, mapping_id: @mapping)

@@ -1,0 +1,2 @@
+- content_for :title, "Edit #{@transformer.type.gsub(/[A-Z]/, ' \0')} Transformer"
+= render "#{@transformer.type.downcase}_form"

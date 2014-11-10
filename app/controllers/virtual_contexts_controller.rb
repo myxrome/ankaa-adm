@@ -25,7 +25,7 @@ class VirtualContextsController < ApplicationController
     @virtual_context = VirtualContext.new(virtual_context_params)
 
     if @virtual_context.save
-      redirect_to @virtual_context, notice: 'Virtual context was successfully created.'
+      redirect_to virtual_contexts_url, notice: 'Virtual context was successfully created.'
     else
       render :new
     end
@@ -34,7 +34,7 @@ class VirtualContextsController < ApplicationController
   # PATCH/PUT /virtual_contexts/1
   def update
     if @virtual_context.update(virtual_context_params)
-      redirect_to @virtual_context, notice: 'Virtual context was successfully updated.'
+      redirect_to virtual_contexts_url, notice: 'Virtual context was successfully updated.'
     else
       render :edit
     end

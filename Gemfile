@@ -24,7 +24,7 @@ gem 'haml-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '< 5.0.0'
 
 # Use Foundation for html layout
 gem 'compass-rails', '~> 1.1.2' # you need this or you get an err
@@ -32,6 +32,9 @@ gem 'foundation-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
+
+gem 'resque'
+gem 'resque-scheduler'
 
 gem 'simple_form'
 gem 'cocoon'

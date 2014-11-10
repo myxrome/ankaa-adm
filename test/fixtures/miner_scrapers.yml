@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  miner_id: 1
+  scraper_id: 1
+  url: MyString
+
+two:
+  miner_id: 1
+  scraper_id: 1
+  url: MyString

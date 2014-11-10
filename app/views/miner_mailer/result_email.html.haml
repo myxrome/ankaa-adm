@@ -1,0 +1,10 @@
+- if @error
+  %h2 Error:
+  - @error.each do |error|
+    %p #{error}
+- @result.each do |key, values|
+  %h2 #{key.to_s.capitalize}:
+  - unless values.nil?
+    - values.each do |path, name|
+      %p
+        %a{href: path}=name

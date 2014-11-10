@@ -5,7 +5,9 @@
       %th{width: '100px'} Thumb
       %th{width: '150px'} Name
       %th Category
+      %th{width: '100px'} Old Price
       %th{width: '100px'} Discount
+      %th{width: '100px'} New Price
       %th{width: '35px'}
   %tbody
     - values.each do |value|
@@ -19,5 +21,7 @@
             %img{src:"#{value.thumb if value.thumb}"}
         %td= link_to value.name, value
         %td= link_to value.category.name, value.category if value.category
+        %td= value.old_price
         %td= value.discount
+        %td= value.new_price
         %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_value_path(value), class: 'tiny secondary'

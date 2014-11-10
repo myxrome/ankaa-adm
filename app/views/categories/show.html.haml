@@ -3,7 +3,7 @@
   .small-12.large-12.columns
     %fieldset
       %legend Parameters
-      %table
+      %table{width: '100%'}
         %tbody
           %tr
             %td{width: '150px'} Topic:
@@ -13,17 +13,13 @@
             %td= @category.displayed_name
 .row
   .small-12.large-12.columns
-    = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_category_path(@category), class: 'right tiny button'
+    %ul.button-group.right
+      %li
+        = link_to '<i class="fi-database"></i> All'.html_safe, topic_path(@category.topic), class: 'tiny button'
+      %li
+        = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_category_path(@category), class: 'tiny button'
 .row
   .small-12.large-12.columns
     %fieldset
       %legend Values
       = render 'values/table', values: @category.values
-      = simple_form_for '', url: create_from_url_category_values_url(@category) do |f|
-        .row.collapse
-          .small-10.large-10.columns
-            = f.text_field :url
-          .small-2.large-2.columns
-            = button_tag(type: 'submit', class: 'tiny button postfix') do
-              <i class="fi-page-add"></i> New Value From Url
-      = link_to '<i class="fi-page-add"></i> New Value'.html_safe, new_category_value_path(@category), class: 'right tiny button'

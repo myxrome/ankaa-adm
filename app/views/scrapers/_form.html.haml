@@ -1,0 +1,35 @@
+= simple_form_for(@scraper) do |f|
+  = f.error_notification
+  .actions
+    = render 'layouts/form_buttons'
+  .inputs
+    %fieldset
+      %legend Parameters
+      .row
+        .small-11.large-11.columns
+          = f.input :name
+        .small-1.large-1.columns
+          .right
+            %label Source
+            = f.input :source, wrapper_html: { class: 'switch' }
+      .row
+        .small-4.large-4.columns
+          = f.input :scope
+        .small-4.large-4.columns
+          = f.input :selector
+        .small-4.large-4.columns
+          = f.input :condition
+      .row
+        .small-6.large-6.columns
+          = f.input :element
+        .small-6.large-6.columns
+          = f.input :attr, label: 'Attribute'
+      .row
+        .small-4.large-4.columns
+          = f.input :substring
+        .small-4.large-4.columns
+          = f.input :prefix
+        .small-4.large-4.columns
+          = f.input :postfix
+  .actions
+    = render 'layouts/form_buttons'

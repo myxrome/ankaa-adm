@@ -11,7 +11,7 @@
     %section.top-bar-section
       %ul.left
         %li.divider
-        -if params[:controller] =~ /(topics|categories|values|partners)/
+        -if params[:controller] =~ /(topic_groups|topics|categories|values|partners)/
           =render 'layouts/content_menu'
         -else
           %li.has-dropdown
@@ -28,6 +28,16 @@
             %a{href: '#'} Statistic
             %ul.dropdown
               =render 'layouts/statistic_menu'
+
+        %li.divider
+
+        -if params[:controller] =~ /(miners|scrapers|miner_scapers|mappings|transformers)/
+          =render 'layouts/magic_menu'
+        -else
+          %li.has-dropdown
+            %a{href: '#'} Magic
+            %ul.dropdown
+              =render 'layouts/magic_menu'
 
         %li.divider
     %section.top-bar-section

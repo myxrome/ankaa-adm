@@ -1,0 +1,28 @@
+.row
+  .small-12.large-12.columns
+    %fieldset
+      %legend Parameters
+      %table{width: '100%'}
+        %tbody
+          %tr
+            %td{width: '150px'} Order:
+            %td= @transformer.order
+          %tr
+            %td{width: '150px'} Source:
+            %td= @transformer.source
+          %tr
+            %td{width: '150px'} Key:
+            %td= @transformer.key
+.row
+  .small-12.large-12.columns
+    %ul.button-group.right
+      %li
+        = link_to '<i class="fi-database"></i> All'.html_safe, mapping_path(@transformer.mapping), class: 'tiny button'
+      %li
+        = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_transformer_path(@transformer), class: 'tiny button'
+.row
+  .small-12.large-12.columns
+    %fieldset
+      %legend Mappings
+      = render 'mappings/table', mappings: @transformer.mappings
+      = link_to '<i class="fi-page-add"></i> New Mapping'.html_safe, new_transformer_mapping_path(@transformer), class: 'right tiny button'

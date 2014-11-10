@@ -1,0 +1,14 @@
+= simple_form_for(@miner) do |f|
+  = f.error_notification
+  .actions
+    = render 'layouts/form_buttons'
+  .inputs
+    %fieldset
+      %legend Parameters
+      .row
+        .small-7.large-7.columns
+          = f.input :name
+        .small-5.large-5.columns
+          = f.association :category
+  .actions
+    = render 'layouts/form_buttons'

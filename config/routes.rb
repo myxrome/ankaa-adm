@@ -72,26 +72,38 @@ Ankaa::Application.routes.draw do
     post 'move_down', on: :member
   end
 
+  resources :topic_groups, concerns: [:toggleable, :orderable] do
+    resources :topics
+  end
   resources :topics, concerns: [:toggleable, :orderable] do
     resources :categories
   end
-
-  resources :categories, concerns: [:toggleable, :orderable] do
-    resources :values do
-      post :create_from_url, :on => :collection
-      get :autocomplete_description_caption, :on => :collection
-    end
+  resources :categories, concerns: [:toggleable, :orderable]
+  resources :values, concerns: :toggleable, only: [:index, :show, :edit, :update] do
+    get :autocomplete_description_caption, on: :collection
   end
-
-  resources :values, concerns: :toggleable do
-    post :create_from_url, :on => :collection
-    get :autocomplete_description_caption, :on => :collection
-  end
-
   resources :partners, concerns: :toggleable
 
   resources :events
-
   resources :virtual_contexts
+
+  resources :miners do
+    resources :miner_scrapers, only: [:new, :create, :edit, :update, :destroy]
+  end
+  resources :scrapers do
+    resources :mappings
+    post :test, on: :member
+  end
+  resources :mappings, concerns: :orderable do
+    resources :transformers
+    resources :texts, controller: 'transformers', type: 'Text'
+    resources :attribute_values, controller: 'transformers', type: 'AttributeValue'
+    resources :attachments, controller: 'transformers', type: 'Attachment'
+    resources :has_manies, controller: 'transformers', type: 'HasMany'
+  end
+  resources :transformers do
+    resources :mappings
+    post :test, on: :member
+  end
 
 end

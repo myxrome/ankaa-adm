@@ -1,15 +1,14 @@
-.row
-  .small-1.large-1.columns
-    %a.th{href: value_path(@value)}
-      %img{src: "#{@value.thumb}"}
-  .small-11.large-11.columns
-    %h1= "Value - #{@value.name}"
+- content_for :title, "Value - #{@value.name}"
 .row
   .small-12.large-12.columns
     %fieldset
       %legend Parameters
-      %table
+      %table{width: '100%'}
         %tbody
+          %tr
+            %td{width: '150px'} Thumb:
+            %td
+              %img{src: "#{@value.thumb}"}
           %tr
             %td{width: '150px'} Category:
             %td= link_to @value.category.name, @value.category
@@ -23,11 +22,18 @@
             %td{width: '150px'} New price:
             %td= @value.new_price
           %tr
+            %td{width: '150px'} Source Url:
+            %td= link_to @value.source, @value.source, target: '_blank'
+          %tr
             %td{width: '150px'} Url:
             %td= @value.url
 .row
   .small-12.large-12.columns
-    = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_value_path(@value), class: 'right tiny button'
+    %ul.button-group.right
+      %li
+        = link_to '<i class="fi-database"></i> All'.html_safe, category_path(@value.category), class: 'tiny button'
+      %li
+        = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_value_path(@value), class: 'tiny button'
 .row
   .small-5.large-5.columns
     %fieldset
@@ -39,10 +45,10 @@
   .small-7.large-7.columns
     %fieldset
       %legend Descriptions
-      %table
+      %table{width: '100%'}
         %tbody
           - @value.descriptions.each do |description|
             %tr
-              -unless description.caption.empty?
+              -if not (description.caption.nil? || description.caption.empty?)
                 %td{class: [('red' if description.red), ('bold' if description.bold)].compact.join(' ')} #{description.caption}
-              %td{class: [('red' if description.red), ('bold' if description.bold)].compact.join(' '), colspan: (2 if description.caption.empty?)} #{description.text}
+              %td{class: [('red' if description.red), ('bold' if description.bold)].compact.join(' '), colspan: (2 if description.caption.nil? || description.caption.empty?)} #{description.text}
