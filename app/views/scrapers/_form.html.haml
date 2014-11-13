@@ -28,8 +28,13 @@
         .small-4.large-4.columns
           = f.input :substring
         .small-4.large-4.columns
-          = f.input :prefix
+          = f.input :source_prefix, label: 'Source Prefix'
         .small-4.large-4.columns
-          = f.input :postfix
+          = f.input :source_postfix, label: 'Source Postfix'
+      .row
+        .small-6.large-6.columns
+          = f.input :url_prefix, label: 'URL Prefix'
+        .small-6.large-6.columns
+          = f.input :url_postfix, label: 'URL Postfix'
   .actions
     = render 'layouts/form_buttons'

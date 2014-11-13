@@ -67,7 +67,7 @@ class Scraper < ActiveRecord::Base
       target = target.first if target.is_a?(Nokogiri::XML::NodeSet)
       if target
         if target[self.attr]
-          self.prefix + target[self.attr] + self.postfix
+          self.source_prefix + target[self.attr] + self.source_postfix
         else
           raise "Element #{self.element} doesn't contain attribute #{self.attr} on page #{url}"
         end
@@ -85,7 +85,10 @@ class Scraper < ActiveRecord::Base
       doc = Nokogiri::HTML(open(url))
       self.mappings.map { |mapping|
         mapping.perform(doc) { |part, value|
-          self.source? ? value.merge({source: url.strip}) : value
+          value = self.source? ? value.merge({source: url.strip}) : value
+          !self.url_prefix.empty? || !self.url_postfix.empty? ?
+              value.merge({url: self.url_prefix + ERB::Util.url_encode(url.strip) + self.url_postfix}) :
+              value
         }
       }
     rescue Exception => e

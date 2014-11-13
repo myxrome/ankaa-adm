@@ -50,11 +50,17 @@
             %td{width: '150px'} Substring:
             %td= @scraper.substring
           %tr
-            %td{width: '150px'} Prefix:
-            %td= @scraper.prefix
+            %td{width: '150px'} Source Prefix:
+            %td= @scraper.source_prefix
           %tr
-            %td{width: '150px'} Postfix:
-            %td= @scraper.postfix
+            %td{width: '150px'} Source Postfix:
+            %td= @scraper.source_postfix
+          %tr
+            %td{width: '150px'} URL Postfix:
+            %td= @scraper.url_prefix
+          %tr
+            %td{width: '150px'} URL Postfix:
+            %td= @scraper.url_postfix
 .row
   .small-12.large-12.columns
     %ul.button-group.right

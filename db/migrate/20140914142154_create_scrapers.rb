@@ -8,9 +8,11 @@ class CreateScrapers < ActiveRecord::Migration
       t.string :element
       t.string :attr
       t.string :substring
-      t.string :prefix
-      t.string :postfix
+      t.string :source_prefix
+      t.string :source_postfix
       t.boolean :source
+      t.string :url_prefix
+      t.string :url_postfix
 
       t.timestamps
     end

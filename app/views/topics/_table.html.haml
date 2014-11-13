@@ -17,7 +17,7 @@
             %input{type: 'checkbox', id: topic.id, class: 'active-toggle', data: {url: toggle_active_topic_path(topic)}, checked: (:checked if topic.active)}
             %label{for: topic.id}
         %td= link_to topic.name, topic
-        %td= link_to topic.topic_group.name, topic.topic_group
+        %td= link_to topic.topic_group.name, topic.topic_group if topic.topic_group
         %td= topic.displayed_name
         -if orderable
           %td= link_to '<i class="fi-arrow-up"></i>'.html_safe, '', class: 'tiny secondary table-up', data: {url: move_up_topic_path(topic)}
