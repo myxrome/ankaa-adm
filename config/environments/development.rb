@@ -18,11 +18,11 @@ Ankaa::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      address: 'smtp.gmail.com',
+      address: 'mail.whiteboxteam.com',
       port: 587,
-      domain: 'gmail.com',
-      user_name: 'myxrome@gmail.com',
-      password: 'VjhJr#51',
+      domain: 'mail.whiteboxteam.com',
+      user_name: 'robot@whiteboxteam.com',
+      password: 'rexGEa3kTPgHpR3AlA5A',
       authentication: 'plain',
       enable_starttls_auto: true
   }
