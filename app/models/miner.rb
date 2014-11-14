@@ -16,19 +16,21 @@ class Miner < ActiveRecord::Base
 
   #COUNT=2 QUEUE=child,parent rake resque:workers, rake resque:scheduler
   def perform
-    source = self.miner_scrapers.map { |miner_scraper|
-      miner_scraper.scraper.perform(self, miner_scraper)
-    }.flatten
-    category.reconcile(self, source) if source
-    MinerMailer.result_email(self, @result).deliver
+    unless self.miner_scrapers.empty?
+      source = self.miner_scrapers.map { |miner_scraper|
+        miner_scraper.scraper.perform(self, miner_scraper)
+      }.flatten
+      category.reconcile(source, self) if source
+      MinerMailer.result_email(self, @result).deliver
+    end
   end
 
   def on_new(item)
-    self.result[:new] << item
+    self.result[:new] << item unless self.result[:new].include?(item)
   end
 
   def on_update(item)
-    self.result[:updated] << item
+    self.result[:updated] << item unless self.result[:new].include?(item) && self.result[:updated].include?(item)
   end
 
   def on_delete(item)

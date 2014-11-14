@@ -27,7 +27,7 @@ Ankaa::Application.configure do
       enable_starttls_auto: true
   }
   config.action_mailer.default_url_options = {
-      host: 'localhost', port: '3000', protocol: 'http://'
+      host: '127.0.0.1', port: '3000', protocol: 'http://'
   }
 
   # Print deprecation notices to the Rails logger.

@@ -8,13 +8,8 @@ class MinerMailer < ActionMailer::Base
   #
   def result_email(miner, result)
     @miner = miner
-    @result = result.except(:error).map { |key, values|
-      {key => values.map { |value|
-        {(value_url(value)) => ('!!! ' unless value.active) + value.name}
-      }.reduce(:merge)}
-    }.reduce(:merge)
-    @error = result[:error]
-    mail subject: 'Mining Results', to: 'myxrome@outlook.com'
+    @result = result
+    mail subject: "[MINER #{miner.name}] Mining Results", to: 'myxrome@outlook.com'
   end
 
 end
