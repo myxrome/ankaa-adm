@@ -14,7 +14,6 @@ class Miner < ActiveRecord::Base
     self.result = {new: [], updated: [], deleted: [], error: []}
   end
 
-  #COUNT=2 QUEUE=child,parent rake resque:workers, rake resque:scheduler
   def perform
     unless self.miner_scrapers.empty?
       source = self.miner_scrapers.map { |miner_scraper|
