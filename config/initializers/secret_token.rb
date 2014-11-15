@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Ankaa::Application.config.secret_key_base = '39fd83a7bfb7dbaac76541f99cf5a16f35c1cc98dfc1f722a9f7a6465383c1c7e4baba88f138fb499ac14b3a4293b1a73fa8b1d8ce5193fdeeada53841bb8249'
+Ankaa::Application.config.secret_key_base = ENV['APPLICATION_SECRET_KEY_BASE']

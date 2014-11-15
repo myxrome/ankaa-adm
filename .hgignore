@@ -29,3 +29,6 @@ public/content/.*
 # Ignore Models files
 app/models/.*\.rb
 test/models/.*\.rb
+
+# Ignore env config file
+config/application.yml
