@@ -8,6 +8,6 @@ namespace :resque do
     require 'resque'
     require 'resque-scheduler'
 
-    Resque.schedule = YAML.load_file("#{Rails.root}/config/rescue_schedule.yml")
+    Resque.schedule = YAML.load_file("#{Rails.root}/config/schedule.yml")
   end
 end
