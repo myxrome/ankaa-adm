@@ -21,5 +21,15 @@ gem 'ankaa-content', git: 'git@bitbucket.org:myxrome/ankaa-content.git'
 gem 'devise'
 gem 'nokogiri'
 gem 'figaro'
-gem 'unicorn'
+
+group :development do
+  gem 'capistrano', '~> 3.1'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rbenv', '~> 2.0'
+end
+
+group :production do
+  gem 'unicorn'
+end
 

@@ -1,0 +1,50 @@
+namespace :deploy do
+
+  namespace :symlink do
+
+    desc 'Create symlinks from :symlynks array'
+    task :create_symlinks do
+      on roles(:app) do
+        symlinks = fetch(:symlinks)
+        symlinks.each do |link|
+          source = Pathname.new link[:source]
+          target = Pathname.new link[:target]
+          unless test("[ -L #{target} ]")
+            unless test("[ -d #{target.dirname} ]")
+              execute :mkdir, '-pv', target.dirname
+            end
+            execute :ln, '-s', source, target
+          end
+        end
+      end
+    end
+
+    desc 'Create linked folders'
+    task :create_linked_dirs do
+      on roles(:app) do
+        linked_dirs = fetch(:linked_dirs)
+        linked_dirs.each do |dir|
+          unless test("[ -d #{dir} ]")
+            execute :mkdir, '-pv', "#{shared_path}/#{dir}"
+          end
+        end
+      end
+    end
+
+    desc 'Upload linked files'
+    task :upload_linked_files do
+      on roles(:app) do
+        linked_files = fetch(:linked_files)
+        linked_files.each do |f|
+          file = Pathname.new f
+          unless test("[ -d #{file.dirname} ]")
+            execute :mkdir, '-pv', "#{shared_path}/#{file.dirname}"
+          end
+          upload! StringIO.new(File.read(file)), "#{shared_path}/#{file}"
+        end
+      end
+    end
+
+  end
+
+end

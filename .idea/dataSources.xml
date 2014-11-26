@@ -5,8 +5,6 @@
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1:5432/ankaadb</jdbc-url>
-      <user-name>ankaa</user-name>
-      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddfe7dff3dfebdfe4dfe1dfebdfebdff5dfeedfe8dff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
       <libraries>
         <library>
           <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-driver-license.txt</url>
@@ -20,8 +18,6 @@
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://myankaa-storage.local:5432/ankaadb</jdbc-url>
-      <user-name>ankaa</user-name>
-      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddfe7dff3dfebdfe4dfe1dfebdfebdff5dfeedfe8dff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
       <libraries>
         <library>
           <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-driver-license.txt</url>
@@ -35,50 +31,65 @@
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1:5432/statisticdb</jdbc-url>
-      <user-name>statistic</user-name>
-      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddff9dffedfebdffedfe3dff9dffedfe3dfe9dff5dfeedfe8dff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails ankaa: statistic_production" uuid="ccf75427-8fcc-4e4f-8c33-3222cbfa44a3">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://statistic-db.local:5432/statisticdb</jdbc-url>
-      <user-name>statistic</user-name>
-      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddff9dffedfebdffedfe3dff9dffedfe3dfe9dff5dfeedfe8dff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
       <libraries />
     </data-source>
     <data-source source="LOCAL" name="Rails ankaa-adm: development" uuid="ae18ecd6-2ed2-4034-9a09-386f63f9d222">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1:5432/ankaadb</jdbc-url>
-      <user-name>ankaa</user-name>
-      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddfe7dff3dfebdfe4dfe1dfebdfebdff5dfeedfe8dff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
-      <libraries />
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/.RubyMine60/config/jdbc-drivers/postgresql-driver-license.txt</url>
+        </library>
+        <library>
+          <url>file://$USER_HOME$/.RubyMine60/config/jdbc-drivers/postgresql-9.3-1100.jdbc4.jar</url>
+        </library>
+      </libraries>
     </data-source>
     <data-source source="LOCAL" name="Rails ankaa-adm: statistic_development" uuid="c695c695-30dd-4179-83be-fca8ecfe28ba">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1:5432/statisticdb</jdbc-url>
-      <user-name>statistic</user-name>
-      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddff9dffedfebdffedfe3dff9dffedfe3dfe9dff5dfeedfe8dff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
-      <libraries />
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/.RubyMine60/config/jdbc-drivers/postgresql-driver-license.txt</url>
+        </library>
+        <library>
+          <url>file://$USER_HOME$/.RubyMine60/config/jdbc-drivers/postgresql-9.3-1100.jdbc4.jar</url>
+        </library>
+      </libraries>
     </data-source>
     <data-source source="LOCAL" name="Rails ankaa-adm: production" uuid="bc693567-1a26-4e89-91d5-53b2c3bdc943">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://myankaa-storage.local:5432/ankaadb</jdbc-url>
-      <user-name>ankaa</user-name>
-      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddfe7dff3dfebdfe4dfe1dfebdfebdff5dfeedfe8dff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
-      <libraries />
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/.RubyMine60/config/jdbc-drivers/postgresql-driver-license.txt</url>
+        </library>
+        <library>
+          <url>file://$USER_HOME$/.RubyMine60/config/jdbc-drivers/postgresql-9.3-1100.jdbc4.jar</url>
+        </library>
+      </libraries>
     </data-source>
     <data-source source="LOCAL" name="Rails ankaa-adm: statistic_production" uuid="1ad39f8c-1dbf-4d13-a394-1a031884f4c7">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://statistic-db.local:5432/statisticdb</jdbc-url>
-      <user-name>statistic</user-name>
-      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddff9dffedfebdffedfe3dff9dffedfe3dfe9dff5dfeedfe8dff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
-      <libraries />
+      <libraries>
+        <library>
+          <url>file://$USER_HOME$/.RubyMine60/config/jdbc-drivers/postgresql-driver-license.txt</url>
+        </library>
+        <library>
+          <url>file://$USER_HOME$/.RubyMine60/config/jdbc-drivers/postgresql-9.3-1100.jdbc4.jar</url>
+        </library>
+      </libraries>
     </data-source>
   </component>
 </project>
-

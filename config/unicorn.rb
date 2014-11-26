@@ -1,4 +1,4 @@
-application_root = "/var/www/ankaa-adm"
+application_root = '/var/www/ankaa-adm/current'
 
 # Sample verbose configuration file for Unicorn (not Rack)
 #
