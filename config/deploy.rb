@@ -11,7 +11,7 @@ set :repo_url, 'git@bitbucket.org:myxrome/ankaa-adm.git'
 set :deploy_to, '/var/www/ankaa-adm'
 
 # Default value for :log_level is :debug
-# set :log_level, :debug
+set :log_level, :trace
 
 # Default value for :pty is false
 # set :pty, true

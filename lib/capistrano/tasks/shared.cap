@@ -53,6 +53,7 @@ namespace :deploy do
           unless test("[ -d #{target.dirname} ]")
             execute :mkdir, '-pv', target.dirname
           end
+          info "upload #{source} to #{target}"
           upload! source, target
         end
       end
