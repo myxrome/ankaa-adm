@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source source="LOCAL" name="Rails ankaa: development" uuid="76d6b93c-a9f7-457f-95b0-9d5e7558067c">
+  <data-source name="Rails ankaa: development" uuid="76d6b93c-a9f7-457f-95b0-9d5e7558067c">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
-  <data-source source="LOCAL" name="Rails ankaa: production" uuid="086a260b-803f-4853-afb2-bde665ecca35">
+  <data-source name="Rails ankaa: production" uuid="086a260b-803f-4853-afb2-bde665ecca35">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
-  <data-source source="LOCAL" name="Rails ankaa: statistic_development" uuid="a6a8411c-53b4-4506-9ed2-f2a7469f38e2">
+  <data-source name="Rails ankaa: statistic_development" uuid="a6a8411c-53b4-4506-9ed2-f2a7469f38e2">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
-  <data-source source="LOCAL" name="Rails ankaa: statistic_production" uuid="ccf75427-8fcc-4e4f-8c33-3222cbfa44a3">
+  <data-source name="Rails ankaa: statistic_production" uuid="ccf75427-8fcc-4e4f-8c33-3222cbfa44a3">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
-  <data-source source="LOCAL" name="Rails ankaa-adm: development" uuid="ae18ecd6-2ed2-4034-9a09-386f63f9d222">
+  <data-source name="Rails ankaa-adm: development" uuid="ae18ecd6-2ed2-4034-9a09-386f63f9d222">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
-  <data-source source="LOCAL" name="Rails ankaa-adm: statistic_development" uuid="c695c695-30dd-4179-83be-fca8ecfe28ba">
+  <data-source name="Rails ankaa-adm: statistic_development" uuid="c695c695-30dd-4179-83be-fca8ecfe28ba">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
-  <data-source source="LOCAL" name="Rails ankaa-adm: production" uuid="bc693567-1a26-4e89-91d5-53b2c3bdc943">
+  <data-source name="Rails ankaa-adm: production" uuid="bc693567-1a26-4e89-91d5-53b2c3bdc943">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
-  <data-source source="LOCAL" name="Rails ankaa-adm: statistic_production" uuid="1ad39f8c-1dbf-4d13-a394-1a031884f4c7">
+  <data-source name="Rails ankaa-adm: statistic_production" uuid="1ad39f8c-1dbf-4d13-a394-1a031884f4c7">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
 </component>

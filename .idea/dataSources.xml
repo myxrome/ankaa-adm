@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2785044083">
+  <component name="DataSourceManagerImpl" format="xml" hash="3999970106">
     <data-source source="LOCAL" name="Rails ankaa: development" uuid="76d6b93c-a9f7-457f-95b0-9d5e7558067c">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
