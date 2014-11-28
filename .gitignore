@@ -42,4 +42,4 @@ Capfile
 *.bowerrc
 bower.json
 
-
+.idea/workspace.xml
