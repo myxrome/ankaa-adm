@@ -1,7 +1,7 @@
 # config valid only for Capistrano 3.1
 lock '3.1.0'
 
-set :application, 'ankaa-admin'
+set :application, 'ankaa-adm'
 set :repo_url, 'git@bitbucket.org:myxrome/ankaa-adm.git'
 
 # Default branch is :master
@@ -16,13 +16,25 @@ set :deploy_to, '/var/www/ankaa-adm'
 # Default value for :pty is false
 # set :pty, true
 
-set :symlinks, [{source: '/mnt/nfs/content', target: "#{shared_path}/public/content"}]
+set :symlinked_dirs,
+    [
+        {source: '/mnt/nfs/content', target: "#{shared_path}/public/content"}
+    ]
 
 # Default value for :linked_files is []
-set :linked_files, %w{config/application.yml config/database.yml config/secrets.yml}
+set :linked_files, %w{config/application.yml config/database.yml config/secrets.yml config/unicorn.rb}
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets public/content}
+
+set :uploaded_files,
+    [
+        {source: 'config/application.yml', target: "#{shared_path}/config/application.yml"},
+        {source: 'config/database.yml', target: "#{shared_path}/config/database.yml"},
+        {source: 'config/secrets.yml', target: "#{shared_path}/config/secrets.yml"},
+        {source: 'config/remote/ankaa-adm.eye', target: '/etc/eye/init.d/ankaa-adm.eye'},
+        {source: 'config/remote/unicorn.rb', target: "#{shared_path}/config/unicorn.rb"}
+    ]
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -38,31 +50,27 @@ set :rbenv_roles, :all # default value
 
 namespace :deploy do
 
+  task :start do
+    run "eye start #{application}"
+  end
+
+  task :stop do
+    run "eye stop #{application}"
+  end
+
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      run "eye restart #{application}"
+    end
+  end
+
+  after :finishing, :restart
+  before :restart, 'eye:load_eye'
+
   namespace :symlink do
-    before :shared, :create_symlinks
-    before :shared, :create_linked_dirs
-    before :shared, :upload_linked_files
+    before :shared, :create_symlinked_dirs, :create_linked_dirs, :upload_files
   end
 
   after :migrate, :seed
-
-  # desc 'Restart application'
-  # task :restart do
-  #   on roles(:app), in: :sequence, wait: 5 do
-  #     # Your restart mechanism here, for example:
-  #     # execute :touch, release_path.join('tmp/restart.txt')
-  #   end
-  # end
-  #
-  # after :publishing, :restart
-  #
-  # after :restart, :clear_cache do
-  #   on roles(:web), in: :groups, limit: 3, wait: 10 do
-  #     # Here we can do anything such as:
-  #     # within release_path do
-  #     #   execute :rake, 'cache:clear'
-  #     # end
-  #   end
-  # end
 
 end

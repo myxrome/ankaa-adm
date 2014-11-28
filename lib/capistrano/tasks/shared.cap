@@ -2,11 +2,11 @@ namespace :deploy do
 
   namespace :symlink do
 
-    desc 'Create symlinks from :symlynks array'
-    task :create_symlinks do
+    desc 'Create symlinks from :symlinked_dirs array'
+    task :create_symlinked_dirs do
       on roles(:app) do
-        symlinks = fetch(:symlinks)
-        symlinks.each do |link|
+        symlinked_dirs = fetch(:symlinked_dirs)
+        symlinked_dirs.each do |link|
           source = Pathname.new link[:source]
           target = Pathname.new link[:target]
           unless test("[ -L #{target} ]")
@@ -22,25 +22,38 @@ namespace :deploy do
     desc 'Create linked folders'
     task :create_linked_dirs do
       on roles(:app) do
-        linked_dirs = fetch(:linked_dirs)
-        linked_dirs.each do |dir|
-          unless test("[ -d #{dir} ]")
-            execute :mkdir, '-pv', "#{shared_path}/#{dir}"
+
+        within shared_path do
+          linked_dirs = fetch(:linked_dirs)
+          linked_dirs.each do |dir|
+            unless test("[ -d #{dir} ]")
+              execute :mkdir, '-pv', dir
+            end
+          end
+
+          linked_files = fetch(:linked_files)
+          linked_files.each do |f|
+            file = Pathname.new f
+            unless test("[ -d #{file.dirname} ]")
+              execute :mkdir, '-pv', file.dirname
+            end
           end
         end
+
       end
     end
 
-    desc 'Upload linked files'
-    task :upload_linked_files do
+    desc 'Upload files from uploaded_files array'
+    task :upload_files do
       on roles(:app) do
-        linked_files = fetch(:linked_files)
-        linked_files.each do |f|
-          file = Pathname.new f
-          unless test("[ -d #{file.dirname} ]")
-            execute :mkdir, '-pv', "#{shared_path}/#{file.dirname}"
+        uploaded_files = fetch(:uploaded_files)
+        uploaded_files.each do |link|
+          source = Pathname.new link[:source]
+          target = Pathname.new link[:target]
+          unless test("[ -d #{target.dirname} ]")
+            execute :mkdir, '-pv', target.dirname
           end
-          upload! StringIO.new(File.read(file)), "#{shared_path}/#{file}"
+          upload! source, target
         end
       end
     end
