@@ -56,14 +56,14 @@ Scraper.find_or_create_by! name: 'Wildberries' do |scraper|
       url_prefix: 'http://f.gdeslon.ru/f/c81c6bb247231b0cb907d1dd6fd5eef167444c3f?goto=', url_postfix: ''
   Mapping.create! name: 'Wildberries Body', scope: 'body', source: scraper do |wb_mapping|
     Transformer.create! [{mapping: wb_mapping, type: 'Text', name: 'Value Name', key: 'name',
-                          element: 'div.div:nth-child(1) > div:nth-child(1) > h1:nth-child(1)', attr: '',
+                          element: 'h1[itemprop="name"]', attr: '',
                           substring: '', prefix: '', postfix: ''},
                          {mapping: wb_mapping, type: 'Text', name: 'Value New Price', key: 'new_price',
-                          element: '#Price > ins:nth-child(1)', attr: '', substring: '', prefix: '', postfix: ''},
+                          element: '#Price > ins[itemprop="price"]', attr: '', substring: '', prefix: '', postfix: ''},
                          {mapping: wb_mapping, type: 'Text', name: 'Value Discount', key: 'discount',
                           element: '.discount', attr: '', substring: '[−\d%]+', prefix: '', postfix: ''},
                          {mapping: wb_mapping, type: 'Text', name: 'Value Old Price', key: 'old_price',
-                          element: '#Price > del:nth-child(2)',
+                          element: '#Price > del',
                           attr: '', substring: '', prefix: '', postfix: ''}]
 
     Transformer.create! mapping: wb_mapping, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
