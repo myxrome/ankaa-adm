@@ -1,5 +1,5 @@
 class Mapping < ActiveRecord::Base
-  include Orderable
+  include Order
 
   scope :neighbors, -> (mapping) { where(source_id: mapping.source_id, source_type: mapping.source_type) }
 
