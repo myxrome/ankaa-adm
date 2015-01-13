@@ -8,12 +8,12 @@ class CategoriesController < ApplicationController
   end
 
   def move_up
-    @category.move_up
+    OrderingService.new(@category).move_up
     render nothing: true
   end
 
   def move_down
-    @category.move_down
+    OrderingService.new(@category).move_down
     render nothing: true
   end
 

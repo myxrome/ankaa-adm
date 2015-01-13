@@ -1,15 +1,9 @@
 class Mapping < ActiveRecord::Base
-  include Order
-
-  scope :neighbors, -> (mapping) { where(source_id: mapping.source_id, source_type: mapping.source_type) }
-
-  def neighbors
-    Mapping.neighbors(self)
-  end
-
   belongs_to :source, polymorphic: true
   has_many :transformers, inverse_of: :mapping, dependent: :destroy
   delegate :texts, :attribute_values, :attachments, :has_manies, to: :transformers
+
+  scope :neighbors, -> (mapping) { where(source_id: mapping.source_id, source_type: mapping.source_type) }
 
   def test(url)
     return if !url || url.empty?

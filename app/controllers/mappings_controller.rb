@@ -3,12 +3,12 @@ class MappingsController < ApplicationController
   before_action :set_source, only: [:new]
 
   def move_up
-    @mapping.move_up
+    OrderingService.new(@mapping).move_up
     render nothing: true
   end
 
   def move_down
-    @mapping.move_down
+    OrderingService.new(@mapping).move_down
     render nothing: true
   end
 

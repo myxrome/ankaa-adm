@@ -8,12 +8,12 @@ class TopicsController < ApplicationController
   end
 
   def move_up
-    @topic.move_up
+    OrderingService.new(@topic).move_up
     render nothing: true
   end
 
   def move_down
-    @topic.move_down
+    OrderingService.new(@topic).move_down
     render nothing: true
   end
 
