@@ -91,10 +91,10 @@ Ankaa::Application.routes.draw do
     resources :miner_scrapers, only: [:new, :create, :edit, :update, :destroy]
   end
   resources :scrapers do
-    resources :mappings
+    resources :partitions
     post :test, on: :member
   end
-  resources :mappings, concerns: :orderable do
+  resources :partitions, concerns: :orderable do
     resources :extractors
     resources :texts, controller: 'extractors', type: 'Text'
     resources :attribute_values, controller: 'extractors', type: 'AttributeValue'
@@ -102,7 +102,7 @@ Ankaa::Application.routes.draw do
     resources :has_manies, controller: 'extractors', type: 'HasMany'
   end
   resources :extractors do
-    resources :mappings
+    resources :partitions
     post :test, on: :member
   end
 

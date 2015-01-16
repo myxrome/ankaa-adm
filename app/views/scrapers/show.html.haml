@@ -72,6 +72,6 @@
 .row
   .small-12.large-12.columns
     %fieldset
-      %legend Mappings
-      = render 'mappings/table', mappings: @scraper.mappings
-      = link_to '<i class="fi-page-add"></i> New Mapping'.html_safe, new_scraper_mapping_path(@scraper), class: 'right tiny button'
+      %legend Partitions
+      = render 'partitions/table', partitions: @scraper.partitions
+      = link_to '<i class="fi-page-add"></i> New Partition'.html_safe, new_scraper_partition_path(@scraper), class: 'right tiny button'

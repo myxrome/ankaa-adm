@@ -1,6 +1,6 @@
 class ExtractorsController < ApplicationController
   before_action :set_extractor, only: [:test, :show, :edit, :update, :destroy]
-  before_action :set_mapping, only: [:new]
+  before_action :set_partition, only: [:new]
 
   def test
     render json: @extractor.test(params[:url])
@@ -12,7 +12,7 @@ class ExtractorsController < ApplicationController
 
   # GET /extractors/new
   def new
-    @extractor = @mapping.extractors.build(type: params[:type])
+    @extractor = @partition.extractors.build(type: params[:type])
   end
 
   # GET /extractors/1/edit
@@ -24,7 +24,7 @@ class ExtractorsController < ApplicationController
     @extractor = Extractor.new(extractor_params)
 
     if @extractor.save
-      redirect_to @extractor.mapping, notice: 'Extractor was successfully created.'
+      redirect_to @extractor.partition, notice: 'Extractor was successfully created.'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class ExtractorsController < ApplicationController
   # PATCH/PUT /extractors/1
   def update
     if @extractor.update(extractor_params)
-      redirect_to @extractor.mapping, notice: 'Extractor was successfully updated.'
+      redirect_to @extractor.partition, notice: 'Extractor was successfully updated.'
     else
       render :edit
     end
@@ -41,9 +41,9 @@ class ExtractorsController < ApplicationController
 
   # DELETE /extractors/1
   def destroy
-    mapping = @extractor.mapping
+    partition = @extractor.partition
     @extractor.destroy
-    redirect_to mapping, notice: 'Extractor was successfully destroyed.'
+    redirect_to partition, notice: 'Extractor was successfully destroyed.'
   end
 
   private
@@ -52,14 +52,14 @@ class ExtractorsController < ApplicationController
     @extractor = Extractor.find(params[:id])
   end
 
-  def set_mapping
-    @mapping = Mapping.find(params[:mapping_id])
+  def set_partition
+    @partition = Partition.find(params[:partition_id])
   end
 
   # Only allow a trusted parameter "white list" through.
   def extractor_params
     result = params[:text] || params[:attribute_value] || params[:attachment] || params[:has_many]
-    result.permit(:mapping_id, :type, :name, :key, :element, :attr, :substring, :prefix, :postfix,
+    result.permit(:partition_id, :type, :name, :key, :element, :attr, :substring, :prefix, :postfix,
                   :order, :source)
   end
 end

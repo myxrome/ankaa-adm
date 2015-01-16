@@ -17,12 +17,12 @@
   .small-12.large-12.columns
     %ul.button-group.right
       %li
-        = link_to '<i class="fi-database"></i> All'.html_safe, mapping_path(@extractor.mapping), class: 'tiny button'
+        = link_to '<i class="fi-database"></i> All'.html_safe, partition_path(@extractor.partition), class: 'tiny button'
       %li
         = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_extractor_path(@extractor), class: 'tiny button'
 .row
   .small-12.large-12.columns
     %fieldset
-      %legend Mappings
-      = render 'mappings/table', mappings: @extractor.mappings
-      = link_to '<i class="fi-page-add"></i> New Mapping'.html_safe, new_extractor_mapping_path(@extractor), class: 'right tiny button'
+      %legend Partitions
+      = render 'partitions/table', partitions: @extractor.partitions
+      = link_to '<i class="fi-page-add"></i> New Partition'.html_safe, new_extractor_partition_path(@extractor), class: 'right tiny button'

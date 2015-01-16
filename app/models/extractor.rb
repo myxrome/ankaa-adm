@@ -1,6 +1,6 @@
 class Extractor < ActiveRecord::Base
-  belongs_to :mapping, inverse_of: :extractors
-  has_many :mappings, -> { order(:order) }, as: :source, dependent: :destroy
+  belongs_to :partition, inverse_of: :extractors
+  has_many :partitions, -> { order(:order) }, as: :source, dependent: :destroy
 
   scope :texts, -> { where(type: :text) }
   scope :attribute_values, -> { where(type: :attribute_value) }
@@ -12,7 +12,7 @@ class Extractor < ActiveRecord::Base
   end
 
   def test(url)
-    self.mapping.test(url) { |scope|
+    self.partition.test(url) { |scope|
       wrap_test_value(get_value(scope).to_s)
     }
   end
@@ -98,8 +98,8 @@ class HasMany < Extractor
   protected
   def get_value(scope)
     order = 0
-    mappings.map { |mapping|
-      mapping.perform(scope) { |part, value|
+    partitions.map { |partition|
+      partition.perform(scope) { |part, value|
         value = self.order? ? value.merge({order: (order += 1)}) : value
         self.source? ? value.merge({source: part.css_path}) : value
       }

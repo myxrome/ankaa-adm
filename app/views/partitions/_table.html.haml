@@ -1,0 +1,18 @@
+%table{width: '100%'}
+  %thead
+    %tr
+      %th Name
+      %th Scope
+      %th{width: '35px'}
+      %th{width: '35px'}
+      %th{width: '35px'}
+      %th{width: '35px'}
+  %tbody
+    - partitions.each do |partition|
+      %tr
+        %td= link_to partition.name, partition
+        %td= partition.scope
+        %td= link_to '<i class="fi-arrow-up"></i>'.html_safe, '', class: 'tiny secondary table-up', data: {url: move_up_partition_path(partition)}
+        %td= link_to '<i class="fi-arrow-down"></i>'.html_safe, '', class: 'tiny secondary table-down', data: {url: move_down_partition_path(partition)}
+        %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_partition_path(partition), class: 'tiny secondary'
+        %td= link_to '<i class="fi-x"></i>'.html_safe, partition, method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary'

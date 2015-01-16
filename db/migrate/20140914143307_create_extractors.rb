@@ -1,7 +1,7 @@
 class CreateExtractors < ActiveRecord::Migration
   def change
     create_table :extractors do |t|
-      t.integer :mapping_id
+      t.integer :partition_id
       t.string :type
       t.string :name
       t.string :key

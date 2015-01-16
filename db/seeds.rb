@@ -10,38 +10,38 @@ lamoda_scraper = Scraper.find_or_create_by! name: 'Lamoda' do |scraper|
                              condition: 'span.product-label:not(.product-label_new)', element: '', attr: 'href',
                              substring: '', source_prefix: 'http://www.lamoda.ru', source_postfix: '',
                              source: true, url_prefix: 'http://f.gdeslon.ru/f/2352c31c3271d918f7f00179c58215f5a3d231d6?goto=', url_postfix: ''
-  Mapping.create! name: 'Lamoda Body', scope: 'body', source: scraper, order: 1 do |lamoda_mapping|
-    Extractor.create! [{mapping: lamoda_mapping, type: 'Text', name: 'Value Name', key: 'name',
+  Partition.create! name: 'Lamoda Body', scope: 'body', source: scraper, order: 1 do |lamoda_partition|
+    Extractor.create! [{partition: lamoda_partition, type: 'Text', name: 'Value Name', key: 'name',
                           element: 'a.product-card__header-link', attr: '', substring: '', prefix: '', postfix: ''},
-                         {mapping: lamoda_mapping, type: 'Text', name: 'Value New Price', key: 'new_price',
+                       {partition: lamoda_partition, type: 'Text', name: 'Value New Price', key: 'new_price',
                           element: 'span.price__new', attr: '', substring: '', prefix: '', postfix: ''},
-                         {mapping: lamoda_mapping, type: 'Text', name: 'Value Discount', key: 'discount',
+                       {partition: lamoda_partition, type: 'Text', name: 'Value Discount', key: 'discount',
                           element: 'span.product-label', attr: '', substring: '', prefix: '', postfix: ''},
-                         {mapping: lamoda_mapping, type: 'Text', name: 'Value Old Price', key: 'old_price',
+                       {partition: lamoda_partition, type: 'Text', name: 'Value Old Price', key: 'old_price',
                           element: 'span.price__old',
                           attr: '', substring: '', prefix: '', postfix: ''}]
 
-    Extractor.create! mapping: lamoda_mapping, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
+    Extractor.create! partition: lamoda_partition, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
                       element: '', attr: '', substring: '', prefix: '', postfix: '', order: true, source: true do |extractor|
-      Mapping.create! name: 'Description Header', scope: 'div.product-content__sheet', source: extractor, order: 1 do |description_mapping|
-        Extractor.create! mapping: description_mapping, type: 'Text', name: 'Description Text', key: 'text',
+      Partition.create! name: 'Description Header', scope: 'div.product-content__sheet', source: extractor, order: 1 do |description_partition|
+        Extractor.create! partition: description_partition, type: 'Text', name: 'Description Text', key: 'text',
                             element: 'p.product-content__p', attr: '', substring: '', prefix: '', postfix: ''
 
       end
-      Mapping.create! name: 'Description Table', scope: 'table.product-content__table tr', source: extractor, order: 2 do |description_mapping|
-        Extractor.create! [{mapping: description_mapping, type: 'Text', name: 'Description Caption', key: 'caption',
+      Partition.create! name: 'Description Table', scope: 'table.product-content__table tr', source: extractor, order: 2 do |description_partition|
+        Extractor.create! [{partition: description_partition, type: 'Text', name: 'Description Caption', key: 'caption',
                               element: 'th', attr: '', substring: '', prefix: '', postfix: ''},
-                             {mapping: description_mapping, type: 'Text', name: 'Description Text', key: 'text',
+                           {partition: description_partition, type: 'Text', name: 'Description Text', key: 'text',
                               element: 'td', attr: '', substring: '', prefix: '', postfix: ''}]
 
       end
     end
-    Extractor.create! mapping: lamoda_mapping, type: 'HasMany', name: 'Value Promos', key: 'promos_attributes',
+    Extractor.create! partition: lamoda_partition, type: 'HasMany', name: 'Value Promos', key: 'promos_attributes',
                       element: '', attr: '', substring: '', prefix: '', postfix: '', order: true, source: false do |extractor|
-      Mapping.create! name: 'Image Slider', scope: 'ul.photos-list__list li:not([data-type="3d"])', source: extractor, order: 1 do |promo_mapping|
-        Extractor.create! [{mapping: promo_mapping, type: 'Attachment', name: 'Promo Image', key: 'image',
+      Partition.create! name: 'Image Slider', scope: 'ul.photos-list__list li:not([data-type="3d"])', source: extractor, order: 1 do |promo_partition|
+        Extractor.create! [{partition: promo_partition, type: 'Attachment', name: 'Promo Image', key: 'image',
                               element: '', attr: 'data-orig', substring: '', prefix: 'http:', postfix: ''},
-                             {mapping: promo_mapping, type: 'AttributeValue', name: 'Promo Source', key: 'source',
+                           {partition: promo_partition, type: 'AttributeValue', name: 'Promo Source', key: 'source',
                               element: '', attr: 'data-orig', substring: '', prefix: 'http:', postfix: ''}]
 
       end
@@ -54,45 +54,45 @@ wildberries_scraper = Scraper.find_or_create_by! name: 'Wildberries' do |scraper
   scraper.update_attributes! scope: '', selector: 'div.dtList', condition: 'span.proc_div',
                              element: 'a.ref_goods_n_p', attr: 'href', substring: '', source_prefix: '', source_postfix: '', source: true,
                              url_prefix: 'http://f.gdeslon.ru/f/c81c6bb247231b0cb907d1dd6fd5eef167444c3f?goto=', url_postfix: ''
-  Mapping.create! name: 'Wildberries Body', scope: 'body', source: scraper, order: 1 do |wb_mapping|
-    Extractor.create! [{mapping: wb_mapping, type: 'Text', name: 'Value Name', key: 'name',
+  Partition.create! name: 'Wildberries Body', scope: 'body', source: scraper, order: 1 do |wb_partition|
+    Extractor.create! [{partition: wb_partition, type: 'Text', name: 'Value Name', key: 'name',
                           element: 'h1[itemprop="name"]', attr: '',
                           substring: '', prefix: '', postfix: ''},
-                         {mapping: wb_mapping, type: 'Text', name: 'Value New Price', key: 'new_price',
+                       {partition: wb_partition, type: 'Text', name: 'Value New Price', key: 'new_price',
                           element: '#Price > ins[itemprop="price"]', attr: '', substring: '', prefix: '', postfix: ''},
-                         {mapping: wb_mapping, type: 'Text', name: 'Value Discount', key: 'discount',
+                       {partition: wb_partition, type: 'Text', name: 'Value Discount', key: 'discount',
                           element: '.discount', attr: '', substring: '[−\d%]+', prefix: '', postfix: ''},
-                         {mapping: wb_mapping, type: 'Text', name: 'Value Old Price', key: 'old_price',
+                       {partition: wb_partition, type: 'Text', name: 'Value Old Price', key: 'old_price',
                           element: '#Price > del',
                           attr: '', substring: '', prefix: '', postfix: ''}]
 
-    Extractor.create! mapping: wb_mapping, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
+    Extractor.create! partition: wb_partition, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
                       element: '', attr: '', substring: '', prefix: '', postfix: '', order: true, source: true do |extractor|
-      Mapping.create! name: 'Description Header', scope: '#description', source: extractor, order: 1 do |description_mapping|
-        Extractor.create! mapping: description_mapping, type: 'Text', name: 'Description Text', key: 'text',
+      Partition.create! name: 'Description Header', scope: '#description', source: extractor, order: 1 do |description_partition|
+        Extractor.create! partition: description_partition, type: 'Text', name: 'Description Text', key: 'text',
                             element: '', attr: '', substring: '', prefix: '', postfix: ''
 
       end
-      Mapping.create! name: 'Description Table 1', scope: 'p.pp', source: extractor, order: 2 do |description_mapping|
-        Extractor.create! [{mapping: description_mapping, type: 'Text', name: 'Description Caption', key: 'caption',
+      Partition.create! name: 'Description Table 1', scope: 'p.pp', source: extractor, order: 2 do |description_partition|
+        Extractor.create! [{partition: description_partition, type: 'Text', name: 'Description Caption', key: 'caption',
                               element: 'text()', attr: '', substring: '', prefix: '', postfix: ''},
-                             {mapping: description_mapping, type: 'Text', name: 'Description Text', key: 'text',
+                           {partition: description_partition, type: 'Text', name: 'Description Text', key: 'text',
                               element: 'span', attr: '', substring: '', prefix: '', postfix: ''}]
       end
-      Mapping.create! name: 'Description Table 2', scope: 'table.pp-additional tr', source: extractor, order: 3 do |description_mapping|
-        Extractor.create! [{mapping: description_mapping, type: 'Text', name: 'Description Caption', key: 'caption',
+      Partition.create! name: 'Description Table 2', scope: 'table.pp-additional tr', source: extractor, order: 3 do |description_partition|
+        Extractor.create! [{partition: description_partition, type: 'Text', name: 'Description Caption', key: 'caption',
                               element: 'td:nth-child(1)', attr: '', substring: '', prefix: '', postfix: ':'},
-                             {mapping: description_mapping, type: 'Text', name: 'Description Text', key: 'text',
+                           {partition: description_partition, type: 'Text', name: 'Description Text', key: 'text',
                               element: 'td:nth-child(2)', attr: '', substring: '', prefix: '', postfix: ''}]
 
       end
     end
-    Extractor.create! mapping: wb_mapping, type: 'HasMany', name: 'Value Promos', key: 'promos_attributes',
+    Extractor.create! partition: wb_partition, type: 'HasMany', name: 'Value Promos', key: 'promos_attributes',
                       element: '', attr: '', substring: '', prefix: '', postfix: '', order: true, source: false do |extractor|
-      Mapping.create! name: 'Image Slider', scope: 'ul.carousel a.enabledZoom', source: extractor, order: 1 do |promo_mapping|
-        Extractor.create! [{mapping: promo_mapping, type: 'Attachment', name: 'Promo Image', key: 'image',
+      Partition.create! name: 'Image Slider', scope: 'ul.carousel a.enabledZoom', source: extractor, order: 1 do |promo_partition|
+        Extractor.create! [{partition: promo_partition, type: 'Attachment', name: 'Promo Image', key: 'image',
                               element: '', attr: 'href', substring: '', prefix: 'http:', postfix: ''},
-                             {mapping: promo_mapping, type: 'AttributeValue', name: 'Promo Source', key: 'source',
+                           {partition: promo_partition, type: 'AttributeValue', name: 'Promo Source', key: 'source',
                               element: '', attr: 'href', substring: '', prefix: 'http:', postfix: ''}]
 
       end
@@ -105,33 +105,33 @@ Scraper.find_or_create_by! name: 'Quelle' do |scraper|
   scraper.update_attributes! scope: 'ol.productsBox', selector: 'div.productBox', condition: 'div.productStreichpreis',
                              element: 'div.productQuickLookBox > a', attr: 'href', substring: '[\w:\/\.-]+', source_prefix: '',
                              source_postfix: '', source: true, url_prefix: '', url_postfix: ''
-  Mapping.create! name: 'Quelle Body', scope: 'body', source: scraper, order: 1 do |wb_mapping|
-    Extractor.create! [{mapping: wb_mapping, type: 'Text', name: 'Value Name', key: 'name',
+  Partition.create! name: 'Quelle Body', scope: 'body', source: scraper, order: 1 do |wb_partition|
+    Extractor.create! [{partition: wb_partition, type: 'Text', name: 'Value Name', key: 'name',
                           element: 'h1.h2', attr: '',
                           substring: '[^\.]+', prefix: '', postfix: ''},
-                         {mapping: wb_mapping, type: 'Text', name: 'Value New Price', key: 'new_price',
+                       {partition: wb_partition, type: 'Text', name: 'Value New Price', key: 'new_price',
                           element: '.productPrice', attr: '', substring: '\d+', prefix: '', postfix: ' руб.'},
-                         {mapping: wb_mapping, type: 'Text', name: 'Value Discount', key: 'discount',
+                       {partition: wb_partition, type: 'Text', name: 'Value Discount', key: 'discount',
                           element: '.productPriceSlogan > strong:nth-child(1)', attr: '', substring: '', prefix: '-', postfix: '%'},
-                         {mapping: wb_mapping, type: 'Text', name: 'Value Old Price', key: 'old_price',
+                       {partition: wb_partition, type: 'Text', name: 'Value Old Price', key: 'old_price',
                           element: '#productDetailProductPriceBox > div:nth-child(2)',
                           attr: '', substring: '\d+', prefix: '', postfix: ' руб.'}]
 
-    Extractor.create! mapping: wb_mapping, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
+    Extractor.create! partition: wb_partition, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
                       element: '', attr: '', substring: '', prefix: '', postfix: '', order: true, source: true do |extractor|
-      Mapping.create! name: 'Description Header', scope: '.productLangtextBox', source: extractor, order: 1 do |description_mapping|
-        Extractor.create! mapping: description_mapping, type: 'Text', name: 'Description Text', key: 'text',
+      Partition.create! name: 'Description Header', scope: '.productLangtextBox', source: extractor, order: 1 do |description_partition|
+        Extractor.create! partition: description_partition, type: 'Text', name: 'Description Text', key: 'text',
                             element: 'span:nth-child(2) > p:nth-child(1)', attr: '', substring: '', prefix: '', postfix: ''
 
       end
     end
 
-    Extractor.create! mapping: wb_mapping, type: 'HasMany', name: 'Value Promos', key: 'promos_attributes',
+    Extractor.create! partition: wb_partition, type: 'HasMany', name: 'Value Promos', key: 'promos_attributes',
                       element: '', attr: '', substring: '', prefix: '', postfix: '', order: true, source: false do |extractor|
-      Mapping.create! name: 'Image Slider', scope: '.verticalImageListBox > ul:nth-child(1) > li', source: extractor, order: 1 do |promo_mapping|
-        Extractor.create! [{mapping: promo_mapping, type: 'Attachment', name: 'Promo Image', key: 'image',
+      Partition.create! name: 'Image Slider', scope: '.verticalImageListBox > ul:nth-child(1) > li', source: extractor, order: 1 do |promo_partition|
+        Extractor.create! [{partition: promo_partition, type: 'Attachment', name: 'Promo Image', key: 'image',
                               element: 'a._copy_layer_contents_to_element', attr: 'href', substring: '', prefix: 'http:', postfix: ''},
-                             {mapping: promo_mapping, type: 'AttributeValue', name: 'Promo Source', key: 'source',
+                           {partition: promo_partition, type: 'AttributeValue', name: 'Promo Source', key: 'source',
                               element: 'a._copy_layer_contents_to_element', attr: 'href', substring: '', prefix: 'http:', postfix: ''}]
 
       end

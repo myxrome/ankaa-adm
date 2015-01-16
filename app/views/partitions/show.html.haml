@@ -1,4 +1,4 @@
-- content_for :title, "Mapping - #{@mapping.name}".html_safe
+- content_for :title, "Partition - #{@partition.name}".html_safe
 .row
   .small-12.large-12.columns
     %fieldset
@@ -7,21 +7,21 @@
         %tbody
           %tr
             %td{width: '150px'} Scope:
-            %td= @mapping.scope
+            %td= @partition.scope
 .row
   .small-12.large-12.columns
     %ul.button-group.right
       %li
-        = link_to '<i class="fi-database"></i> All'.html_safe, mapping_source_path(@mapping), class: 'tiny button'
+        = link_to '<i class="fi-database"></i> All'.html_safe, partition_source_path(@partition), class: 'tiny button'
       %li
-        = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_mapping_path(@mapping), class: 'tiny button'
+        = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_partition_path(@partition), class: 'tiny button'
 .row
   .small-12.large-12.columns
     %fieldset
       %legend Extractors
-      = render 'extractors/table', extractors: @mapping.extractors
+      = render 'extractors/table', extractors: @partition.extractors
       %button{data: {dropdown: 'extractor', options: 'align:top'}, class: 'right tiny button'}
         = '<i class="fi-page-add"></i> New Extractor &raquo;'.html_safe
       %ul.f-dropdown#extractor{data: {'dropdown-content'.to_sym => ''}}
         - Extractor.types.each do |type|
-          %li= link_to type.to_s.gsub(/[A-Z]/, ' \0'), new_mapping_extractor_path(type: type, mapping_id: @mapping)
+          %li= link_to type.to_s.gsub(/[A-Z]/, ' \0'), new_partition_extractor_path(type: type, partition_id: @partition)

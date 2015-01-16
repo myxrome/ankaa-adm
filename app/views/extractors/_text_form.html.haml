@@ -1,11 +1,11 @@
-= simple_form_for [@extractor.mapping, @extractor] do |f|
+= simple_form_for [@extractor.partition, @extractor] do |f|
   = f.error_notification
   .actions
     = render 'layouts/form_buttons'
   .inputs
     %fieldset
       %legend Parameters
-      = f.input :mapping_id, as: :hidden
+      = f.input :partition_id, as: :hidden
       = f.input :type, as: :hidden
       .row
         .small-12.large-12.columns

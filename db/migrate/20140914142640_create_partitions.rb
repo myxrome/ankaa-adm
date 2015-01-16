@@ -1,6 +1,6 @@
-class CreateMappings < ActiveRecord::Migration
+class CreatePartitions < ActiveRecord::Migration
   def change
-    create_table :mappings do |t|
+    create_table :partitions do |t|
       t.string :name
       t.string :scope
       t.integer :source_id
@@ -10,6 +10,6 @@ class CreateMappings < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :mappings, [:source_id, :source_type]
+    add_index :partitions, [:source_id, :source_type]
   end
 end
