@@ -1,9 +1,9 @@
-class MiningJob
+class DataUploadJob
 
   @queue = :parent
   def self.perform
     Miner.all.map { |miner|
-      Resque.enqueue(Miner, miner.id)
+      Resque.enqueue(DataUploadService, miner.id)
     }
   end
 
