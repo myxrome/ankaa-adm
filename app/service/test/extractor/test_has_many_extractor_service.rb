@@ -1,0 +1,2 @@
+class TestHasManyExtractorService < BaseTestExtractorService
+end

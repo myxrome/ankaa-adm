@@ -1,4 +1,4 @@
-class ScraperTestService
+class TestScraperService
   require 'open-uri'
 
   def initialize(scraper)

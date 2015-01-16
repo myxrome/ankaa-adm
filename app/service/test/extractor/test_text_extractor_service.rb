@@ -1,0 +1,2 @@
+class TestTextExtractorService < BaseTestExtractorService
+end

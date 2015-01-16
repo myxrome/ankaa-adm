@@ -1,4 +1,4 @@
-class PartitionTestService
+class TestPartitionService
 
   def initialize(partition)
     @partition = partition
