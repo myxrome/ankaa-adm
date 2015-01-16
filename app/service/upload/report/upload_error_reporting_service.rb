@@ -1,4 +1,4 @@
-class ReportingService
+class UploadErrorReportingService
   include Singleton
 
   def initialize

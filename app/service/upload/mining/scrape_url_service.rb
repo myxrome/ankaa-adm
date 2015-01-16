@@ -22,7 +22,7 @@ class ScrapeURLService
 
       result.to_a.take(@miner_scraper.limit)
     rescue Exception => e
-      ReportingService.instance.on_error(e)
+      UploadErrorReportingService.instance.on_error(e)
       Array.new
     end
   end
@@ -41,7 +41,7 @@ class ScrapeURLService
 
       Set.new result
     rescue Exception => e
-      ReportingService.instance.on_error(e)
+      UploadErrorReportingService.instance.on_error(e)
       Set.new
     end
   end
@@ -69,7 +69,7 @@ class ScrapeURLService
         raise "Page doesn't contain #{@scraper.element} with condition #{@scraper.condition}"
       end
     rescue Exception => e
-      ReportingService.instance.on_error(e)
+      UploadErrorReportingService.instance.on_error(e)
       ''
     end
   end

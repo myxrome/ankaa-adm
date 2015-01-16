@@ -21,7 +21,7 @@ class ScrapeDataService
 
       }
     rescue Exception => e
-      ReportingService.instance.on_error(e)
+      UploadErrorReportingService.instance.on_error(e)
       Array.new
     end
   end

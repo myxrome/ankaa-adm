@@ -9,7 +9,7 @@ class DataUploadService
       service = MiningService.new(miner)
       data = service.perform
       # miner.category.reconcile(source, self) if source
-      ReportingService.instance.report(miner)
+      UploadErrorReportingService.instance.report(miner)
     end
 
   end
