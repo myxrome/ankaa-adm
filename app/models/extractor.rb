@@ -12,7 +12,8 @@ class Extractor < ActiveRecord::Base
   end
 
   def test(url)
-    self.partition.test(url) { |scope|
+    service = PartitionTestService.new(self.partition)
+    service.test(url) { |scope|
       wrap_test_value(get_value(scope).to_s)
     }
   end

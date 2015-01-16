@@ -8,10 +8,10 @@ class ScrapeDataService
     begin
       document = Nokogiri::HTML(open(url))
 
-      @scraper.mappings.map { |mapping|
+      @scraper.partitions.map { |partition|
 
-        service = MapDataService.new(mapping)
-        service.map_data_from_document(document) { |part, value|
+        service = ExtractPartitionService.new(partition)
+        service.extract_partition_from_document(document) { |part, value|
           value = @scraper.source? ? value.merge({source: url.strip}) : value
 
           !@scraper.url_prefix.empty? || !@scraper.url_postfix.empty? ?
