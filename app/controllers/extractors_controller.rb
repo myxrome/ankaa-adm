@@ -3,7 +3,7 @@ class ExtractorsController < ApplicationController
   before_action :set_partition, only: [:new]
 
   def test
-    service = TestExtractorServiceFactory.build_test_extractor_service(@extractor)
+    service = TestExtractorServiceFactory.instance.build_test_extractor_service(@extractor)
     render json: service.test(params[:url])
   end
 

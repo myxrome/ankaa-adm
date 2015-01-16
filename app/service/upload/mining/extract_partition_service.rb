@@ -14,7 +14,7 @@ class ExtractPartitionService
   private
   def extract_data(part)
     @partition.extractors.map { |extractor|
-      service = ExtractServiceFactory.build_extract_service(extractor)
+      service = ExtractServiceFactory.instance.build_extract_service(extractor)
       service.extract_data_from_part(part)
     }.reduce(:merge)
   end

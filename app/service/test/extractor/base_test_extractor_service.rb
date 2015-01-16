@@ -7,7 +7,7 @@ class BaseTestExtractorService
   def test(url)
     partition_test = TestPartitionService.new(@extractor.partition)
     partition_test.test(url) { |scope|
-      extractor_service = ExtractServiceFactory.build_extract_service(@extractor)
+      extractor_service = ExtractServiceFactory.instance.build_extract_service(@extractor)
       value = extractor_service.extract_value_from_part(scope).to_s
       wrap_test_value(value)
     }
