@@ -21,7 +21,7 @@ class ScrapeDataService
 
       }
     rescue Exception => e
-      # miner.on_error "Extract data from page #{url} gets error: #{e.message}" if miner
+      ReportingService.instance.on_error(e)
       Array.new
     end
   end

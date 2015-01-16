@@ -22,7 +22,7 @@ class ScrapeURLService
 
       result.to_a.take(@miner_scraper.limit)
     rescue Exception => e
-      # miner.on_error e.message if miner
+      ReportingService.instance.on_error(e)
       Array.new
     end
   end
@@ -41,7 +41,7 @@ class ScrapeURLService
 
       Set.new result
     rescue Exception => e
-      # miner.on_error e.message if miner
+      ReportingService.instance.on_error(e)
       Set.new
     end
   end
@@ -63,13 +63,13 @@ class ScrapeURLService
         if target[@scraper.attr]
           @scraper.source_prefix + target[@scraper.attr] + @scraper.source_postfix
         else
-          # raise "Element #{@scraper.element} doesn't contain attribute #{@scraper.attr} on page #{url}"
+          raise "Element #{@scraper.element} doesn't contain attribute #{@scraper.attr}"
         end
       else
-        # raise "Page #{url} doesn't contain #{@scraper.element} with condition #{@scraper.condition}"
+        raise "Page doesn't contain #{@scraper.element} with condition #{@scraper.condition}"
       end
     rescue Exception => e
-      # miner.on_error e.message if miner
+      ReportingService.instance.on_error(e)
       ''
     end
   end
