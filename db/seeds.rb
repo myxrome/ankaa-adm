@@ -150,10 +150,10 @@ TopicGroup.find_or_create_by! key: 'da46a5a8de1577cecf9baed38d4fe65c' do |topic_
                      active: true do |category|
       Miner.create! category: category do |miner|
         MinerScraper.create!([
-                                 {miner: miner, scraper_id: lamoda_scraper,
+                                 {miner: miner, scraper: lamoda_scraper,
                                   url_prefix: 'http://www.lamoda.ru/c/21/shoes-sapogi/?genders=women&page=',
                                   url_postfix: '', limit: 10},
-                                 {miner: miner, scraper_id: wildberries_scraper,
+                                 {miner: miner, scraper: wildberries_scraper,
                                   url_prefix: 'http://www.wildberries.ru/catalog/89/',
                                   url_postfix: '/women.aspx', limit: 10},
                              ])
@@ -181,7 +181,7 @@ TopicGroup.find_or_create_by! key: 'da46a5a8de1577cecf9baed38d4fe65c' do |topic_
                                  {miner: miner, scraper: lamoda_scraper,
                                   url_prefix: 'http://www.lamoda.ru/c/23/shoes-botinki/?genders=women&page=',
                                   url_postfix: '', limit: 10},
-                                 {miner: miner, scraper_id: wildberries_scraper,
+                                 {miner: miner, scraper: wildberries_scraper,
                                   url_prefix: 'http://www.wildberries.ru/catalog/352/',
                                   url_postfix: '/women.aspx', limit: 10},
                              ])
