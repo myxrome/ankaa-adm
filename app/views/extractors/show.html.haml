@@ -1,11 +1,11 @@
-- content_for :title, "#{@transformer.type.gsub(/[A-Z]/, ' \0')} Transformer - #{@transformer.name}"
+- content_for :title, "#{@extractor.type.gsub(/[A-Z]/, ' \0')} Extractor - #{@extractor.name}"
 
-- unless @transformer.type.eql? 'HasMany'
+- unless @extractor.type.eql? 'HasMany'
   .row
     .small-12.large-12.columns
       %fieldset
         %legend Test
-        = simple_form_for '', :html=> { class: 'test-form' }, url: test_transformer_url(@transformer), remote: true do |f|
+        = simple_form_for '', :html=> { class: 'test-form' }, url: test_extractor_url(@extractor), remote: true do |f|
           .row
             .small-12.large-12.columns
               = f.label :url, 'URL'
@@ -24,4 +24,4 @@
     %a.close-reveal-modal
       &#215;
 
-= render "#{@transformer.type.downcase}"
+= render "#{@extractor.type.downcase}"

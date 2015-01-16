@@ -60,7 +60,7 @@ class MappingsController < ApplicationController
 
   def set_source
     @source = (Scraper.find(params[:scraper_id]) if params[:scraper_id]) ||
-        (Transformer.find(params[:transformer_id]) if params[:transformer_id])
+        (Extractor.find(params[:extractor_id]) if params[:extractor_id])
   end
 
   # Only allow a trusted parameter "white list" through.

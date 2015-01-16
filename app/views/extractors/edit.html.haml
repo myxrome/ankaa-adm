@@ -1,0 +1,2 @@
+- content_for :title, "Edit #{@extractor.type.gsub(/[A-Z]/, ' \0')} Extractor"
+= render "#{@extractor.type.downcase}_form"

@@ -95,13 +95,13 @@ Ankaa::Application.routes.draw do
     post :test, on: :member
   end
   resources :mappings, concerns: :orderable do
-    resources :transformers
-    resources :texts, controller: 'transformers', type: 'Text'
-    resources :attribute_values, controller: 'transformers', type: 'AttributeValue'
-    resources :attachments, controller: 'transformers', type: 'Attachment'
-    resources :has_manies, controller: 'transformers', type: 'HasMany'
+    resources :extractors
+    resources :texts, controller: 'extractors', type: 'Text'
+    resources :attribute_values, controller: 'extractors', type: 'AttributeValue'
+    resources :attachments, controller: 'extractors', type: 'Attachment'
+    resources :has_manies, controller: 'extractors', type: 'HasMany'
   end
-  resources :transformers do
+  resources :extractors do
     resources :mappings
     post :test, on: :member
   end

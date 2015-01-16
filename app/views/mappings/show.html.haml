@@ -18,10 +18,10 @@
 .row
   .small-12.large-12.columns
     %fieldset
-      %legend Transformers
-      = render 'transformers/table', transformers: @mapping.transformers
-      %button{data: {dropdown: 'transformer', options: 'align:top'}, class: 'right tiny button'}
-        = '<i class="fi-page-add"></i> New Transformer &raquo;'.html_safe
-      %ul.f-dropdown#transformer{data: {'dropdown-content'.to_sym => ''}}
-        - Transformer.types.each do |type|
-          %li= link_to type.to_s.gsub(/[A-Z]/, ' \0'), new_mapping_transformer_path(type: type, mapping_id: @mapping)
+      %legend Extractors
+      = render 'extractors/table', extractors: @mapping.extractors
+      %button{data: {dropdown: 'extractor', options: 'align:top'}, class: 'right tiny button'}
+        = '<i class="fi-page-add"></i> New Extractor &raquo;'.html_safe
+      %ul.f-dropdown#extractor{data: {'dropdown-content'.to_sym => ''}}
+        - Extractor.types.each do |type|
+          %li= link_to type.to_s.gsub(/[A-Z]/, ' \0'), new_mapping_extractor_path(type: type, mapping_id: @mapping)

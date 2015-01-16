@@ -1,5 +1,5 @@
-class Transformer < ActiveRecord::Base
-  belongs_to :mapping, inverse_of: :transformers
+class Extractor < ActiveRecord::Base
+  belongs_to :mapping, inverse_of: :extractors
   has_many :mappings, -> { order(:order) }, as: :source, dependent: :destroy
 
   scope :texts, -> { where(type: :text) }
@@ -31,7 +31,7 @@ class Transformer < ActiveRecord::Base
 
 end
 
-class Text < Transformer
+class Text < Extractor
   protected
   def get_value(scope)
     node = self.element.empty? ? scope : scope.css(self.element)
@@ -51,7 +51,7 @@ class Text < Transformer
 
 end
 
-class AttributeValue < Transformer
+class AttributeValue < Extractor
   protected
   def get_value(scope)
     node = self.element.empty? ? scope : scope.css(self.element)
@@ -70,7 +70,7 @@ class AttributeValue < Transformer
   end
 end
 
-class Attachment < Transformer
+class Attachment < Extractor
   protected
   def get_value(scope)
     node = self.element.empty? ? scope : scope.css(self.element)
@@ -94,7 +94,7 @@ class Attachment < Transformer
   end
 end
 
-class HasMany < Transformer
+class HasMany < Extractor
   protected
   def get_value(scope)
     order = 0

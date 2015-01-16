@@ -1,6 +1,6 @@
-class CreateTransformers < ActiveRecord::Migration
+class CreateExtractors < ActiveRecord::Migration
   def change
-    create_table :transformers do |t|
+    create_table :extractors do |t|
       t.integer :mapping_id
       t.string :type
       t.string :name

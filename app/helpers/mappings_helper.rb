@@ -4,7 +4,7 @@ module MappingsHelper
     if mapping.source_type == 'Scraper'
       scraper_path(mapping.source)
     else
-      transformer_path(mapping.source)
+      extractor_path(mapping.source)
     end
   end
 
