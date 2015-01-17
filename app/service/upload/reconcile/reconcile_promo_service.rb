@@ -5,7 +5,7 @@ class ReconcilePromoService < BaseReconcileService
   end
 
   def reconcile(params, callback_context)
-    @promo.assign_attributes(image.exists? ? params.except(:image) : params)
+    @promo.assign_attributes(@promo.image.exists? ? params.except(:image) : params)
     @promo.save! if @promo.changed?
   end
 
