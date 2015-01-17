@@ -49,6 +49,6 @@
         %tbody
           - @value.descriptions.each do |description|
             %tr
-              -if not (description.caption.nil? || description.caption.empty?)
+              -unless description.caption.blank?
                 %td{class: [('red' if description.red), ('bold' if description.bold)].compact.join(' ')} #{description.caption}
-              %td{class: [('red' if description.red), ('bold' if description.bold)].compact.join(' '), colspan: (2 if description.caption.nil? || description.caption.empty?)} #{description.text}
+              %td{class: [('red' if description.red), ('bold' if description.bold)].compact.join(' '), colspan: (2 if description.caption.blank?)} #{description.text}

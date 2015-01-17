@@ -5,7 +5,7 @@ class TestPartitionService
   end
 
   def test(url)
-    return if !url || url.empty?
+    return if url.blank?
     doc = Nokogiri::HTML(open(url))
     doc.css(@partition.scope).map { |part|
       yield(part)

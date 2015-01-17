@@ -6,10 +6,10 @@ class TestScraperService
   end
 
   def perform(url)
-    return if !url || url.empty?
+    return if url.blank?
     doc = Nokogiri::HTML(open(url))
     scrape_urls_from_document(nil, url, doc).first(5).map { |r|
-      pattern = (@scraper.substring.nil? || @scraper.substring.empty?) ? '.*' : @scraper.substring
+      pattern = @scraper.substring.blank? ? '.*' : @scraper.substring
       wrap_test_result(r.scan(/#{pattern}/).first)
     } if doc
   end

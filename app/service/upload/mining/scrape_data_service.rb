@@ -14,7 +14,7 @@ class ScrapeDataService
         service.extract_partition_from_document(document) { |part, value|
           value = @scraper.source? ? value.merge({source: url.strip}) : value
 
-          !@scraper.url_prefix.empty? || !@scraper.url_postfix.empty? ?
+          !@scraper.url_prefix.blank? || !@scraper.url_postfix.blank? ?
               value.merge({url: @scraper.url_prefix + ERB::Util.url_encode(url.strip) + @scraper.url_postfix}) :
               value
         }

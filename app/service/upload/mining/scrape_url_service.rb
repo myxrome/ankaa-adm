@@ -29,11 +29,11 @@ class ScrapeURLService
 
   def scrape_urls_from_document(document)
     begin
-      scope = @scraper.scope.empty? ? 'body' : @scraper.scope
+      scope = @scraper.scope.blank? ? 'body' : @scraper.scope
 
       result = document.css(scope).map { |s|
         s.css(@scraper.selector).reject { |e|
-          not @scraper.condition.empty? and e.css(@scraper.condition).empty?
+          not @scraper.condition.blank? and e.css(@scraper.condition).empty?
         }.map { |e|
           scrape_url_from_item(e)
         }
@@ -57,7 +57,7 @@ class ScrapeURLService
 
   def scrape_url_from_item(item)
     begin
-      target = @scraper.element.empty? ? item : item.css(@scraper.element)
+      target = @scraper.element.blank? ? item : item.css(@scraper.element)
       target = target.first if target.is_a?(Nokogiri::XML::NodeSet)
       if target
         if target[@scraper.attr]
