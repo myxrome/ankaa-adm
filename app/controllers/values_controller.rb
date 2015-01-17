@@ -7,14 +7,6 @@ class ValuesController < ApplicationController
     render nothing: true
   end
 
-  def autocomplete_description_caption
-    templates = DescriptionTemplate.select_captions_like params[:name]
-    result = templates.collect do |t|
-      {value: t.caption}
-    end
-    render json: result
-  end
-
   # GET /values
   # GET /values.json
   def index
@@ -49,7 +41,7 @@ class ValuesController < ApplicationController
   end
 
   def set_value_with_related_models
-    @value = Value.includes(:category, :promos, descriptions: :description_template).find(params[:id])
+    @value = Value.includes(:category, :promos, :descriptions).find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

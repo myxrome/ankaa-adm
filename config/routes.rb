@@ -63,26 +63,24 @@ Ankaa::Application.routes.draw do
 
   root to: 'topics#index'
 
-  concern :toggleable do
+  concern :active do
     post 'toggle_active', on: :member
   end
 
-  concern :orderable do
+  concern :order do
     post 'move_up', on: :member
     post 'move_down', on: :member
   end
 
-  resources :topic_groups, concerns: [:toggleable, :orderable] do
+  resources :topic_groups, concerns: [:active, :order] do
     resources :topics
   end
-  resources :topics, concerns: [:toggleable, :orderable] do
+  resources :topics, concerns: [:active, :order] do
     resources :categories
   end
-  resources :categories, concerns: [:toggleable, :orderable]
-  resources :values, concerns: :toggleable, only: [:index, :show, :edit, :update] do
-    get :autocomplete_description_caption, on: :collection
-  end
-  resources :partners, concerns: :toggleable
+  resources :categories, concerns: [:active, :order]
+  resources :values, concerns: :active, only: [:index, :show, :edit, :update]
+  resources :partners, concerns: :active
 
   resources :events
   resources :virtual_contexts
@@ -94,7 +92,7 @@ Ankaa::Application.routes.draw do
     resources :partitions
     post :test, on: :member
   end
-  resources :partitions, concerns: :orderable do
+  resources :partitions, concerns: :order do
     resources :extractors
     resources :texts, controller: 'extractors', type: 'Text'
     resources :attribute_values, controller: 'extractors', type: 'AttributeValue'

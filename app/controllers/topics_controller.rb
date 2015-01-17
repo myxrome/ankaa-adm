@@ -56,7 +56,7 @@ class TopicsController < ApplicationController
   # PATCH/PUT /topics/1
   # PATCH/PUT /topics/1.json
   def update
-    if @topic.update(topic_update_params)
+    if @topic.update(topic_params)
       redirect_to @topic.topic_group, notice: 'Topic was successfully updated.'
     else
       render action: 'edit'
