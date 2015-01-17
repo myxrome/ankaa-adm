@@ -6,10 +6,10 @@ class MinerMailer < ActionMailer::Base
   #
   #   en.miner_mailer.result_email.subject
   #
-  def result_email(miner, result)
+  def error_email(miner, errors)
     @miner = miner
-    @result = result
-    mail subject: "[MINER #{miner.name}] Mining Results", to: 'mining@whiteboxteam.com'
+    @errors = errors
+    mail subject: "[MINER #{miner.name}] Mining Errors", to: 'mining@whiteboxteam.com'
   end
 
 end

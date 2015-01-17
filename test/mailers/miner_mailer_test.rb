@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MinerMailerTest < ActionMailer::TestCase
   test "result_email" do
-    mail = MinerMailer.result_email
+    mail = MinerMailer.error_email
     assert_equal "Result email", mail.subject
     assert_equal ["to@example.org"], mail.to
     assert_equal ["from@example.com"], mail.from

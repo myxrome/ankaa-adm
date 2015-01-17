@@ -6,6 +6,7 @@ class ReconcileDescriptionService < BaseReconcileService
 
   def reconcile(params)
     @description.assign_attributes(params)
+    @description.assign_attributes(active: true)
     @description.save! if @description.changed?
   end
 

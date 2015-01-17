@@ -10,7 +10,7 @@ class ReconcileValueService < BaseReconcileService
     @value.save! if @value.changed?
   end
 
-  def reconcile_associations(params, callback_context)
+  def reconcile_associations(params)
     reconcile_association(@value.descriptions, params[:descriptions_attributes]) { |description|
       ReconcileDescriptionService.new(description)
     }

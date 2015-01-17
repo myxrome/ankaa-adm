@@ -1,14 +1,4 @@
-- unless @result[:error].empty?
-  %h2 Error:
-  - @result[:error].each do |error|
-    %p
-      %strong{style: 'color:red'} #{error}
-
-- @result.except(:error).each do |key, values|
-  %h2 #{key.to_s.capitalize}:
-  - if values
-    - values.each do |value|
-      - if value
-        %p
-          = surround(value.active? ? '' : '<strong>'.html_safe, value.active? ? '' : '</strong>'.html_safe) do
-            %a{href: value_url(value)}=value.name
+%h2 Error:
+- @errors.each do |error|
+  %p
+    %strong{style: 'color:red'} #{error.join('<br>').html_safe}
