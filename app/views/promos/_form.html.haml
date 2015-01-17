@@ -1,15 +1,16 @@
-.nested-fields
-  = f.input :order, as: :hidden
-  .row
-    .small-12.large-12.columns
-      = f.input :image, as: :image_preview
-  .row
-    .small-12.large-12.columns
-      %ul.button-group.right
-        %li
-          = link_to '<i class="fi-arrow-up"></i>'.html_safe, '', class: 'tiny secondary up'
-        %li
-          = link_to '<i class="fi-arrow-down"></i>'.html_safe, '', class: 'tiny secondary down'
-        %li
-          = link_to_remove_association '<i class="fi-x"></i>'.html_safe, f, class: 'tiny secondary'
-  %hr
+-if f.object.active?
+  .nested-fields
+    = f.input :order, as: :hidden
+    .row
+      .small-12.large-12.columns
+        = f.input :image, as: :image_preview
+    .row
+      .small-12.large-12.columns
+        %ul.button-group.right
+          %li
+            = link_to '<i class="fi-arrow-up"></i>'.html_safe, '', class: 'tiny secondary up'
+          %li
+            = link_to '<i class="fi-arrow-down"></i>'.html_safe, '', class: 'tiny secondary down'
+          %li
+            = link_to_remove_association '<i class="fi-x"></i>'.html_safe, f, class: 'tiny secondary'
+    %hr

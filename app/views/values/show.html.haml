@@ -40,15 +40,17 @@
       %legend Promos
       %ul{data: ({orbit: ''} unless @value.promos.empty?)}
         - @value.promos.each do |promo|
-          %li
-            %img{src: "#{promo.image.url}"}
+          -if promo.active?
+            %li
+              %img{src: "#{promo.image.url}"}
   .small-7.large-7.columns
     %fieldset
       %legend Descriptions
       %table{width: '100%'}
         %tbody
           - @value.descriptions.each do |description|
-            %tr
-              -unless description.caption.blank?
-                %td{class: [('red' if description.red), ('bold' if description.bold)].compact.join(' ')} #{description.caption}
-              %td{class: [('red' if description.red), ('bold' if description.bold)].compact.join(' '), colspan: (2 if description.caption.blank?)} #{description.text}
+            -if description.active?
+              %tr
+                -unless description.caption.blank?
+                  %td{class: [('red' if description.red), ('bold' if description.bold)].compact.join(' ')} #{description.caption}
+                %td{class: [('red' if description.red), ('bold' if description.bold)].compact.join(' '), colspan: (2 if description.caption.blank?)} #{description.text}

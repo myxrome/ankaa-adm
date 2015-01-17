@@ -18,7 +18,7 @@
             %label{for: value.id}
         %td
           %a.th{href: value_path(value)}
-            %img{src:"#{value.thumb if value.thumb}"}
+            %img{src:"#{value.thumb.url if value.thumb}"}
         %td= link_to value.name, value
         %td= link_to value.category.name, value.category if value.category
         %td= value.old_price
