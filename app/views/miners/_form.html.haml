@@ -9,6 +9,6 @@
         .small-7.large-7.columns
           = f.input :name
         .small-5.large-5.columns
-          = f.association :category
+          = f.association :category, collection: Category.all - Miner.all.map { |m| m.category } + [@miner.category]
   .actions
     = render 'layouts/form_buttons'
