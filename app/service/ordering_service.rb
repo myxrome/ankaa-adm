@@ -4,6 +4,10 @@ class OrderingService
     @subject = subject
   end
 
+  def next_order
+    (subject_neighbors.maximum(:order) || 0) + 1
+  end
+
   def move_up
     upper = subject_neighbors.where("#{@subject.class.table_name}.order < ?", @subject.order).
         order(order: :desc).limit(1).first

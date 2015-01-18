@@ -1,4 +1,6 @@
 class Partition < ActiveRecord::Base
+  include AutoOrdering
+
   belongs_to :source, polymorphic: true
   has_many :extractors, inverse_of: :partition, dependent: :destroy
   delegate :texts, :attribute_values, :attachments, :has_manies, to: :extractors
