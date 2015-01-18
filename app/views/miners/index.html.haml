@@ -2,15 +2,20 @@
 %table{width: '100%'}
   %thead
     %tr
-      %th Name
-      %th Category
+      %th{width: '200px'} Name
+      %th Scrapers
       %th{width: '35px'}
       %th{width: '35px'}
   %tbody
     - @miners.each do |miner|
       %tr
         %td= link_to miner.name, miner
-        %td= link_to miner.category.name, miner.category if miner.category
+        %td
+          %table.small{width: '100%'}
+            -miner.miner_scrapers.each do |miner_scraper|
+              %tr
+                %td= link_to miner_scraper.scraper.name, miner_scraper.scraper
+                %td{width: '35px'}= miner_scraper.limit
         %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_miner_path(miner), class: 'tiny secondary'
         %td= link_to '<i class="fi-x"></i>'.html_safe, miner, method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary'
 = link_to '<i class="fi-page-add"></i> New Miner'.html_safe, new_miner_path, class: 'right tiny button'
