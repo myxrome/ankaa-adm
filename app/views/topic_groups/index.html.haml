@@ -9,6 +9,7 @@
       %th{width: '35px'}
       %th{width: '35px'}
       %th{width: '35px'}
+      %th{width: '35px'}
   %tbody
     - @topic_groups.each do |topic_group|
       %tr
@@ -25,4 +26,5 @@
         %td= link_to '<i class="fi-arrow-up"></i>'.html_safe, '', class: 'tiny secondary table-up', data: {url: move_up_topic_group_path(topic_group)}
         %td= link_to '<i class="fi-arrow-down"></i>'.html_safe, '', class: 'tiny secondary table-down', data: {url: move_down_topic_group_path(topic_group)}
         %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_topic_group_path(topic_group), class: 'tiny secondary'
+        %td= link_to '<i class="fi-x"></i>'.html_safe, topic_group, method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary'
 = link_to '<i class="fi-page-add"></i> New Topic Group'.html_safe, new_topic_group_path, class: 'right tiny button'

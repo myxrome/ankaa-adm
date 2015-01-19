@@ -67,8 +67,11 @@ class TopicsController < ApplicationController
   # DELETE /topics/1.json
   def destroy
     topic_group = @topic.topic_group
-    @topic.destroy
-    redirect_to topic_group, notice: 'Topic was successfully destroyed.'
+    if @topic.destroy
+      redirect_to topic_group, notice: 'Topic was successfully destroyed.'
+    else
+      redirect_to topic_group, alert: @topic.errors[:base].join(' ')
+    end
   end
 
   private

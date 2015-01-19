@@ -67,8 +67,11 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1.json
   def destroy
     topic = @category.topic
-    @category.destroy
-    redirect_to topic
+    if @category.destroy
+      redirect_to topic, notice: 'Category was successfully destroyed.'
+    else
+      redirect_to topic, alert: @category.errors[:base].join(' ')
+    end
   end
 
   private

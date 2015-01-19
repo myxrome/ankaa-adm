@@ -42,7 +42,7 @@ class TopicGroupsController < ApplicationController
     session[:key] = nil
 
     if @topic_group.save
-      redirect_to topic_groups_url, notice: 'Topic group was successfully created.'
+      redirect_to topic_groups_url, notice: 'Topic Group was successfully created.'
     else
       render :new
     end
@@ -51,7 +51,7 @@ class TopicGroupsController < ApplicationController
   # PATCH/PUT /topic_groups/1
   def update
     if @topic_group.update(topic_group_update_params)
-      redirect_to topic_groups_url, notice: 'Topic group was successfully updated.'
+      redirect_to topic_groups_url, notice: 'Topic Group was successfully updated.'
     else
       render :edit
     end
@@ -59,8 +59,11 @@ class TopicGroupsController < ApplicationController
 
   # DELETE /topic_groups/1
   def destroy
-    @topic_group.destroy
-    redirect_to topic_groups_url, notice: 'Topic group was successfully destroyed.'
+    if @topic_group.destroy
+      redirect_to topic_groups_url, notice: 'Topic Group was successfully destroyed.'
+    else
+      redirect_to topic_groups_url, alert: @topic_group.errors[:base].join(' ')
+    end
   end
 
   private
