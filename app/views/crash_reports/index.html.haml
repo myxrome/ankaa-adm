@@ -1,0 +1,17 @@
+- content_for :title, 'Crash Reports'
+%table{width: '100%'}
+  %thead
+    %tr
+      %th Name
+      %th Version
+      %th Exception
+      %th Happened At
+      %th{width: '35px'}
+  %tbody
+    - @crash_reports.each do |crash_report|
+      %tr
+        %td= link_to crash_report.name, crash_report
+        %td= crash_report.version
+        %td= crash_report.exception
+        %td= crash_report.happened_at
+        %td= link_to '<i class="fi-x"></i>'.html_safe, crash_report, method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary'

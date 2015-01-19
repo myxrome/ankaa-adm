@@ -21,7 +21,7 @@
 
         %li.divider
 
-        -if params[:controller] =~ /(virtual_contexts|events)/
+        -if params[:controller] =~ /(virtual_contexts|events|crash_reports)/
           =render 'layouts/statistic_menu'
         -else
           %li.has-dropdown

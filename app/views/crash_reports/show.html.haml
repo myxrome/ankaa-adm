@@ -1,0 +1,28 @@
+- content_for :title, "Crash Report - #{@crash_report.name}"
+.row
+  .small-12.large-12.columns
+    %fieldset
+      %legend Parameters
+      %table{width: '100%'}
+        %tbody
+          %tr
+            %td{width: '150px'} Version:
+            %td= @crash_report.version
+          %tr
+            %td{width: '150px'} Exception:
+            %td= @crash_report.exception
+          %tr
+            %td{width: '150px'} Message:
+            %td= @crash_report.message
+          %tr
+            %td{width: '150px'} Stack Trace:
+            %td= @crash_report.stacktrace
+          %tr
+            %td{width: '150px'} Happened At:
+            %td= @crash_report.happened_at
+
+.row
+  .small-12.large-12.columns
+    %ul.button-group.right
+      %li
+        = link_to '<i class="fi-database"></i> All'.html_safe, events_path, class: 'tiny button'
