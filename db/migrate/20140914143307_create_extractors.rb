@@ -7,9 +7,8 @@ class CreateExtractors < ActiveRecord::Migration
       t.string :key
       t.string :element
       t.string :attr
-      t.string :substring
-      t.string :prefix
-      t.string :postfix
+      t.string :pattern
+      t.string :replacement
       t.boolean :order
       t.boolean :source
 

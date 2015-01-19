@@ -29,9 +29,6 @@
       %table{width: '100%'}
         %tbody
           %tr
-            %td{width: '150px'} Source:
-            %td= @scraper.source
-          %tr
             %td{width: '150px'} Scope:
             %td= @scraper.scope
           %tr
@@ -47,14 +44,11 @@
             %td{width: '150px'} Attribute:
             %td= @scraper.attr
           %tr
-            %td{width: '150px'} Substring:
-            %td= @scraper.substring
+            %td{width: '150px'} Source Pattern:
+            %td= @scraper.source_pattern
           %tr
-            %td{width: '150px'} Source Prefix:
-            %td= @scraper.source_prefix
-          %tr
-            %td{width: '150px'} Source Postfix:
-            %td= @scraper.source_postfix
+            %td{width: '150px'} Source Replacement:
+            %td= @scraper.source_replacement
           %tr
             %td{width: '150px'} URL Postfix:
             %td= @scraper.url_prefix

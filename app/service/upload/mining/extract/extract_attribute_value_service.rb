@@ -6,8 +6,7 @@ class ExtractAttributeValueService < BaseExtractService
     if node
       source = node[@extractor.attr]
       if source
-        pattern = @extractor.substring.blank? ? '.*' : @extractor.substring
-        @extractor.prefix + source.scan(/#{pattern}/).first + @extractor.postfix
+        source.gsub(/#{@extractor.pattern}/, @extractor.replacement)
       else
         raise "Empty result for attribute #{@extractor.attr} in element #{@extractor.element}"
       end

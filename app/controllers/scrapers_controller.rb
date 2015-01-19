@@ -3,7 +3,7 @@ class ScrapersController < ApplicationController
 
   def test
     service = TestingScraperService.new(@scraper)
-    render json: service.test(params[:url])
+    render json: service.perform(params[:url])
   end
 
   # GET /scrapers
@@ -58,7 +58,7 @@ class ScrapersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def scraper_params
-    params[:scraper].permit(:name, :scope, :selector, :condition, :element, :attr, :substring, :source_prefix,
+    params[:scraper].permit(:name, :scope, :selector, :condition, :element, :attr, :source_pattern, :source_replacement,
                             :source_postfix, :source, :url_prefix, :url_postfix)
   end
 end

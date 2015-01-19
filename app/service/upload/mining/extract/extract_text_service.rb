@@ -6,8 +6,7 @@ class ExtractTextService < BaseExtractService
     if node
       source = node.inner_text.strip if node.inner_text
       if source
-        pattern = @extractor.substring.blank? ? '.*' : @extractor.substring
-        @extractor.prefix + source.scan(/#{pattern}/).first + @extractor.postfix
+        source.gsub(/#{@extractor.pattern}/, @extractor.replacement)
       else
         raise "Empty inner text for #{@extractor.element}"
       end

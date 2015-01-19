@@ -6,8 +6,7 @@ class ExtractAttachmentService < BaseExtractService
     if node
       source = node[@extractor.attr]
       if source
-        pattern = @extractor.substring.blank? ? '.*' : @extractor.substring
-        url = @extractor.prefix + source.scan(/#{pattern}/).first + @extractor.postfix
+        url = source.gsub(/#{@extractor.pattern}/, @extractor.replacement)
         URI.parse(url)
       else
         raise "Empty result for attribute #{@extractor.attr} in element #{@extractor.element}"

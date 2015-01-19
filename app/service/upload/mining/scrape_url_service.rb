@@ -1,26 +1,25 @@
 class ScrapeURLService
   require 'open-uri'
 
-  def initialize(miner_scraper)
-    @miner_scraper = miner_scraper
-    @scraper = miner_scraper.scraper
+  def initialize(scraper)
+    @scraper = scraper
   end
 
-  def scrape_urls
+  def scrape_urls(miner_scraper)
     begin
       current_page = 0
       result = Set.new
 
       begin
         current_page += 1
-        doc = get_document(current_page)
+        doc = get_document(current_page, miner_scraper)
         portion = scrape_urls_from_document(doc)
 
         break if !portion.empty? && result > portion
         result.merge portion
-      end while result.size < @miner_scraper.limit && current_page < MAX_PAGER
+      end while result.size < miner_scraper.limit && current_page < MAX_PAGER
 
-      result.to_a.take(@miner_scraper.limit)
+      result.to_a.take(miner_scraper.limit)
     rescue Exception => e
       UploadErrorReportingService.instance.on_error(e)
       Array.new
@@ -30,7 +29,6 @@ class ScrapeURLService
   def scrape_urls_from_document(document)
     begin
       scope = @scraper.scope.blank? ? 'body' : @scraper.scope
-
       result = document.css(scope).map { |s|
         s.css(@scraper.selector).reject { |e|
           not @scraper.condition.blank? and e.css(@scraper.condition).empty?
@@ -49,9 +47,9 @@ class ScrapeURLService
   private
   MAX_PAGER = 20
 
-  def get_document(current_page)
-    url = @miner_scraper.url_prefix + current_page.to_s +
-        @miner_scraper.url_postfix
+  def get_document(current_page, miner_scraper)
+    url = miner_scraper.url_prefix + current_page.to_s +
+        miner_scraper.url_postfix
     Nokogiri::HTML(open(url))
   end
 
@@ -61,7 +59,7 @@ class ScrapeURLService
       target = target.first if target.is_a?(Nokogiri::XML::NodeSet)
       if target
         if target[@scraper.attr]
-          @scraper.source_prefix + target[@scraper.attr] + @scraper.source_postfix
+          target[@scraper.attr].gsub(/#{@scraper.source_pattern}/, @scraper.source_replacement)
         else
           raise "Element #{@scraper.element} doesn't contain attribute #{@scraper.attr}"
         end

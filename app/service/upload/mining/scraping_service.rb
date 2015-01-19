@@ -7,16 +7,15 @@ class ScrapingService
 
   def perform
     service = ScrapeDataService.new(@miner_scraper)
-    pattern = @scraper.substring.blank? ? '.*' : @scraper.substring
 
     scrape_urls.map { |url|
-      service.scrape_data_from_url(url.scan(/#{pattern}/).first)
+      service.scrape_data_from_url(url)
     }.flatten
   end
 
   def scrape_urls
-    serivce = ScrapeURLService.new(@miner_scraper)
-    serivce.scrape_urls
+    serivce = ScrapeURLService.new(@miner_scraper.scraper)
+    serivce.scrape_urls(@miner_scraper)
   end
 
 end
