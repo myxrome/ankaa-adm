@@ -19,7 +19,10 @@ lamoda_scraper = Scraper.find_or_create_by! name: 'Lamoda' do |scraper|
                           element: 'span.product-label', attr: '', substring: '', prefix: '', postfix: ''},
                        {partition: lamoda_partition, type: 'Text', name: 'Value Old Price', key: 'old_price',
                           element: 'span.price__old',
-                          attr: '', substring: '', prefix: '', postfix: ''}]
+                          attr: '', substring: '', prefix: '', postfix: ''},
+                       {partition: lamoda_partition, type: 'Attachment', name: 'Value Thumb', key: 'thumb',
+                        element: 'li.photos-list__item:not([data-type="3d"]):nth-child(1)',
+                        attr: 'data-orig', substring: '', prefix: 'http:', postfix: ''}]
 
     Extractor.create! partition: lamoda_partition, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
                       element: '', attr: '', substring: '', prefix: '', postfix: '', order: true, source: true do |extractor|
@@ -64,7 +67,10 @@ wildberries_scraper = Scraper.find_or_create_by! name: 'Wildberries' do |scraper
                           element: '.discount', attr: '', substring: '[−\d%]+', prefix: '', postfix: ''},
                        {partition: wb_partition, type: 'Text', name: 'Value Old Price', key: 'old_price',
                           element: '#Price > del',
-                          attr: '', substring: '', prefix: '', postfix: ''}]
+                          attr: '', substring: '', prefix: '', postfix: ''},
+                       {partition: wb_partition, type: 'Attachment', name: 'Value Thumb', key: 'thumb',
+                        element: 'ul.carousel a.enabledZoom:nth-child(1)',
+                        attr: 'href', substring: '', prefix: 'http:', postfix: ''}]
 
     Extractor.create! partition: wb_partition, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
                       element: '', attr: '', substring: '', prefix: '', postfix: '', order: true, source: true do |extractor|
@@ -105,19 +111,22 @@ Scraper.find_or_create_by! name: 'Quelle' do |scraper|
   scraper.update_attributes! scope: 'ol.productsBox', selector: 'div.productBox', condition: 'div.productStreichpreis',
                              element: 'div.productQuickLookBox > a', attr: 'href', substring: '[\w:\/\.-]+', source_prefix: '',
                              source_postfix: '', source: true, url_prefix: '', url_postfix: ''
-  Partition.create! name: 'Quelle Body', scope: 'body', source: scraper, order: 1 do |wb_partition|
-    Extractor.create! [{partition: wb_partition, type: 'Text', name: 'Value Name', key: 'name',
+  Partition.create! name: 'Quelle Body', scope: 'body', source: scraper, order: 1 do |ql_partition|
+    Extractor.create! [{partition: ql_partition, type: 'Text', name: 'Value Name', key: 'name',
                           element: 'h1.h2', attr: '',
                           substring: '[^\.]+', prefix: '', postfix: ''},
-                       {partition: wb_partition, type: 'Text', name: 'Value New Price', key: 'new_price',
+                       {partition: ql_partition, type: 'Text', name: 'Value New Price', key: 'new_price',
                           element: '.productPrice', attr: '', substring: '\d+', prefix: '', postfix: ' руб.'},
-                       {partition: wb_partition, type: 'Text', name: 'Value Discount', key: 'discount',
+                       {partition: ql_partition, type: 'Text', name: 'Value Discount', key: 'discount',
                           element: '.productPriceSlogan > strong:nth-child(1)', attr: '', substring: '', prefix: '-', postfix: '%'},
-                       {partition: wb_partition, type: 'Text', name: 'Value Old Price', key: 'old_price',
+                       {partition: ql_partition, type: 'Text', name: 'Value Old Price', key: 'old_price',
                           element: '#productDetailProductPriceBox > div:nth-child(2)',
-                          attr: '', substring: '\d+', prefix: '', postfix: ' руб.'}]
+                          attr: '', substring: '\d+', prefix: '', postfix: ' руб.'},
+                       {partition: ql_partition, type: 'Attachment', name: 'Value Thumb', key: 'thumb',
+                        element: 'a._copy_layer_contents_to_element:nth-child(1)',
+                        attr: 'href', substring: '[\w:\/\.-]+', prefix: 'http:', postfix: ''}]
 
-    Extractor.create! partition: wb_partition, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
+    Extractor.create! partition: ql_partition, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
                       element: '', attr: '', substring: '', prefix: '', postfix: '', order: true, source: true do |extractor|
       Partition.create! name: 'Description Header', scope: '.productLangtextBox', source: extractor, order: 1 do |description_partition|
         Extractor.create! partition: description_partition, type: 'Text', name: 'Description Text', key: 'text',
@@ -126,13 +135,13 @@ Scraper.find_or_create_by! name: 'Quelle' do |scraper|
       end
     end
 
-    Extractor.create! partition: wb_partition, type: 'HasMany', name: 'Value Promos', key: 'promos_attributes',
+    Extractor.create! partition: ql_partition, type: 'HasMany', name: 'Value Promos', key: 'promos_attributes',
                       element: '', attr: '', substring: '', prefix: '', postfix: '', order: true, source: false do |extractor|
       Partition.create! name: 'Image Slider', scope: '.verticalImageListBox > ul:nth-child(1) > li', source: extractor, order: 1 do |promo_partition|
         Extractor.create! [{partition: promo_partition, type: 'Attachment', name: 'Promo Image', key: 'image',
-                              element: 'a._copy_layer_contents_to_element', attr: 'href', substring: '', prefix: 'http:', postfix: ''},
+                            element: 'a._copy_layer_contents_to_element', attr: 'href', substring: '[\w:\/\.-]+', prefix: 'http:', postfix: ''},
                            {partition: promo_partition, type: 'AttributeValue', name: 'Promo Source', key: 'source',
-                              element: 'a._copy_layer_contents_to_element', attr: 'href', substring: '', prefix: 'http:', postfix: ''}]
+                            element: 'a._copy_layer_contents_to_element', attr: 'href', substring: '[\w:\/\.-]+', prefix: 'http:', postfix: ''}]
 
       end
     end

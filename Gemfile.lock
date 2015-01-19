@@ -1,17 +1,16 @@
 GIT
-  remote: git@bitbucket.org:myxrome/ankaa-content.git
-  revision: ca15cf074a02afd09597b89b61f557b69023af77
-  specs:
-    ankaa-content (0.9.1.2)
-      ankaa-statistic
-      paperclip
-      rails (~> 4.1.1)
-
-GIT
   remote: git@bitbucket.org:myxrome/ankaa-statistic.git
   revision: 8c6e84a2a92c789ae8b60fed4e993c28b950e445
   specs:
     ankaa-statistic (0.9.3)
+      rails (~> 4.1.1)
+
+PATH
+  remote: /home/myxrome/Projects/ankaa-content
+  specs:
+    ankaa-content (0.9.2)
+      ankaa-statistic
+      paperclip
       rails (~> 4.1.1)
 
 GEM
@@ -222,7 +221,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ankaa-content (= 0.9.1.2)!
+  ankaa-content (= 0.9.2)!
   ankaa-statistic (= 0.9.3)!
   capistrano (~> 3.1)
   capistrano-bundler

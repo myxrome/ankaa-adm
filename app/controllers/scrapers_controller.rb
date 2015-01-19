@@ -2,7 +2,7 @@ class ScrapersController < ApplicationController
   before_action :set_scraper, only: [:test, :show, :edit, :update, :destroy]
 
   def test
-    service = TestScraperService.new(@scraper)
+    service = TestingScraperService.new(@scraper)
     render json: service.test(params[:url])
   end
 

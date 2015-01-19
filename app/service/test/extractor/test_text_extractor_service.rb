@@ -1,2 +1,0 @@
-class TestTextExtractorService < BaseTestExtractorService
-end

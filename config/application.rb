@@ -25,6 +25,9 @@ module Ankaa
     #                                               local_root: "#{Rails.root}/public"},
     #                             fog_directory: '',
     #                             fog_host: 'http://localhost:3000'}
+    config.autoload_paths += %W(#{config.root}/app/service)
+    config.autoload_paths += Dir["#{config.root}/app/service/**/"]
+
     config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
     config.middleware.use Rack::Deflater
   end

@@ -1,2 +1,0 @@
-class TestAttributeValueExtractorService < BaseTestExtractorService
-end

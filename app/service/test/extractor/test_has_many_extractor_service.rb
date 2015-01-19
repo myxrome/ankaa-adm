@@ -1,2 +1,0 @@
-class TestHasManyExtractorService < BaseTestExtractorService
-end

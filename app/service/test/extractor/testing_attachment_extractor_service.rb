@@ -1,4 +1,4 @@
-class TestAttachmentExtractorService < BaseTestExtractorService
+class TestingAttachmentExtractorService < BaseTestingExtractorService
 
   protected
   def wrap_test_value(value)
