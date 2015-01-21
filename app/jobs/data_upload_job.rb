@@ -2,8 +2,8 @@ class DataUploadJob
 
   @queue = :parent
   def self.perform
-    Miner.all.map { |miner|
-      Resque.enqueue(DataUploadService, miner.id)
+    Miner.includes(:category).all.map { |miner|
+      Resque.enqueue(DataUploadService, miner.id) if miner.category.active?
     }
   end
 
