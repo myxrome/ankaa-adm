@@ -1,4 +1,7 @@
 %h2 Error:
 - @errors.each do |error|
   %p
-    %strong{style: 'color:red'} #{error.join('<br>').html_safe}
+    %strong{style: 'color:red'} #{error.message}
+    %br
+    %strong #{error.backtrace.join('<br>').html_safe}
+  %hr

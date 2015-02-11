@@ -21,8 +21,10 @@ class BaseReconcileService
         end
 
         child.id
-      rescue Exception => e
-        UploadErrorReportingService.instance.on_error(e)
+      rescue => e
+        n = e.exception "Create or update with params: #{p.inspect} with error: #{e.message}"
+        n.set_backtrace e.backtrace
+        UploadErrorReportingService.instance.on_error(n)
       end
     }
 
@@ -31,8 +33,10 @@ class BaseReconcileService
       begin
         child = existing.find(child_id)
         child.update_attribute(:active, false) if child.active?
-      rescue Exception => e
-        UploadErrorReportingService.instance.on_error(e)
+      rescue => e
+        n = e.exception "Delete item with id #{child_id} with error: #{e.message}"
+        n.set_backtrace e.backtrace
+        UploadErrorReportingService.instance.on_error(n)
       end
     }
   end

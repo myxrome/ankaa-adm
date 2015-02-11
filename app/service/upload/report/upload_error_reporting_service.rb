@@ -7,7 +7,7 @@ class UploadErrorReportingService
 
   def on_error(e)
     @reports[key] = {error: []} unless @reports.key?(key)
-    @reports[key][:error] << (["#{e.message}:"] << e.backtrace).flatten
+    @reports[key][:error] << e
   end
 
   def report(miner)

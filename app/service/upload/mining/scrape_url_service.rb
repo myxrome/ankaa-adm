@@ -3,6 +3,7 @@ class ScrapeURLService
 
   def initialize(scraper)
     @scraper = scraper
+    @current_url = ''
   end
 
   def scrape_urls(miner_scraper)
@@ -20,8 +21,10 @@ class ScrapeURLService
       end while result.size < miner_scraper.limit && current_page < MAX_PAGER
 
       result.to_a.take(miner_scraper.limit)
-    rescue Exception => e
-      UploadErrorReportingService.instance.on_error(e)
+    rescue => e
+      n = e.exception "URL: #{@current_url} with error: #{e.message}"
+      n.set_backtrace e.backtrace
+      UploadErrorReportingService.instance.on_error(n)
       Array.new
     end
   end
@@ -38,8 +41,10 @@ class ScrapeURLService
       }.flatten
 
       Set.new result
-    rescue Exception => e
-      UploadErrorReportingService.instance.on_error(e)
+    rescue => e
+      n = e.exception "URL: #{@current_url} with error: #{e.message}"
+      n.set_backtrace e.backtrace
+      UploadErrorReportingService.instance.on_error(n)
       Set.new
     end
   end
@@ -48,9 +53,9 @@ class ScrapeURLService
   MAX_PAGER = 20
 
   def get_document(current_page, miner_scraper)
-    url = miner_scraper.url_prefix + current_page.to_s +
+    @current_url = miner_scraper.url_prefix + current_page.to_s +
         miner_scraper.url_postfix
-    Nokogiri::HTML(open(url))
+    Nokogiri::HTML(open(@current_url))
   end
 
   def scrape_url_from_item(item)
@@ -66,8 +71,10 @@ class ScrapeURLService
       else
         raise "Page doesn't contain #{@scraper.element} with condition #{@scraper.condition}"
       end
-    rescue Exception => e
-      UploadErrorReportingService.instance.on_error(e)
+    rescue => e
+      n = e.exception "URL: #{@current_url} with error: #{e.message}"
+      n.set_backtrace e.backtrace
+      UploadErrorReportingService.instance.on_error(n)
       ''
     end
   end

@@ -20,8 +20,10 @@ class ScrapeDataService
         }
 
       }
-    rescue Exception => e
-      UploadErrorReportingService.instance.on_error(e)
+    rescue => e
+      n = e.exception "URL: #{url} with error: #{e.message}"
+      n.set_backtrace e.backtrace
+      UploadErrorReportingService.instance.on_error(n)
       Array.new
     end
   end
