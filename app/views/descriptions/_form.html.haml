@@ -2,14 +2,8 @@
   .nested-fields
     = f.input :order, as: :hidden
     .row
-      .small-6.large-6.columns
+      .small-12.large-12.columns
         = f.input :caption
-      .small-3.large-3.columns
-        %label Bold
-        = f.input :bold, wrapper_html: { class: 'switch' }
-      .small-3.large-3.columns
-        %label Red
-        = f.input :red, wrapper_html: { class: 'switch' }
     .row
       .small-12.large-12.columns
         = f.input :text

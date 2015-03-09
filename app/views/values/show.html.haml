@@ -52,5 +52,5 @@
             -if description.active?
               %tr
                 -unless description.caption.blank?
-                  %td{class: [('red' if description.red), ('bold' if description.bold)].compact.join(' ')} #{description.caption}
-                %td{class: [('red' if description.red), ('bold' if description.bold)].compact.join(' '), colspan: (2 if description.caption.blank?)} #{description.text}
+                  %td #{description.caption}
+                %td{colspan: (2 if description.caption.blank?)} #{description.text}
