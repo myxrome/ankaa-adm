@@ -11,6 +11,7 @@ class CreateScrapers < ActiveRecord::Migration
       t.string :source_replacement
       t.string :url_prefix
       t.string :url_postfix
+      t.boolean :active
 
       t.timestamps
     end

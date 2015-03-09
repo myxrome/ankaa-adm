@@ -6,8 +6,9 @@ class ScrapingService
   end
 
   def perform
-    service = ScrapeDataService.new(@miner_scraper)
+    return [] unless @scraper.active?
 
+    service = ScrapeDataService.new(@miner_scraper)
     scrape_urls.map { |url|
       service.scrape_data_from_url(url)
     }.flatten

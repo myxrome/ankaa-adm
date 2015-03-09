@@ -2,12 +2,17 @@
 %table{width: '100%'}
   %thead
     %tr
+      %th{width: '65px'} Active
       %th Name
       %th{width: '35px'}
       %th{width: '35px'}
   %tbody
     - @scrapers.each do |scraper|
       %tr
+        %td
+          .switch.tiny
+            %input{type: 'checkbox', id: scraper.id, class: 'active-toggle', data: {url: toggle_active_scraper_path(scraper)}, checked: (:checked if scraper.active)}
+            %label{for: scraper.id}
         %td= link_to scraper.name, scraper
         %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_scraper_path(scraper), class: 'tiny secondary'
         %td= link_to '<i class="fi-x"></i>'.html_safe, scraper, method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary'

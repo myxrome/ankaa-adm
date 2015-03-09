@@ -1,5 +1,10 @@
 class ScrapersController < ApplicationController
-  before_action :set_scraper, only: [:test, :show, :edit, :update, :destroy]
+  before_action :set_scraper, only: [:toggle_active, :test, :show, :edit, :update, :destroy]
+
+  def toggle_active
+    @scraper.update_attribute :active, !@scraper.active
+    render nothing: true
+  end
 
   def test
     service = TestingScraperService.new(@scraper)
@@ -59,6 +64,6 @@ class ScrapersController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def scraper_params
     params[:scraper].permit(:name, :scope, :selector, :condition, :element, :attr, :source_pattern, :source_replacement,
-                            :source_postfix, :source, :url_prefix, :url_postfix)
+                            :source_postfix, :source, :url_prefix, :url_postfix, :active)
   end
 end

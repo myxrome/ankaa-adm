@@ -89,7 +89,7 @@ Ankaa::Application.routes.draw do
   resources :miners do
     resources :miner_scrapers, only: [:new, :create, :edit, :update, :destroy]
   end
-  resources :scrapers do
+  resources :scrapers, concerns: [:active] do
     resources :partitions
     post :test, on: :member
   end

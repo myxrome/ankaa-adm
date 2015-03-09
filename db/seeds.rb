@@ -9,7 +9,7 @@ lamoda_scraper = Scraper.find_or_create_by! name: 'Lamoda' do |scraper|
   scraper.update_attributes! scope: '', selector: 'a.products-list-item__link',
                              condition: 'span.product-label:not(.product-label_new)', element: '', attr: 'href',
                              source_pattern: '(.+)', source_replacement: 'http://www.lamoda.ru\1',
-                             url_prefix: 'http://f.gdeslon.ru/f/2352c31c3271d918f7f00179c58215f5a3d231d6?goto=', url_postfix: ''
+                             url_prefix: 'http://f.gdeslon.ru/f/2352c31c3271d918f7f00179c58215f5a3d231d6?goto=', url_postfix: '', active: true
   Partition.create! name: 'Lamoda Body', scope: 'body', source: scraper, order: 1 do |lamoda_partition|
     Extractor.create! [{partition: lamoda_partition, type: 'Text', name: 'Value Name', key: 'name',
                         element: 'a.product-card__header-link', attr: '', pattern: '', replacement: '', required: false},
@@ -21,7 +21,7 @@ lamoda_scraper = Scraper.find_or_create_by! name: 'Lamoda' do |scraper|
                         element: '.product-card__price span.price__old',
                         attr: '', pattern: '\D', replacement: '', required: true},
                        {partition: lamoda_partition, type: 'Attachment', name: 'Value Thumb', key: 'thumb',
-                        element: 'li.photos-list__item:not([data-type="3d"]):nth-child(1)',
+                        element: 'li.photos-list__item[data-type="zoom"]:nth-of-type(1)',
                         attr: 'data-orig', pattern: '^(.+)img\d+x\d+(.+)$', replacement: 'http:\1product\2', required: true}]
 
     Extractor.create! partition: lamoda_partition, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
@@ -41,7 +41,7 @@ lamoda_scraper = Scraper.find_or_create_by! name: 'Lamoda' do |scraper|
     end
     Extractor.create! partition: lamoda_partition, type: 'HasMany', name: 'Value Promos', key: 'promos_attributes',
                       element: '', attr: '', pattern: '', replacement: '', order: true, source: false, required: false do |extractor|
-      Partition.create! name: 'Image Slider', scope: 'ul.photos-list__list li:not([data-type="3d"])', source: extractor, order: 1 do |promo_partition|
+      Partition.create! name: 'Image Slider', scope: 'ul.photos-list__list li[data-type="zoom"]', source: extractor, order: 1 do |promo_partition|
         Extractor.create! [{partition: promo_partition, type: 'Attachment', name: 'Promo Image', key: 'image',
                             element: '', attr: 'data-orig', pattern: '^(.+)img\d+x\d+(.+)$', replacement: 'http:\1product\2', required: false},
                            {partition: promo_partition, type: 'AttributeValue', name: 'Promo Source', key: 'source',
@@ -56,7 +56,7 @@ end
 wildberries_scraper = Scraper.find_or_create_by! name: 'Wildberries' do |scraper|
   scraper.update_attributes! scope: '', selector: 'div.dtList', condition: 'span.proc_div',
                              element: 'a.ref_goods_n_p', attr: 'href', source_pattern: '', source_replacement: '',
-                             url_prefix: 'http://f.gdeslon.ru/f/c81c6bb247231b0cb907d1dd6fd5eef167444c3f?goto=', url_postfix: ''
+                             url_prefix: 'http://f.gdeslon.ru/f/c81c6bb247231b0cb907d1dd6fd5eef167444c3f?goto=', url_postfix: '', active: false
   Partition.create! name: 'Wildberries Body', scope: 'body', source: scraper, order: 1 do |wb_partition|
     Extractor.create! [{partition: wb_partition, type: 'Text', name: 'Value Name', key: 'name',
                           element: 'h1[itemprop="name"]', attr: '',
@@ -110,7 +110,7 @@ end
 Scraper.find_or_create_by! name: 'Quelle' do |scraper|
   scraper.update_attributes! scope: 'ol.productsBox', selector: 'div.productBox', condition: 'div.productStreichpreis',
                              element: 'div.productQuickLookBox > a', attr: 'href', source_pattern: '([\w:\/\.-]+)', source_replacement: '\1',
-                             url_prefix: '', url_postfix: ''
+                             url_prefix: '', url_postfix: '', active: false
   Partition.create! name: 'Quelle Body', scope: 'body', source: scraper, order: 1 do |ql_partition|
     Extractor.create! [{partition: ql_partition, type: 'Text', name: 'Value Name', key: 'name',
                           element: 'h1.h2', attr: '',

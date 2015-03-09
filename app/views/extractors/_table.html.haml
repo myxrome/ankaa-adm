@@ -14,6 +14,7 @@
         %td= link_to extractor.name, [extractor.partition, extractor]
         %td= extractor.key
         %td= extractor.element
+        %td= extractor.required
         %td= extractor.type.gsub(/[A-Z]/, ' \0')
         %td= link_to '<i class="fi-pencil"></i>'.html_safe, edit_extractor_path(extractor), class: 'tiny secondary'
         %td= link_to '<i class="fi-x"></i>'.html_safe, [extractor.partition, extractor], method: :delete, data: { confirm: 'Are you sure?' }, class: 'tiny secondary'
