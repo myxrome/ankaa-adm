@@ -8,10 +8,12 @@ class ExtractTextService < BaseExtractService
       if source
         source.gsub(/#{@extractor.pattern}/, @extractor.replacement)
       else
-        raise "Empty inner text for #{@extractor.element}"
+        raise "Empty inner text for #{@extractor.element}" if @extractor.required?
+        ''
       end
     else
-      raise "Empty result for #{@extractor.element}"
+      raise "Empty result for #{@extractor.element}" if @extractor.required?
+      ''
     end
   end
 

@@ -61,6 +61,6 @@ class ExtractorsController < ApplicationController
   def extractor_params
     result = params[:text] || params[:attribute_value] || params[:attachment] || params[:has_many]
     result.permit(:partition_id, :type, :name, :key, :element, :attr, :pattern, :replacement,
-                  :order, :source)
+                  :order, :source, :required)
   end
 end

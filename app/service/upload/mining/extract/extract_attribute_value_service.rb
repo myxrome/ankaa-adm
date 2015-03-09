@@ -8,10 +8,12 @@ class ExtractAttributeValueService < BaseExtractService
       if source
         source.gsub(/#{@extractor.pattern}/, @extractor.replacement)
       else
-        raise "Empty result for attribute #{@extractor.attr} in element #{@extractor.element}"
+        raise "Empty result for attribute #{@extractor.attr} in element #{@extractor.element}" if @extractor.required?
+        ''
       end
     else
-      raise "Empty result for #{@extractor.element}"
+      raise "Empty result for #{@extractor.element}" if @extractor.required?
+      ''
     end
   end
 

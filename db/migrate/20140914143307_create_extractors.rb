@@ -11,6 +11,7 @@ class CreateExtractors < ActiveRecord::Migration
       t.string :replacement
       t.boolean :order
       t.boolean :source
+      t.boolean :required
 
       t.timestamps
     end

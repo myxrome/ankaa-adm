@@ -12,40 +12,40 @@ lamoda_scraper = Scraper.find_or_create_by! name: 'Lamoda' do |scraper|
                              url_prefix: 'http://f.gdeslon.ru/f/2352c31c3271d918f7f00179c58215f5a3d231d6?goto=', url_postfix: ''
   Partition.create! name: 'Lamoda Body', scope: 'body', source: scraper, order: 1 do |lamoda_partition|
     Extractor.create! [{partition: lamoda_partition, type: 'Text', name: 'Value Name', key: 'name',
-                          element: 'a.product-card__header-link', attr: '', pattern: '', replacement: ''},
+                        element: 'a.product-card__header-link', attr: '', pattern: '', replacement: '', required: false},
                        {partition: lamoda_partition, type: 'Text', name: 'Value New Price', key: 'new_price',
-                        element: '.product-card__price span.price__new', attr: '', pattern: '\D', replacement: ''},
+                        element: '.product-card__price span.price__new', attr: '', pattern: '\D', replacement: '', required: true},
                        {partition: lamoda_partition, type: 'Text', name: 'Value Discount', key: 'discount',
-                          element: 'span.product-label', attr: '', pattern: '\D', replacement: ''},
+                        element: 'span.product-label', attr: '', pattern: '\D', replacement: '', required: false},
                        {partition: lamoda_partition, type: 'Text', name: 'Value Old Price', key: 'old_price',
                         element: '.product-card__price span.price__old',
-                          attr: '', pattern: '\D', replacement: ''},
+                        attr: '', pattern: '\D', replacement: '', required: true},
                        {partition: lamoda_partition, type: 'Attachment', name: 'Value Thumb', key: 'thumb',
                         element: 'li.photos-list__item:not([data-type="3d"]):nth-child(1)',
-                        attr: 'data-orig', pattern: '^(.+)img\d+x\d+(.+)$', replacement: 'http:\1product\2'}]
+                        attr: 'data-orig', pattern: '^(.+)img\d+x\d+(.+)$', replacement: 'http:\1product\2', required: true}]
 
     Extractor.create! partition: lamoda_partition, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
-                      element: '', attr: '', pattern: '', replacement: '', order: true, source: true do |extractor|
+                      element: '', attr: '', pattern: '', replacement: '', order: true, source: true, required: false do |extractor|
       Partition.create! name: 'Description Header', scope: 'div.product-content__sheet', source: extractor, order: 1 do |description_partition|
         Extractor.create! partition: description_partition, type: 'Text', name: 'Description Text', key: 'text',
-                            element: 'p.product-content__p', attr: '', pattern: '', replacement: ''
+                          element: 'p.product-content__p', attr: '', pattern: '', replacement: '', required: false
 
       end
       Partition.create! name: 'Description Table', scope: 'table.product-content__table tr', source: extractor, order: 2 do |description_partition|
         Extractor.create! [{partition: description_partition, type: 'Text', name: 'Description Caption', key: 'caption',
-                              element: 'th', attr: '', pattern: '', replacement: ''},
+                            element: 'th', attr: '', pattern: '', replacement: '', required: false},
                            {partition: description_partition, type: 'Text', name: 'Description Text', key: 'text',
-                              element: 'td', attr: '', pattern: '', replacement: ''}]
+                            element: 'td', attr: '', pattern: '', replacement: '', required: false}]
 
       end
     end
     Extractor.create! partition: lamoda_partition, type: 'HasMany', name: 'Value Promos', key: 'promos_attributes',
-                      element: '', attr: '', pattern: '', replacement: '', order: true, source: false do |extractor|
+                      element: '', attr: '', pattern: '', replacement: '', order: true, source: false, required: false do |extractor|
       Partition.create! name: 'Image Slider', scope: 'ul.photos-list__list li:not([data-type="3d"])', source: extractor, order: 1 do |promo_partition|
         Extractor.create! [{partition: promo_partition, type: 'Attachment', name: 'Promo Image', key: 'image',
-                              element: '', attr: 'data-orig', pattern: '^(.+)img\d+x\d+(.+)$', replacement: 'http:\1product\2'},
+                            element: '', attr: 'data-orig', pattern: '^(.+)img\d+x\d+(.+)$', replacement: 'http:\1product\2', required: false},
                            {partition: promo_partition, type: 'AttributeValue', name: 'Promo Source', key: 'source',
-                              element: '', attr: 'data-orig', pattern: '^(.+)img\d+x\d+(.+)$', replacement: 'http:\1product\2'}]
+                            element: '', attr: 'data-orig', pattern: '^(.+)img\d+x\d+(.+)$', replacement: 'http:\1product\2', required: false}]
 
       end
     end
@@ -60,46 +60,46 @@ wildberries_scraper = Scraper.find_or_create_by! name: 'Wildberries' do |scraper
   Partition.create! name: 'Wildberries Body', scope: 'body', source: scraper, order: 1 do |wb_partition|
     Extractor.create! [{partition: wb_partition, type: 'Text', name: 'Value Name', key: 'name',
                           element: 'h1[itemprop="name"]', attr: '',
-                          pattern: '', replacement: ''},
+                          pattern: '', replacement: '', required: false},
                        {partition: wb_partition, type: 'Text', name: 'Value New Price', key: 'new_price',
-                          element: '#Price > ins[itemprop="price"]', attr: '', pattern: '\D', replacement: ''},
+                        element: '#Price > ins[itemprop="price"]', attr: '', pattern: '\D', replacement: '', required: true},
                        {partition: wb_partition, type: 'Text', name: 'Value Discount', key: 'discount',
-                          element: '.discount', attr: '', pattern: '\D', replacement: ''},
+                        element: '.discount', attr: '', pattern: '\D', replacement: '', required: false},
                        {partition: wb_partition, type: 'Text', name: 'Value Old Price', key: 'old_price',
                           element: '#Price > del',
-                          attr: '', pattern: '\D', replacement: ''},
+                          attr: '', pattern: '\D', replacement: '', required: true},
                        {partition: wb_partition, type: 'Attachment', name: 'Value Thumb', key: 'thumb',
                         element: 'ul.carousel a.enabledZoom:nth-child(1)',
-                        attr: 'href', pattern: '(.+)', replacement: 'http:\1'}]
+                        attr: 'href', pattern: '(.+)', replacement: 'http:\1', required: true}]
 
     Extractor.create! partition: wb_partition, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
-                      element: '', attr: '', pattern: '', replacement: '', order: true, source: true do |extractor|
+                      element: '', attr: '', pattern: '', replacement: '', order: true, source: true, required: false do |extractor|
       Partition.create! name: 'Description Header', scope: '#description', source: extractor, order: 1 do |description_partition|
         Extractor.create! partition: description_partition, type: 'Text', name: 'Description Text', key: 'text',
-                            element: '', attr: '', pattern: '', replacement: ''
+                          element: '', attr: '', pattern: '', replacement: '', required: false
 
       end
       Partition.create! name: 'Description Table 1', scope: 'p.pp', source: extractor, order: 2 do |description_partition|
         Extractor.create! [{partition: description_partition, type: 'Text', name: 'Description Caption', key: 'caption',
-                              element: 'text()', attr: '', pattern: '', replacement: ''},
+                            element: 'text()', attr: '', pattern: '', replacement: '', required: false},
                            {partition: description_partition, type: 'Text', name: 'Description Text', key: 'text',
-                              element: 'span', attr: '', pattern: '', replacement: ''}]
+                            element: 'span', attr: '', pattern: '', replacement: '', required: false}]
       end
       Partition.create! name: 'Description Table 2', scope: 'table.pp-additional tr', source: extractor, order: 3 do |description_partition|
         Extractor.create! [{partition: description_partition, type: 'Text', name: 'Description Caption', key: 'caption',
-                              element: 'td:nth-child(1)', attr: '', pattern: '(.+)', replacement: '\1:'},
+                            element: 'td:nth-child(1)', attr: '', pattern: '(.+)', replacement: '\1:', required: false},
                            {partition: description_partition, type: 'Text', name: 'Description Text', key: 'text',
-                              element: 'td:nth-child(2)', attr: '', pattern: '', replacement: ''}]
+                            element: 'td:nth-child(2)', attr: '', pattern: '', replacement: '', required: false}]
 
       end
     end
     Extractor.create! partition: wb_partition, type: 'HasMany', name: 'Value Promos', key: 'promos_attributes',
-                      element: '', attr: '', pattern: '', replacement: '', order: true, source: false do |extractor|
+                      element: '', attr: '', pattern: '', replacement: '', order: true, source: false, required: false do |extractor|
       Partition.create! name: 'Image Slider', scope: 'ul.carousel a.enabledZoom', source: extractor, order: 1 do |promo_partition|
         Extractor.create! [{partition: promo_partition, type: 'Attachment', name: 'Promo Image', key: 'image',
-                              element: '', attr: 'href', pattern: '(.+)', replacement: 'http:\1'},
+                            element: '', attr: 'href', pattern: '(.+)', replacement: 'http:\1', required: false},
                            {partition: promo_partition, type: 'AttributeValue', name: 'Promo Source', key: 'source',
-                              element: '', attr: 'href', pattern: '(.+)', replacement: 'http:\1'}]
+                            element: '', attr: 'href', pattern: '(.+)', replacement: 'http:\1', required: false}]
 
       end
     end
@@ -114,34 +114,34 @@ Scraper.find_or_create_by! name: 'Quelle' do |scraper|
   Partition.create! name: 'Quelle Body', scope: 'body', source: scraper, order: 1 do |ql_partition|
     Extractor.create! [{partition: ql_partition, type: 'Text', name: 'Value Name', key: 'name',
                           element: 'h1.h2', attr: '',
-                          pattern: '([^\.]+)', replacement: '\1'},
+                          pattern: '([^\.]+)', replacement: '\1', required: false},
                        {partition: ql_partition, type: 'Text', name: 'Value New Price', key: 'new_price',
-                          element: '.productPrice', attr: '', pattern: '\D', replacement: ''},
+                        element: '.productPrice', attr: '', pattern: '\D', replacement: '', required: true},
                        {partition: ql_partition, type: 'Text', name: 'Value Discount', key: 'discount',
-                          element: '.productPriceSlogan > strong:nth-child(1)', attr: '', pattern: '\D', replacement: ''},
+                        element: '.productPriceSlogan > strong:nth-child(1)', attr: '', pattern: '\D', replacement: '', required: false},
                        {partition: ql_partition, type: 'Text', name: 'Value Old Price', key: 'old_price',
                           element: '#productDetailProductPriceBox > div:nth-child(2)',
-                          attr: '', pattern: '\D', replacement: ''},
+                          attr: '', pattern: '\D', replacement: '', required: true},
                        {partition: ql_partition, type: 'Attachment', name: 'Value Thumb', key: 'thumb',
                         element: 'a._copy_layer_contents_to_element:nth-child(1)',
-                        attr: 'href', pattern: '([\w:\/\.-]+)', replacement: 'http:\1'}]
+                        attr: 'href', pattern: '([\w:\/\.-]+)', replacement: 'http:\1', required: true}]
 
     Extractor.create! partition: ql_partition, type: 'HasMany', name: 'Value Descriptions', key: 'descriptions_attributes',
-                      element: '', attr: '', pattern: '', replacement: '', order: true, source: true do |extractor|
+                      element: '', attr: '', pattern: '', replacement: '', order: true, source: true, required: false do |extractor|
       Partition.create! name: 'Description Header', scope: '.productLangtextBox', source: extractor, order: 1 do |description_partition|
         Extractor.create! partition: description_partition, type: 'Text', name: 'Description Text', key: 'text',
-                            element: 'span:nth-child(2) > p:nth-child(1)', attr: '', pattern: '', replacement: ''
+                          element: 'span:nth-child(2) > p:nth-child(1)', attr: '', pattern: '', replacement: '', required: false
 
       end
     end
 
     Extractor.create! partition: ql_partition, type: 'HasMany', name: 'Value Promos', key: 'promos_attributes',
-                      element: '', attr: '', pattern: '', replacement: '', order: true, source: false do |extractor|
+                      element: '', attr: '', pattern: '', replacement: '', order: true, source: false, required: false do |extractor|
       Partition.create! name: 'Image Slider', scope: '.verticalImageListBox > ul:nth-child(1) > li', source: extractor, order: 1 do |promo_partition|
         Extractor.create! [{partition: promo_partition, type: 'Attachment', name: 'Promo Image', key: 'image',
-                            element: 'a._copy_layer_contents_to_element', attr: 'href', pattern: '([\w:\/\.-]+)', replacement: 'http:\1'},
+                            element: 'a._copy_layer_contents_to_element', attr: 'href', pattern: '([\w:\/\.-]+)', replacement: 'http:\1', required: false},
                            {partition: promo_partition, type: 'AttributeValue', name: 'Promo Source', key: 'source',
-                            element: 'a._copy_layer_contents_to_element', attr: 'href', pattern: '([\w:\/\.-]+)', replacement: 'http:\1'}]
+                            element: 'a._copy_layer_contents_to_element', attr: 'href', pattern: '([\w:\/\.-]+)', replacement: 'http:\1', required: false}]
 
       end
     end
