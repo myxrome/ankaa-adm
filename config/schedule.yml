@@ -1,2 +1,2 @@
 DataUploadJob:
-  cron: "0 */3 * * *"
+  cron: "0 * * * *"
