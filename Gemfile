@@ -16,11 +16,12 @@ gem 'resque-scheduler'
 gem 'simple_form'
 gem 'cocoon'
 gem 'paperclip'
-gem 'ankaa-statistic', '0.9.6', git: 'git@bitbucket.org:myxrome/ankaa-statistic.git'
+gem 'ankaa-statistic', '0.9.6.1', git: 'git@bitbucket.org:myxrome/ankaa-statistic.git'
 gem 'ankaa-content', '0.9.6', git: 'git@bitbucket.org:myxrome/ankaa-content.git'
 gem 'devise'
 gem 'nokogiri'
 gem 'figaro'
+gem 'seed_migration'
 
 group :development do
   gem 'capistrano', '~> 3.1'
