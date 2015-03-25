@@ -1,2 +1,0 @@
-DataUploadJob:
-  cron: "0 * * * *"
