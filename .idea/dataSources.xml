@@ -68,7 +68,7 @@
     <data-source source="LOCAL" name="Rails ankaa-adm: production" uuid="bc693567-1a26-4e89-91d5-53b2c3bdc943">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://myankaa-storage.local:5432/ankaadb</jdbc-url>
+      <jdbc-url>jdbc:postgresql://myankaa-storage.test.local:5432/ankaadb</jdbc-url>
       <libraries>
         <library>
           <url>file://$USER_HOME$/.RubyMine60/config/jdbc-drivers/postgresql-driver-license.txt</url>
@@ -81,7 +81,7 @@
     <data-source source="LOCAL" name="Rails ankaa-adm: statistic_production" uuid="1ad39f8c-1dbf-4d13-a394-1a031884f4c7">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://statistic-db.local:5432/statisticdb</jdbc-url>
+      <jdbc-url>jdbc:postgresql://statistic-db.test.local:5432/statisticdb</jdbc-url>
       <libraries>
         <library>
           <url>file://$USER_HOME$/.RubyMine60/config/jdbc-drivers/postgresql-driver-license.txt</url>

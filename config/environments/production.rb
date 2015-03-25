@@ -79,7 +79,7 @@ Ankaa::Application.configure do
       openssl_verify_mode: 'none'
   }
   config.action_mailer.default_url_options = {
-      host: 'myankaa-admin.local', protocol: 'http://'
+      host: "myankaa-admin.#{ENV['INSTALLATION_TYPE'].downcase}.local", protocol: 'http://'
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
