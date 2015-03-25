@@ -8,7 +8,7 @@ class Extractor < ActiveRecord::Base
   scope :has_manies, -> { where(type: :has_many) }
 
   def self.types
-    [:Text, :AttributeValue, :Attachment, :HasMany]
+    [:Text, :AttributeValue, :Attachment, :HasMany, :ConstantValue]
   end
 
 end
@@ -23,4 +23,7 @@ class Attachment < Extractor
 end
 
 class HasMany < Extractor
+end
+
+class ConstantValue < Extractor
 end

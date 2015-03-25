@@ -1,0 +1,2 @@
+class TestingConstantValueExtractorService < BaseTestingExtractorService
+end

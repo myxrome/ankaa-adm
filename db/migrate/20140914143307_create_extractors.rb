@@ -4,6 +4,7 @@ class CreateExtractors < ActiveRecord::Migration
       t.integer :partition_id
       t.string :type
       t.string :name
+      t.string :value
       t.string :key
       t.string :element
       t.string :attr

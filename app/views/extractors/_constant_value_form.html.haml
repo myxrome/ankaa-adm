@@ -1,0 +1,22 @@
+= simple_form_for [@extractor.partition, @extractor] do |f|
+  = f.error_notification
+  .actions
+    = render 'layouts/form_buttons'
+  .inputs
+    %fieldset
+      %legend Parameters
+      = f.input :partition_id, as: :hidden
+      = f.input :type, as: :hidden
+      .row
+        .small-1.large-1.columns
+          %label Reqiured
+          = f.input :required, wrapper_html: { class: 'switch' }
+        .small-11.large-11.columns
+          = f.input :name
+      .row
+        .small-6.large-6.columns
+          = f.input :key
+        .small-6.large-6.columns
+          = f.input :value
+  .actions
+    = render 'layouts/form_buttons'

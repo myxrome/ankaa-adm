@@ -1,0 +1,22 @@
+.row
+  .small-12.large-12.columns
+    %fieldset
+      %legend Parameters
+      %table{width: '100%'}
+        %tbody
+          %tr
+            %td{width: '150px'} Key:
+            %td= @extractor.key
+          %tr
+            %td{width: '150px'} Value:
+            %td= @extractor.value
+          %tr
+            %td{width: '150px'} Required:
+            %td= @extractor.required
+.row
+  .small-12.large-12.columns
+    %ul.button-group.right
+      %li
+        = link_to '<i class="fi-database"></i> All'.html_safe, partition_path(@extractor.partition), class: 'tiny button'
+      %li
+        = link_to '<i class="fi-pencil"></i> Edit'.html_safe, edit_extractor_path(@extractor), class: 'tiny button'
