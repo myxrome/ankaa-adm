@@ -1,18 +1,18 @@
 GIT
   remote: git@bitbucket.org:myxrome/ankaa-content.git
-  revision: f0ee6e0bf8869020f9e1624bf00990a7f9ed528a
+  revision: 433e85257109e790053161bbbf3d4bbdafb12397
   specs:
-    ankaa-content (0.9.7)
+    ankaa-content (0.9.8)
       ankaa-statistic
       paperclip
-      rails (~> 4.1.1)
+      rails
 
 GIT
   remote: git@bitbucket.org:myxrome/ankaa-statistic.git
-  revision: 683f17af79c6cabd7887c5c750d986edb11a5e05
+  revision: 0f139bbab743a7d9c3b8696e7989bd60f7ae4672
   specs:
-    ankaa-statistic (0.9.6.2)
-      rails (~> 4.1.1)
+    ankaa-statistic (0.9.7)
+      rails
 
 GEM
   remote: https://rubygems.org/
@@ -46,7 +46,7 @@ GEM
     arel (5.0.1.20140414130214)
     bcrypt (3.1.9)
     builder (3.2.2)
-    capistrano (3.1.0)
+    capistrano (3.4.0)
       i18n
       rake (>= 10.0.0)
       sshkit (~> 1.3)
@@ -72,7 +72,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
-    colorize (0.7.3)
+    colorize (0.7.5)
     compass (0.12.7)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
@@ -103,7 +103,7 @@ GEM
       haml (>= 3.1, < 5.0)
       railties (>= 4.0.1)
     hike (1.2.3)
-    i18n (0.6.11)
+    i18n (0.7.0)
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -121,7 +121,7 @@ GEM
     multi_json (1.10.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (2.9.1)
+    net-ssh (2.9.2)
     nokogiri (1.6.4.1)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
@@ -153,7 +153,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
-    rake (10.3.2)
+    rake (10.4.2)
     redis (3.1.0)
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
@@ -195,8 +195,8 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    sshkit (1.5.1)
-      colorize
+    sshkit (1.7.1)
+      colorize (>= 0.7.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     thor (0.19.1)
@@ -223,9 +223,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ankaa-content (= 0.9.7)!
-  ankaa-statistic (= 0.9.6.2)!
-  capistrano (~> 3.1)
+  ankaa-content (= 0.9.8)!
+  ankaa-statistic (= 0.9.7)!
+  capistrano (~> 3.4)
   capistrano-bundler
   capistrano-rails (~> 1.1)
   capistrano-rbenv (~> 2.0)
