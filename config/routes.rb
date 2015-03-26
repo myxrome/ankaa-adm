@@ -99,6 +99,7 @@ Ankaa::Application.routes.draw do
     resources :attribute_values, controller: 'extractors', type: 'AttributeValue'
     resources :attachments, controller: 'extractors', type: 'Attachment'
     resources :has_manies, controller: 'extractors', type: 'HasMany'
+    resources :constant_values, controller: 'extractors', type: 'ConstantValue'
   end
   resources :extractors do
     resources :partitions
