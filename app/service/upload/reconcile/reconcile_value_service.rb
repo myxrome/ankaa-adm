@@ -13,10 +13,10 @@ class ReconcileValueService < BaseReconcileService
   def reconcile_associations(params)
     reconcile_association(@value.descriptions, params[:descriptions_attributes]) { |description|
       ReconcileDescriptionService.new(description)
-    }
+    } if params[:descriptions_attributes]
     reconcile_association(@value.promos, params[:promos_attributes].sort_by { |v| v[:order] }.first(7)) { |promo|
       ReconcilePromoService.new(promo)
-    }
+    } if params[:promos_attributes]
   end
 
 end
