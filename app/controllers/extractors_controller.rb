@@ -59,7 +59,7 @@ class ExtractorsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def extractor_params
-    result = params[:text] || params[:attribute_value] || params[:attachment] || params[:has_many] || [params[:constant_value]]
+    result = params[:text] || params[:attribute_value] || params[:attachment] || params[:has_many] || params[:constant_value]
     result.permit(:partition_id, :type, :name, :value, :key, :element, :attr, :pattern, :replacement,
                   :order, :source, :required)
   end
