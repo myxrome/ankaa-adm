@@ -9,7 +9,7 @@ class MinerMailer < ActionMailer::Base
   def error_email(miner, errors)
     @miner = miner
     @errors = errors
-    mail subject: "[#{ENV['INSTALLATION_TYPE']}][MINER #{miner.name}] Mining Errors", to: 'mining@whiteboxteam.com'
+    mail subject: "[#{ENV['INSTALLATION_TYPE']}][MINER #{miner.name}] Mining Errors", to: 'alert@whiteboxteam.com'
   end
 
 end
