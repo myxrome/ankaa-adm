@@ -42,13 +42,17 @@ class Events < SeedMigration::Migration
     Event.find_or_create_by! tag: 'INFO_BUTTON_CLICK_COUNTER_COUNTER' do |event|
       event.update_attributes! name: 'Info Button Click', event_type: counter
     end
+    Event.find_or_create_by! tag: 'FILTER_APPLY_COUNTER' do |event|
+      event.update_attributes! name: 'Filter Counter', event_type: counter
+    end
   end
 
   def down
     Event.where(tag: ['VALUE_CONVERSION_COUNTER', 'APPLICATION_START_COUNTER', 'TOPIC_GROUP_VIEW_TIMER',
                       'TOPIC_VIEW_TIMER', 'CATEGORY_VIEW_TIMER', 'VALUE_VIEW_TIMER', 'UPLOAD_SCREEN_TIMER',
                       'COMPARE_SCREEN_TIMER', 'INFO_SCREEN_TIMER', 'ORIENTATION_TIMER', 'VALUE_CLICK_COUNTER',
-                      'BUY_BUTTON_CLICK_COUNTER_COUNTER', 'INFO_BUTTON_CLICK_COUNTER_COUNTER']).each do |e|
+                      'BUY_BUTTON_CLICK_COUNTER_COUNTER', 'INFO_BUTTON_CLICK_COUNTER_COUNTER',
+                      'FILTER_APPLY_COUNTER']).each do |e|
       e.delete
     end
   end
