@@ -1,4 +1,4 @@
-class LamodaScraper < SeedMigration::Migration
+class ButikScraper < SeedMigration::Migration
   def up
     butik = Partner.find_or_create_by! name: 'Butik' do |partner|
       partner.update_attributes! url: 'http://www.butik.ru/', active: true
