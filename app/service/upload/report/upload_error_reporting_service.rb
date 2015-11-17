@@ -11,10 +11,10 @@ class UploadErrorReportingService
   end
 
   def report(miner)
-    if @reports.key?(key)
-      MinerMailer.error_email(miner, @reports[key][:error]).deliver unless @reports[key][:error].empty?
-      @reports.delete(key)
-    end
+    # if @reports.key?(key)
+    #   MinerMailer.error_email(miner, @reports[key][:error]).deliver unless @reports[key][:error].empty?
+    #   @reports.delete(key)
+    # end
   end
 
   private
